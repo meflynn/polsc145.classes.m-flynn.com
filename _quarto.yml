@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: docs
+  lib-dir: library
+
+website:
+  title: "World Politics"
+  description: "Course page for POLSC 145 World Politics"
+  navbar:
+    background: "#512888"
+    right:
+      - href: index.qmd
+        text: Home
+      - href: instructor.qmd
+        text: Instructor
+      - href: blog.qmd
+        text: Blog
+      - href: syllabus.qmd
+        text: Syllabus
+      - text: "Archives"
+        menu:
+          - href: syllabi-archive.qmd
+            text: Syllabi Archive
+          - href: lectures.qmd
+            text: Lecture Archive
+          - href: https://www.youtube.com/@michaelflynn4243/featured
+            text: YouTube Channel
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    page-layout: article
+
+execute:
+  freeze: auto

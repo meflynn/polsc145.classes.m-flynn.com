@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: docs
   lib-dir: library
+  render:
+    - "*.qmd"
+    - "!*.Rmd"
 
 website:
   title: "World Politics"
@@ -11,11 +14,11 @@ website:
     right:
       - href: index.qmd
         text: Home
-      - href: instructor.qmd
+      - href: about.qmd
         text: Instructor
-      - href: blog.qmd
+      - href: posts.qmd
         text: Blog
-      - href: syllabus.qmd
+      - href: syllabus-s2023.qmd
         text: Syllabus
       - text: "Archives"
         menu:
@@ -31,6 +34,8 @@ format:
     css: styles.css
     toc: true
     page-layout: article
+
+editor: source
 
 execute:
   freeze: auto

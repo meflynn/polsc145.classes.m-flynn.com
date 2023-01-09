@@ -1,0 +1,14 @@
+---
+title: "Test Slides!"
+author: "Michael Flynn"
+format: 
+  revealjs:
+    theme: [default, lecture_theme.scss]
+---
+
+## Test Slide 1!
+
+-   bullet one
+-   bullet 2
+
+## Test Slide 2

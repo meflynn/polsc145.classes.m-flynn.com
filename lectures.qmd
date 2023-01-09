@@ -1,0 +1,37 @@
+---
+title: "Lectures"
+---
+
+## Lecture Slides
+
+Lectures will be archived here *after* they are given.
+
+1. [Historical Background](lectures/polsc145-historical-background.html)
+
+2. [Social Science Methods](lectures/polsc145-social-science.html)
+
+3. [Explaining War](lectures/polsc145-explaining-war.html)
+
+4. [The Bargaining Model of War](lectures/polsc145-bargaining-model.html)
+
+5. [Domestic Politics and War](lectures/polsc145-domestic-politics-war.html)
+
+6. [International Security Institutions](lectures/polsc145-alliances.html)
+
+7. [Civil Wars](lectures/polsc145-civil-wars.html)
+
+8. [Terrorism](lectures/polsc145-terrorism.html)
+
+9. [Trade](lectures/polsc145-trade.html)
+
+10. [Finance](lectures/polsc145-finance.html)
+
+11. [Monetary Policy](lectures/polsc145-monetary-policy.html)
+
+12. [Development](lectures/polsc145-development.html)
+
+13. [Human Rights](lectures/polsc145-human-rights.html)
+
+14. [Environment](lectures/polsc145-environment.html)
+
+15. [Future Challenges](lectures/polsc145-future-challenges.html)

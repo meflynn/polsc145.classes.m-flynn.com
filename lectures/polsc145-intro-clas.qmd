@@ -1,0 +1,28 @@
+---
+title: "World Politics"
+subtitle: "Class Introduction"
+author: 
+  - Michael Flynn
+institute:
+  - Department of Political Science
+  - 011C Calvin Hall
+  - meflynn@ksu.edu
+date: "Last Updated `r Sys.Date()`"
+format:
+  revealjs:
+    theme: [quarto-lecture-theme.scss, default]
+    #css: quarto-lecture-theme.css
+    slide-number: true
+    chalkboard: true
+    height: 900
+    width: 1600
+    #incremental: true
+title-slide-attributes:
+    data-background-image: "ksu-seal.png"
+    data-background-size: 45%
+    data-background-position: bottom -38% right -19%
+    height: 700
+    width: 1050
+---
+
+Test

@@ -71,7 +71,7 @@ theme_flynn <- function(){
 
 Course Information
 
-- POLSC 145 Intro to World Politics (Spring 2022)
+- POLSC 145 Intro to World Politics (Spring 2023)
 
 - Instructor: Dr. Michael Flynn, Department of Political Science
 
@@ -119,13 +119,10 @@ What word best describes the world as you see it?
 
 
 
-
-
 ---
 class: center, middle
 
 <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/dbe1n265orgLxlzK2rgSJ?controls=none&short_poll=true" width="800px" height="600px"></iframe>
-
 ???
 
 US Economic aid as percent of GDP
@@ -420,13 +417,13 @@ Evaluation:
 
 - 4 Exams (70%)
 
-- Weekly homework (30%)
+- Homework (30%)
 
 Textbook:
 
 - Frieden, Lake, and Schultz. World Politics: Interests, Interactions, and Institutions.
 
-Syllabus can be found [here](https://polsc145s22.classes.m-flynn.com/syllabus.html)
+Syllabus can be found [here](https://polsc145.classes.m-flynn.com/syllabus-s2023.html)
 
 ???
 

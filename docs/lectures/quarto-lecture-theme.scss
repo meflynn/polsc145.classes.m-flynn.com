@@ -29,6 +29,7 @@ $presentation-body-font: "Roboto", sans-serif, !default;
 
 // font sizes;
 $title-author-font-size: 24px;
+$body-font-size: 20px;
 
 
 
@@ -36,11 +37,12 @@ $title-author-font-size: 24px;
 
 /* Next two blocks shrink the font size for the main text slightly. The default is a little bulky */
 
+
+
 /* This first one does the default fonts */
 .reveal p {
   font-family: $presentation-body-font;
-  font-size: 0.9em;
-  font-size: 0.85em;
+  font-size: 1em;
   line-height: 1.1;
   margin-bottom: 5px;
   padding-bottom: 5px;
@@ -50,7 +52,6 @@ $title-author-font-size: 24px;
 .reveal .slide  {
   font-family: $presentation-body-font;
   font-size: 0.9em;
-  font-size: 0.85em;
   line-height: 1;
   margin-top: 1px;
 }
@@ -64,8 +65,7 @@ html * {
 .slide-background:first-child {
   background-color: #512888;
   font-family: $presentation-heading-font;
-  font-size: 1.4em;
-  font-size: 1.3em;
+  font-size: 1.6em;
 }
 
 .slide-background > .level1 {
@@ -96,8 +96,6 @@ h2 {
   color: #FFFFFF;
   background-color: $ksu-purple;
   padding-bottom: 15px;
-  border-bottom: 2px solid #512888;
-  border-bottom-width: 95%;
 }
 
 #title-slide {
@@ -120,27 +118,21 @@ h2 {
 
 /* this handles the size of the title on the titlepage and intervening title pages */
 .reveal h1 {
-  font-size: 2.8em;
-  font-size: 2.6em;
+  font-size: 2.9em;
   margin-top: 20px;
 }
 
 .reveal h2 {
-  font-size: 2em;
   margin-top: 15px;
   margin-bottom: 40px;
   font-weight: 800;
   color: #FFFFFF;
-  font-size: 1.6em;
-  margin-top: 15px;
-  margin-bottom: 40px;
-  font-weight: 800;
+  font-size: 1.7em;
 }
 
 
 p.subtitle {
   font-family: $presentation-heading-font;
-  font-size: 1.6em;
   font-size: 1.4em;
   text-align: left;
 }
@@ -152,11 +144,8 @@ p.subtitle {
     font-size: $title-author-font-size;
     margin-top: -10px;
     margin-bottom: 10px;
-    font-size: 0.7em;
-    margin: 0;
-    margin-top: -10px;
     display: block;
-    padding: 1px;
+    padding-bottom: 5px;
 }
 
 .reveal .quarto-title-block .quarto-title-authors .quarto-title-author {
@@ -166,7 +155,6 @@ p.subtitle {
 
 p.date {
   font-family: $presentation-heading-font;
-  font-size: $title-author-font-size;
   line-height: 1.1;
   text-align: left;
   margin-top: 0px;
@@ -181,7 +169,7 @@ p.date {
 }
 
 .reveal .quarto-title-block .quarto-title-authors .quarto-title-author .quarto-title-author-name {
-  margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 
@@ -198,7 +186,6 @@ p.quarto-title-affiliation {
   line-height: 1.1;
   text-align: left;
   margin-bottom: 2px;
-  margin-top: 2px;
   margin-top: 2px;
 }
 

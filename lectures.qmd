@@ -6,7 +6,7 @@ title: "Lectures"
 
 Lectures will be archived here *after* they are given.
 
-0. [Class Introduction](lectures/polsc145-class-intro.html)
+0. [Class Introduction](lectures/polsc145-intro-class.html)
 
 1. [Historical Background](lectures/polsc145-historical-background.html)
 

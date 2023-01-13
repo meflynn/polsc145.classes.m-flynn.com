@@ -4,7 +4,15 @@ project:
   lib-dir: library
   render:
     - "*.qmd"
-    - "!*.Rmd"
+    - "!lectures/"
+  resources:
+    - "files/"
+    - "lectures/*.html"
+    - "lectures/*.scss"
+    - "lectures/*.css"
+    - "lectures/*_files/"
+    - "lectures/libs/"
+    - "lectures/*.png"
 
 website:
   title: "World Politics"

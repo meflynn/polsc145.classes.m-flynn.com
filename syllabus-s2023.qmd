@@ -18,7 +18,7 @@ advdate <- function(obj, adv){
   tmon <- format(tmon, format = "%m/%d")
   tfri <- format(tfri, format = "%m/%d")
   zadv <- sprintf("%02d", adv)
-  tmp <- paste("Week ", zadv, sep = '', ", ", tmon, " - ", tfri)
+  tmp <- paste("Week ", zadv, sep = '', ", ", tmon, " -- ", tfri)
   return(tmp)
 }
 
@@ -27,8 +27,10 @@ advdate <- function(obj, adv){
 
 ## Course Summary
  
-This course is designed to give undergraduate students an introduction to the topics and methods associated with the study of world politics. As one of the three main subfields in political science, international relations evolved as the study of nation-states and their interactions in the global sphere. Over the past several centuries the type and frequency of these interactions, along with the range of actors involved, have increased exponentially. Given that global political and economic events are increasingly relevant for individuals
-around the world, it is imperative that we develop a solid foundation for understanding the actors, incentives, and processes that drive these events. Accordingly, this course will focus on basic facts and key concepts related to the study of international relations. We will also focus on how to analyze the casual processes underpinning events of interest.
+This course is designed to give undergraduate students an introduction to the topics and methods associated with the study of world politics and international relations. Over the past several centuries the type and frequency of interactions between peoples and governments have increased exponentially. These interactions range from the peaceful---trade, investment, athletics, tourism, study abroad, etc.---to the conflictual and tragic---famine, pandemics, human rights violations, and more. Furthermore, the proliferation of communications technology has allowed us to watch events unfold. in real time from almost anywhere on the globe. 
+
+Given that such events---whether social, political, or economic---are increasingly relevant for individuals around the world, it is imperative that we develop a solid foundation for understanding the actors, incentives, and processes that drive them. Accordingly, this course will focus on basic facts and key concepts related to the study of international relations. We will also focus on how to develop mental models that can help us to understand broader patterns of behavior in world affairs, and to analyze the casual processes underpinning events of interest.
+
 
 ## Course Objectives
 
@@ -76,79 +78,65 @@ Students should also make an effort to stay informed on current events. Below ar
 
 
 1. **Exams: 70%**:
-Your grade will largely be determined by a series of four tests. These are designed to assess your
-knowledge of basic ideas and concepts that we will cover throughout the course. All tests will be
-open book/note, and will be administered online. They will cover material from the text book, in-class
-lectures, discussions, podcasts, and additional assigned readings. For each test you will have 75
-minutes to answer $\approx$35 questions. There is no separate mid-term or final exams.
+Your grade will largely be determined by a series of four tests. These are designed to assess your knowledge of basic ideas and concepts that we will cover throughout the course. All tests will be open book/note, and will be administered online. They will cover material from the text book, in-class
+lectures, discussions, podcasts, and/or any additional assigned readings. For each test you will have 75 minutes to answer $\approx$ 35 questions. There are no separate mid-term or final exams.
 
-2. **Weekly Homework: 30%**:
-You will have routine homework assignments that are designed to provide you with exposure to the
-course material prior to lectures. These assignments correspond to each chapter/subject found in the
-textbook. Students can continue to work on each assignment after they initially complete it in order to
-maximize their grade and better familiarize themselves with the subject matter. However, grades are
-only updated until the due date posted on Canvas. After this date students can continue working on a
-given InQuizitive exercise after the due date, but the grades will be locked in at their values at the time of the due
-date.
+2. **Homework: 30%**:
+You will have several homework assignments that are designed to provide you with deeper exposure to the course concepts. There will be approximately 6 homework assignments throughout the semester. All require students to complete various exercises and submit their work to the instructor. Some of these exercises will be completed outside of class and will be turned in through Canvas. Other activities will be completed in class and will be submitted to the instructor at the end of the class session. 
 
 
 
 
-## Classroom Policies
+## Course Policies
 
-1. Be kind. This might seem like an odd thing to list first, but I want to emphasize that this is not a normal class environment---this is a time of unparalleled stress for many of us. We're still in the middle of a global pandemic, many of us are still very much worried about our own health and safety, and many of us are very much worried about the health and safety of our coworkers, friends, and families. Zoom fatigue is also a thing, so please be patient with one another. Let's try to be cognizant of the fact that many of us (if not all) are going to be struggling at various points, and let's work together to make this semester as educational and enjoyable as possible. 
+1. **Be kind**. The past three years have been a time of unparalleled stress for many of us. We're still in the middle of a global pandemic, many of us are still very much worried about our own health and safety, and many of us are very much worried about the health and safety of our coworkers, friends, and families. Zoom fatigue is also a thing, so please be patient with one another. Let's try to be cognizant of the fact that some of us (if not all) may still be struggling at various points, and let's work together to make this semester as educational and enjoyable as possible. 
 
-2. Be professional. While we don't have a traditional classroom environment this semester, please try to treat your interactions with everyone as professionally as you would during a normal on-campus experience. This includes not watching TV or playing video games when you are video conferencing with the instructor or your classmates. Everyone's living situation may look a little different this year, and there may be certain things that we can't control about our environments, but let's do what we can to respect one another during our shared time. 
+2. **Be professional**. Please try to treat your interactions with everyone as professionally as you would in a workplace environment.   
 
-3. Study guides and extra credit. The class is the study guide. I do not offer extra credit.
+3. **Study guides and extra credit**. The class *is* the study guide. I do not offer extra credit.
 
-4. Grade Appeals. If you believe that I have given you an incorrect grade on an exam, you may submit
-a written appeal. All appeals must be in writing (they may not be made in person) and must contain
-an explanation for why the grade is incorrect. I will also require you to wait 24 hours after receiving a
-grade to submit a written appeal. Please note that even if your appeal is granted, I reserve the right
-to regrade the assignment in its entirety, meaning that your grade may go up or down depending on
-my reevaluation of the assignment.
+4. **Grade Appeals**. If you believe that I have given you an incorrect grade on an exam, you may submit a written appeal. All appeals must be in writing (they may not be made in person) and must contain an explanation for why the grade is incorrect. I will also require you to wait 24 hours after receiving a
+grade to submit a written appeal. Please note that even if your appeal is granted, I reserve the right to regrade the assignment in its entirety, meaning that your grade may go up or down depending on my reevaluation of the assignment.
 
-5. The Syllabus. The syllabus is a living document that can and will be altered throughout the duration
-of the course based both on need and design. Generally, this may mean readings will be removed or
-added as needed. All changes will be listed on K-State Online, so make sure to check announcements
-for any such change. Additionally, I maintain the right to all of my own intellectual property presented
-in this course, whether it is the course lectures or this syllabus. Materials from this course ought not
-to be reproduced without my expressed permission.
+5. **Missing Assignments and Makeup Work**. I will allow students to make up work that they miss do to a University-excused absence or event. In such cases students should provide two weeks notice and documentation provided by The Office of Student Life.  Students who miss assignments due to illness may make up assignments provided they have documentation from Student Health Services.
 
-6. Classroom conduct. All student activities in the University, including this course, are governed by
-the Student Judicial Conduct Code as outlined in the Student Governing Association By Laws, Article
-V, Section 3, number 2. Students who engage in behavior that disrupts the learning environment may
-be asked to leave the class.
+6. **The Syllabus**. The syllabus is a living document that can and will be altered throughout the duration of the course based both on need and design. Generally, this may mean readings will be removed or added as needed. All changes will be listed on K-State Online, so make sure to check announcements for any such change. Additionally, I maintain the right to all of my own intellectual property presented in this course, whether it is the course lectures or this syllabus. Materials from this course ought not to be reproduced without my expressed permission.
+
+7. **Contacting the Instructor**. The best way to contact me is via email. I will usually respond within two business days, but if it takes a little longer do not hesitate to send a reminder email. I do not respond to emails over the weekend. 
+
+    If you wish to make an appointment you can use the Calendly link below to find an available time. Given how hectic everyone's schedules are I will assume that these meetings will be Zoom based unless otherwise requested. 
+
+    Email: [meflynn@ksu.edu](meflynn@ksu.edu)
+    
+    Appointments: [Make an appointment here](https://calendly.com/meflynn)
+
+
+## Statement for Copyright Notification
+
+Copyright 2023 (Michael Flynn) as to this syllabus and all lectures. During this course students are prohibited from selling notes to or being paid for taking notes by any person or commercial firm without the express written permission of the professor teaching this course. In addition, students in this class are not authorized to provide class notes or other class-related materials to any other person or entity, other than sharing them directly with another student taking the class for purposes of studying, without prior written permission from the professor teaching this course.
+
+
+## Citation and Style
+
+All written work is expected to adhere to professional standards. As described above, citing previous work is key. If you have any questions regarding the appropriate citation style please consult the American Political
+Science Association style guide.
+
+
+
+
+## University Syllabi Statements
   
   
+### Academic Honesty and Plagiarism
   
-  
-  
-## Academic Honesty and Plagiarism
-  
-All work turned in as a part of this class must be original.
+All work turned in as a part of this class must be original work by the student.
 
-Kansas State University has an Honor & Integrity System based on personal integrity which is presumed to be sufficient assurance in academic matters one’s work is performed honestly and without unauthorized assistance. Undergraduate and graduate students, by registration, acknowledge the jurisdiction of the Honor Integrity System. The policies and procedures of the Honor System apply to all full and parttime
-students enrolled in undergraduate and graduate courses on-campus, off-campus, and via distance
-learning.
+Kansas State University has an Honor and Integrity System based on personal integrity, which is presumed to be sufficient assurance that, in academic matters, one's work is performed honestly and without unauthorized assistance. Undergraduate and graduate students, by registration, acknowledge the jurisdiction of the Honor and Integrity System. The policies and procedures of the Honor and Integrity System apply to all full and part-time students enrolled in undergraduate and graduate courses on-campus, off-campus, and via distance learning. A component vital to the Honor and Integrity System is the inclusion of the Honor Pledge which applies to all assignments, examinations, or other course work undertaken by students. The Honor Pledge is implied, whether or not it is stated: "On my honor, as a student, I have neither given nor received unauthorized aid on this academic work." A grade of XF can result from a breach of academic honesty. The F indicates failure in the course; the X indicates the reason is an Honor Pledge violation.
 
-A component vital to the Honor & Integrity System is the inclusion of the Honor Pledge which applies to all
-assignments, examinations, or other course work undertaken by students. The Honor Pledge is implied,
-whether or not it is stated: “On my honor, as a student, I have neither given nor received unauthorized aid
-on this academic work.”
 
-The default in this class is that ALL work will be accomplished individually, UNLESS my permission is given
-in advance of an assignment/quiz/exam/take-home exam/final. If you are in doubt, please ask.
-
-A grade of XF can result from a breach of academic honesty. The F indicates failure in the course; the X
-indicates the reason is an Honor Pledge violation.
 
 For more information, visit the [Honor & Integrity System home web page](http://www.k-state.edu/honor/).
-All work is expected to adhere to the standards outlined by the Kansas State University Handbook. All
-written work is subject to online plagiarism checks and will be required for all reaction papers as well as the
-final paper. Any cases of plagiarism will receive an automatic failure for the assignment, possible failure in
-the course, and will be pursued further through the university for additional punishment.
+All work is expected to adhere to the standards outlined by the Kansas State University Handbook. All written work is subject to online plagiarism checks and will be required for all reaction papers as well as the final paper. Any cases of plagiarism will receive an automatic failure for the assignment, possible failure in the course, and will be pursued further through the university for additional punishment.
 
 The Kansas State University Handbook (2008, Appendix F) defines plagiarism as follows:
 
@@ -166,70 +154,64 @@ identifying it as a quotation and properly attributing the source.
   - Using someone else’s concept and presenting it as if it is your own original creativity, without
 acknowledging the source of the idea.
 
-While some acts of plagiarism are obvious attempts to deceive, like buying a term paper, others
-result from sloppy scholarship or failure to follow proper format for crediting sources. For
-example:
+While some acts of plagiarism are obvious attempts to deceive, like buying a term paper, others result from sloppy scholarship or failure to follow proper format for crediting sources. For example:
 
-  - If you copy directly from another source and acknowledge it in your bibliography or list of
-works cited, yet fail to put it in quotation marks, this is plagiarism. The reason is that,
-although you have indicated that the idea is someone else’s, the lack of quotation marks
+  - If you copy directly from another source and acknowledge it in your bibliography or list of works cited, yet fail to put it in quotation marks, this is plagiarism. The reason is that, although you have indicated that the idea is someone else’s, the lack of quotation marks
 implies that the words are your own.
-  - Paraphrasing is summarizing a source so that you have rewritten the material in your own
-words but maintained the original author’s ideas. When you paraphrase, you do not need to
-put the words in quotation marks, but you do need to properly attribute the original source.
-Paraphrasing does not mean simply changing one or two words, or leaving out a sentence,
-while the rest remains the same. Even if you identify the original author, but have used faulty
-paraphrasing that retains too much of the original, the result is inadvertent plagiarism.
-  - If you use another researcher’s specific methodology, you should acknowledge doing so.
-While some research protocols are widespread and general enough to need no citation, if
-the protocol, analysis, or technique can be attributed to a specific publication it should be
-cited.
-  - Works of visual art and design, and images of the work, cannot be misrepresented as
-original work by another. Such images cannot be used in part or whole without permission
-of the artist.
+  - Paraphrasing is summarizing a source so that you have rewritten the material in your own words but maintained the original author’s ideas. When you paraphrase, you do not need to put the words in quotation marks, but you do need to properly attribute the original source. Paraphrasing does not mean simply changing one or two words, or leaving out a sentence, while the rest remains the same. Even if you identify the original author, but have used faulty paraphrasing that retains too much of the original, the result is inadvertent plagiarism.
+  - If you use another researcher’s specific methodology, you should acknowledge doing so. While some research protocols are widespread and general enough to need no citation, if the protocol, analysis, or technique can be attributed to a specific publication it should be cited.
+  - Works of visual art and design, and images of the work, cannot be misrepresented as original work by another. Such images cannot be used in part or whole without permission of the artist.
 
-Also note that using papers previously written for another assignment in this, or in any other class, without
-the express permission of the professor is grounds for failing an assignment. Using your own material in
-this way, and not citing it, is also technically plagiarism and can be treated as such. If you have concerns
-regarding any of these issues please do not hesitate to contact me.
+Also note that using papers previously written for another assignment in this, or in any other class, without the express permission of the professor is grounds for failing an assignment. Using your own material in this way, and not citing it, is also technically plagiarism and can be treated as such. If you have concerns regarding any of these issues please do not hesitate to contact me.
 
 
-## Statement Regarding Wearing of Face Coverings
+### Students with Disabilities
 
-To protect the health and safety of the K-State community, students, faculty, staff and visitors must wear face coverings over their mouths and noses while on K-State campuses in all hallways, public spaces, classrooms and other common areas of campus buildings, and when in offices or other work spaces or outdoor settings when 6-feet social distancing cannot be maintained. In addition, all students, faculty, and staff are required to take the COVID-19 and Face Mask Safety training. Employees who need reasonable accommodations and assistance related to required face coverings may contact the ADA coordinator at [charlott@k-state.edu](charlott@k-state.edu), and students needing accommodations may contact the Student Access Center at [accesscenter@k-state.edu](accesscenter@k-state.edu).
+At K-State it is important that every student has access to course content and the means to demonstrate course mastery. Students with disabilities may benefit from services including accommodations provided by the Student Access Center. Disabilities can include physical, learning, executive functions, and mental health. You may register at the Student Access Center or to learn more contact:  
 
-In classrooms, faculty have the right to deny a student entry into the room if the student is not wearing a face covering. Students not wearing a face covering will be reminded to do so and offered a clean face covering, if one is available. If the student does not comply, the faculty member will ask the student to leave the space, and if available, join the class remotely.  As a last resort, campus police will be called. The faculty members will complete the Code of Conduct form and the Office of Student Life will look further into the issue and take the non-compliance with the request to leave into consideration of further accountability measures. 
+Manhattan/Olathe/Global Campus – Student Access Center  
+accesscenter@k-state.edu
+785-532-6441    
 
-At no point should the professor or other students put themselves into an unsafe situation while attempting to enforce the face-covering policy. Manhattan campus police: 785-532-6412
+K-State Salina Campus – Julie Rowe; Student Success Coordinator
+jarowe@k-state.edu
+785-820-7908    
 
-
-
-## Citation and Style
-
-All written work is expected to adhere to professional standards. As described above, citing previous work is
-key. If you have any questions regarding the appropriate citation style please consult the American Political
-Science Association style guide.
+Students already registered with the Student Access Center please request your Letters of Accommodation early in the semester to provide adequate time to arrange your approved academic accommodations. Once SAC approves your Letter of Accommodation it will be e-mailed to you, and your instructor(s) for this course.  Please follow up with your instructor to discuss how best to implement the approved accommodations. 
 
 
-## Students with Disabilities
+### Classroom conduct 
 
-Students with disabilities who need classroom accommodations, access to technology, or information about
-emergency building/campus evacuation processes should contact the Student Access Center and/or their
-instructor. Services are available to students with a wide range of disabilities including, but not limited to,
-physical disabilities, medical conditions, learning disabilities, attention deficit disorder, depression, and anxiety.
-If you are a student enrolled in campus/online courses through the Manhattan or Olathe campuses,
-contact the Student Access Center at [accesscenter@k-state.edu](accesscenter@k-state.edu), 785-532-6441; for Salina campus, contact
-the Academic and Career Advising Center at acac@k-state.edu, 785-826-2649.
+All student activities in the University, including this course, are governed by the Student Judicial Conduct Code as outlined in the Student Governing Association By Laws, Article V, Section 3, number 2. Students who engage in behavior that disrupts the learning environment may be asked to leave the class.
 
-If you have any special conditions or needs that will affect your ability to complete the required assignments
-outlined herein, please contact the instructor as soon as possible to discuss your needs. I am happy to help
-you in any way that I can. With advance notice accommodations can be made prior to deadlines and tests.
-Please note, however, that special consideration will not be granted afterwards as a means of addressing a
-grade you do not like.
 
-## Contacting the Instructor
+### Statement on Mutual Respect and Inclusion in K-State Teaching and Learning Spaces
 
-The best way to get in touch with me is through email. Please do not hesitate to contact me if you have any questions about course content or your abiliy to complete the assigned material.
+At K-State, faculty and staff are committed to creating and maintaining an inclusive and supportive learning environment for students from diverse backgrounds and perspectives. K-State courses, labs, and other virtual and physical learning spaces promote equitable opportunity to learn, participate, contribute, and succeed, regardless of age, race, color, ethnicity, nationality, genetic information, ancestry, disability, socioeconomic status, military or veteran status, immigration status, Indigenous identity, gender identity, gender expression, sexuality, religion, culture, as well as other social identities.
+
+Faculty and staff are committed to promoting equity and believe the success of an inclusive learning environment relies on the participation, support, and understanding of all students. Students are encouraged to share their views and lived experiences as they relate to the course or their course experience, while recognizing they are doing so in a learning environment in which all are expected to engage with respect to honor the rights, safety, and dignity of others in keeping with the K-State Principles of Community. 
+
+If you feel uncomfortable because of comments or behavior encountered in this class, you may bring it to the attention of your instructor, advisors, and/or mentors. If you have questions about how to proceed with a confidential process to resolve concerns, please contact the Student Ombudsperson Office. Violations of the student code of conduct can be reported using the Code of Conduct Reporting Form. You can also report discrimination, harassment or sexual harassment, if needed.
+
+
+
+### Statement Regarding Wearing of Face Coverings
+
+Kansas State University strongly encourages, but does not require, that everyone wear masks while indoors on university property, including while attending in-person classes. For additional information and the latest updates, see K-State’s face covering policy.
+
+
+
+### Statement Regarding Discrimination, Harassment, and Sexual Harassment
+
+Kansas State University is committed to maintaining academic, housing, and work environments that are free of discrimination, harassment, and sexual harassment. Instructors support the University’s commitment by creating a safe learning environment during this course, free of conduct that would interfere with your academic opportunities. Instructors also have a duty to report any behavior they become aware of that potentially violates the University’s policy prohibiting discrimination, harassment, and sexual harassment, as outlined by PPM 3010.  
+
+If a student is subjected to discrimination, harassment, or sexual harassment, they are encouraged to make a non-confidential report to the University’s Office for Institutional Equity (OIE) using the online reporting form. Incident disclosure is not required to receive resources at K-State. Reports that include domestic and dating violence, sexual assault, or stalking, should be considered for reporting by the complainant to the Kansas State University Police Department or the Riley County Police Department. Reports made to law enforcement are separate from reports made to OIE. A complainant can choose to report to one or both entities. Confidential support and advocacy can be found with the K-State Center for Advocacy, Response, and Education (CARE). Confidential mental health services can be found with Lafene Counseling and Psychological Services (CAPS). Academic support can be found with the Office of Student Life (OSL). OSL is a non-confidential resource. OIE also provides a comprehensive list of resources on their website. If you have questions about non-confidential and confidential resources, please contact OIE at equity@ksu.edu or (785) 532–6220. 
+
+
+
+
+
+
 
 
 
@@ -242,7 +224,7 @@ D: 60–69.99
 F: 0–59.99
 
 
-*Tenative course schedule begins on next page*
+*Tentative course schedule begins on next page*
 
 \clearpage
 
@@ -254,17 +236,17 @@ F: 0–59.99
 library(ggplot2)
 library(tidyverse)
 # Create base data frame
-dfr <- data.frame(date=seq(as.Date('2022-01-17'), as.Date('2022-05-31'), by = 1)) %>% 
+dfr <- data.frame(date=seq(as.Date('2023-01-16'), as.Date('2023-05-31'), by = 1)) %>% 
   mutate(day = factor(strftime(date, format="%a"), levels=c("Sun","Mon","Tue","Wed","Thu","Fri","Sat")),
          week = factor(strftime(date, format="%U")),
          month = factor(strftime(date, format="%B"),levels=c("January","February","March", "April", "May")),
          ddate = factor(strftime(date, format="%d")),
          comment = case_when(
-           date == as.Date("2022-02-04") ~ "Exam 1",
-           date == as.Date("2022-03-11") ~ "Exam 2",
-           date == as.Date("2022-04-15") ~ "Exam 3",
-           date >= as.Date("2022-05-09") & date <=as.Date("2022-05-13") ~ "Exam 4 (Date TBD)",
-           date >= as.Date("2022-03-14") & date <= as.Date("2022-03-18") ~ "Spring Break"
+           date == as.Date("2023-02-03") ~ "Exam 1",
+           date == as.Date("2023-03-10") ~ "Exam 2",
+           date == as.Date("2023-04-14") ~ "Exam 3",
+           date >= as.Date("2023-05-08") & date <=as.Date("2023-05-12") ~ "Exam 4 (Date TBD)",
+           date >= as.Date("2023-03-13") & date <= as.Date("2023-03-17") ~ "Spring Break"
          ),
          week = as.numeric(week))
 

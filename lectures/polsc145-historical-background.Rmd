@@ -23,47 +23,13 @@ library(tidyverse)
 library(janitor)
 library(here)
 library(ghibli)
+library(flynnprojects)
 
 knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
 
-# Windows and Mac seem to process the fotn differently
-if (Sys.info()[[1]] == "Windows"){
-
-basesize <- 35
-
-} else {
-  
-basesize <-  11
-  
-}
-
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-      theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-        
-        theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-              plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-              plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 1, margin = margin(t = 0.2, unit = "cm")),
-              panel.border = element_rect(fill = NA, size = 0.2),
-              strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-              strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-              panel.background = element_rect(size = 0.2),
-              panel.grid.major = element_line(color = "gray70", size = 0.15),
-              panel.grid.minor = element_line(color = "gray90", size = 0.1),
-              axis.title = element_text(face = "bold", size = basesize),
-              axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-              axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-              axis.ticks = element_line(size = 0.1),
-              axis.ticks.length = unit(0.1, "cm"),
-              legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = 0, l = 0, r = 0, unit = "cm")),
-              plot.margin = margin(0.5, 0.5, 0.5, 0.5, unit = "cm"),
-              legend.margin = margin(t=0, b=0, r=0, l=0),
-              legend.box.margin = margin())
-  }
 
 ```
 
@@ -116,7 +82,7 @@ class: center, middle
 
 ```{r Global Population}
 
-pop <- fread(here("../../../Data Files/our-world-in-data/population/population.csv")) %>% 
+pop <- fread(here::here("../../../Data Files/our-world-in-data/population/population.csv")) %>% 
   dplyr::filter(Entity == "World") %>% 
   group_by(Year) %>% 
   summarise(total = as.numeric(sum(`Population (historical estimates)`, na.rm = TRUE)))
@@ -125,7 +91,7 @@ pop <- fread(here("../../../Data Files/our-world-in-data/population/population.c
 
 ggplot(pop, aes(x = Year, y = total)) +
   geom_area(fill = "#5A6F80FF", color = "black", size = 0.2) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald")  +
   scale_y_continuous(labels = scales::comma_format()) +
   scale_x_continuous(limits = c(-10001, 2100)) +
   labs(x = "Time",
@@ -277,7 +243,7 @@ class: center, middle
 ```{r Acemoglu and Robinson, message=FALSE, warning=FALSE}
 
 # Change the geom_text font family and size
-update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain"))
+update_geom_defaults("text", list(size = 4, family = "oswald", fontface = "plain"))
 
 data <- fread(here("../../../Data Files/Replication Files/Acemoglu Johnson and Robinson/maketable1.csv")) %>% 
   mutate(countryname = countrycode::countrycode(shortnam, "iso3c", "country.name"))
@@ -285,7 +251,7 @@ data <- fread(here("../../../Data Files/Replication Files/Acemoglu Johnson and R
 ggplot(data = subset(data, excolony==1), aes(x = logem4, y = logpgp95, label = countryname)) +
   geom_text() +
   geom_smooth(method = lm, alpha = .3) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald")  +
   labs(x = "Log of settler mortality",
        y = "Log of GDP per capita (1995 Dollars)",
        title = "Effect of environment on long-run institutional development",
@@ -481,7 +447,7 @@ combined <- tibble(year = seq(1815, 2015)) %>%
 # Number of Wars
 ggplot(data = combined, aes(x = year, y = warcount)) +
   geom_bar(stat = "identity", fill = "#C5A387FF") +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald")  +
   labs(x = "Year",
        y = "Count",
        title = "Number of interstate wars per year",
@@ -523,9 +489,7 @@ industry <- peacesciencer::create_stateyears(system = "cow") %>%
 ggplot(industry, aes(x = year, y = irst, color = statenme)) +
   geom_line(aes(size = statenme)) +
   geom_line(data = industry %>% filter(ccode == 200), aes(size = statenme)) +
-  theme_flynn() +
-  theme(legend.title = element_text(margin = margin(b = -0.4, unit = "cm")),
-        legend.text = element_text(margin = margin(l = -0.4, unit = "cm"))) +
+  theme_flynn(base_size = 11, base_family = "oswald")  +
   viridis::scale_color_viridis(discrete = TRUE, option = "magma") +
   scale_x_continuous(breaks = seq(1815, 1850, 5)) +
   scale_size_manual(values = c(1, 1, 1, 1, 1, 1, 3, 1)) + 
@@ -553,9 +517,7 @@ milper <- peacesciencer::create_stateyears(system = "cow") %>%
 ggplot(industry, aes(x = year, y = milper, color = statenme)) +
   geom_line(aes(size = statenme)) +
   geom_line(data = industry %>% filter(ccode == 200), aes(size = statenme)) +
-  theme_flynn() +
-  theme(legend.title = element_text(margin = margin(b = -0.4, unit = "cm")),
-        legend.text = element_text(margin = margin(l = -0.4, unit = "cm"))) +
+  theme_flynn(base_size = 11, base_family = "oswald")  +
   viridis::scale_color_viridis(discrete = TRUE, option = "magma") +
   scale_x_continuous(breaks = seq(1815, 1850, 5)) +
   scale_size_manual(values = c(1, 1, 1, 1, 1, 1, 3, 1)) + 
@@ -626,7 +588,7 @@ Example: The "Corn Laws"
 ]
 
 .pull-right[
-```{r, out.width="200%", fig.cap="Object: Object: The Blessings of peace or, the curse of the Corn Bill. Wealthy landowners reject wheat, saying they don't care how cheap it is and that the poor can starve if they can't afford it. Poorer people in the picture comment that they'll quit their native country. Print made by: George Cruikshank Published by: S W Fores. https://www.britishmuseum.org/collection/object/P_1868-0612-1281"}
+```{r, out.width="200%", fig.cap="Object: The Blessings of peace or, the curse of the Corn Bill. Wealthy landowners reject wheat, saying they don't care how cheap it is and that the poor can starve if they can't afford it. Poorer people in the picture comment that they'll quit their native country. Print made by: George Cruikshank Published by: S W Fores. https://www.britishmuseum.org/collection/object/P_1868-0612-1281"}
 
 knitr::include_graphics("../../../media/corn-law-cartoon.png", error = FALSE)
 ```
@@ -690,7 +652,7 @@ ggplot(data = data %>% filter(country == "United.Kingdom"
        aes(x = year, y = value, group = country, colour = country)) +
   geom_point() +
   geom_line() +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald")  +
   theme(plot.caption = element_text(lineheight = 0.6)) +
   scale_x_continuous(breaks = seq(1650, 1920, 50)) +
   scale_y_continuous(breaks = seq(0, 1.75, 0.25), labels = scales::percent_format()) +
@@ -900,13 +862,13 @@ class: left, top
 
 Costs of the war:
 
-- $\sim$ 55 million deaths
+- $\approx$ 55 million deaths
 
-- $\sim$ 25 million combat fatalities
+- $\approx$ 25 million combat fatalities
 
-- $\sim$ 20 million deaths from starvation and malnourishment
+- $\approx$ 20 million deaths from starvation and malnourishment
 
-- $\sim$ 7 million victims of the holocaust. Mostly Jews but also other racial and ethnic minority groups, people with disabilities, and more.
+- $\approx$ 7 million victims of the holocaust. Mostly Jews but also other racial and ethnic minority groups, people with disabilities, and more.
 
 - European infrastructure and economies in total ruins
 
@@ -947,7 +909,7 @@ allies <- peacesciencer::create_dyadyears(system = "cow") %>%
 
 ggplot(allies, aes(x = year, y = count)) +
   geom_line(size = 1.2, color = "navyblue") +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald")  +
   labs(x = "Year",
        y = "Count",
        title = "US Alliances over time, 1815-2018",
@@ -1045,7 +1007,7 @@ states <- peacesciencer::create_stateyears(system = "gw") %>%
 
 ggplot(states, aes(x = year, y = count, fill = count)) +
   geom_area(fill = "#4A57CF") +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald")  +
   scale_x_continuous(breaks = seq(1815, 2025, 20)) +
   labs(x = "Year",
        y = "Count",
@@ -1108,7 +1070,7 @@ trade <- peacesciencer::create_stateyears(system = "cow") %>%
 
 ggplot(trade, aes(x = year, y = totaltrade)) +
   geom_area(fill = "dodgerblue1") +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald")  +
   scale_x_continuous(breaks = seq(1950, 2020, 10)) +
   scale_y_continuous(labels = scales::comma_format()) +
   labs(x = "Year",

@@ -32,10 +32,7 @@ $title-author-font-size: 24px;
 $body-font-size: 20px;
 
 
-
 /*-- scss:rules --*/
-
-/* Next two blocks shrink the font size for the main text slightly. The default is a little bulky */
 
 
 
@@ -96,6 +93,13 @@ h2 {
   color: #FFFFFF;
   background-color: $ksu-purple;
   padding-bottom: 15px;
+}
+
+h2:empty {
+  color: #FFFFFF;
+  background-color: #FFFFFF;
+  border-bottom: 0px solid #FFFFFF;
+  border-bottom-width: 0%;
 }
 
 #title-slide {
@@ -195,5 +199,9 @@ p.quarto-title-affiliation {
   margin: 5%;
 }
 
-
+.reveal iframe {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 

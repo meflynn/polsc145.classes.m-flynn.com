@@ -285,6 +285,8 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
 
  - Tuesday: Review the Syllabus. Discuss motivations for the course.
  - Thursday: The state in the modern era I
+ 
+ - Read: Chapter 1 - What shaped our world?
 
 
 ## `r advdate(mon, 2)`: Background and Approach
@@ -294,6 +296,7 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
   - Tuesday: State and the modern era II
   - Thursday: Social scientific theories and methods I
 
+  - Read: Chapter 2 - Understanding interests, interactions, and institutions
 
 ## `r advdate(mon, 3)`: Background and Approach
 
@@ -311,6 +314,7 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
   - Tuesday: War as an empirical phenomenon
   - Thursday: War as a bargaining process
 
+  - Read: Chapter 3: Why are there wars?
 
 ## `r advdate(mon, 5)`: International Conflict
 
@@ -319,6 +323,7 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
   - Tuesday: Domestic politics and war
   - Thursday: Domestic politics and war
 
+  - Read Chapter 4 - Domestic Politics and War
 
 ## `r advdate(mon, 6)`: International Institutions and Conflict
 
@@ -326,23 +331,28 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
 
   - Tuesday: Alliances
   - Thursday: Collective security
+    - Guest Lecture: Lieutenant Commander Jean Anne Kim, USN.
 
-
+  - Read: Chapter 5 - International Institutions and War
 
 ## `r advdate(mon, 7)`: Civil War and non-state actors
 
 ### Topics: 
 
-  - Tuesday: 
-  - Thursday: 
+  - Tuesday: Primer on civil wars
+  - Thursday: Explaining rebel movements and civil conflict
+  
+  -  Read: Chapter 6 - Violence by nonstate Actors, pages 246--277
 
 
 ## `r advdate(mon, 8)`: Terrorism
 
 ### Topics: 
 
-  - Tuesday: 
-  - Thursday: 
+  - Tuesday: Primer on terrorism
+  - Thursday: Understanding terrorism
+  
+  - Read: Chapter 6 - Violence by nonstate actors, pages 278--301
 
 
 ## `r advdate(mon, 9)`: Spring Break
@@ -357,22 +367,28 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
 
 ### Topics: 
 
-  - Tuesday: 
-  - Thursday: 
+  - Tuesday: Thinking about international trade
+  - Thursday: Theoretical models of international trade
+
+  - Read: Chapter 7 - International Trade
 
 ## `r advdate(mon, 11)`: International Financial Relations
 
 ### Topics: 
 
-  - Tuesday:
-  - Thursday:
+  - Tuesday: Primer on international finance
+  - Thursday: Theoretical models of international finance
+  
+  - Read: Chapter 8 - International Financial Relations
 
 ## `r advdate(mon, 12)`: International Monetary Relations
 
 ### Topics: 
 
-  - Tuesday:
-  - Thursday:
+  - Tuesday: Primer and mechanics of Monetary Policy
+  - Thursday: In-class homework exercise on monetary policy
+  
+  - Read: Chapter 9 - International Monetary Relations
 
 
 
@@ -380,32 +396,38 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
 
 ### Topics: 
 
-  - Tuesday:
-  - Thursday:
+  - Tuesday: Primer on international development
+  - Thursday: Understanding how other topics in IPE shape development
+  
+  - Read: Chapter 10: Causes of the wealth and poverty of nations
 
 
 ## `r advdate(mon, 14)`: Human Rights
 
 ### Topics: 
 
-  - Tuesday:
-  - Thursday:
+  - Tuesday: Historical background
+  - Thursday: Trends in human rights conditions
+  
+  - Read: Chapter 12: Human rights
 
 
 ## `r advdate(mon, 15)`: Global Environmental Politics
 
 ### Topics: 
 
-  - Tuesday:
-  - Thursday:
+  - Tuesday: Basic issues in environmental politics
+  - Thursday: Interests and cooperation in environmental politics
+  
+  -  Read: Chapter 13 - The global environment
 
 
 ## `r advdate(mon, 16)`: Challenges to the Global Order
 
 ### Topics: 
 
-  - Tuesday:
-  - Thursday:
+  - Tuesday: Emerging issues and challenges to global governance
+  - Thursday: Review day
 
 
 

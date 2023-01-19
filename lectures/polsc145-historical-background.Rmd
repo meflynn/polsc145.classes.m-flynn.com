@@ -305,11 +305,46 @@ Who are the major players during this period?
 
 - The Netherlands (the Dutch)
 
+- Ottoman Empire
+
+- China
+
+- Japan
+
+- Mughal Empire
+
 
 ???
 # Notes
 
-Note that most of these powers are all major sea powers. France is primarily known for its land army. 
+Note that most of the European powers were focused on sea power when projecting power overseas, as well as small bands of mercenaries, and later corporations that were functional appendages of the state. 
+
+Sharman. (2019) also notes that they focused more on credit for financing military operations. Land empires in Asia were less interested in maritime power projection, had large and successful land-based militaries, and were also able to finance much of their military activity directly from treasury funds. 
+
+
+
+---
+class: center, middle
+
+```{r}
+knitr::include_graphics("https://www.netquest.com/hubfs/Imported_Blog_Media/vhsbeta-1.png", error = FALSE)
+```
+
+???
+
+- We need to be careful when inferring outcomes as deterministic or pre-determined. 
+
+- We often view history through the lens of European history, discussing the rise of European powers and European dominance as a clear consequence of earlier decisions or conditions.
+
+-   But sometimes the contemporaneous view is far less clear. European powers had strengths and weaknesses as did Asian powers. Some of the oft-discussed answers to European dominance don't hold up under scrutiny (e.g. Asian powers embraced firearms technology, adapted strategies and tactics, and did quite well against European forces on land and at sea.)
+
+- VHS and Beta max
+
+  - Both technologies had advantagers
+  - Beta had better resolution
+  - VHS had longer recording times
+
+
 
 
 ---

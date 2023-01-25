@@ -47,7 +47,7 @@ set.seed(66502)
 states <- peacesciencer::cow_states %>% 
   filter(endyear == 2016)
 
-roster <- fread(here::here("homework/polsc145-s2022-roster.csv")) %>% 
+roster <- fread(here::here("homework/polsc145-s2023-roster.csv")) %>% 
   filter(!is.na(`Wildcat ID`)) %>% 
   dplyr::select(Name) %>% 
   rowwise() %>% 

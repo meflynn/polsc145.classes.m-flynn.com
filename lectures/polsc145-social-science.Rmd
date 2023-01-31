@@ -135,8 +135,61 @@ Description
 
   - How long do most wars last?
   - Are most countries in the world democracies, autocracies, or something else?
+  - Are democracies wealthier than non-democracies?
+  - Do wealthy countries have better human rights records?
   
   
+
+
+
+---
+class: center, middle
+
+```{r human-rights-ex-1, fig.align='center'}
+
+set.seed(550)
+
+exampledata <- tibble(gdp = rep(seq(0, 100, 1), 5)) |> 
+  mutate(dem.xb = -5 + 0.1*gdp,
+         dem.p = plogis(dem.xb),
+         democracy = rbinom(length(gdp), 1, dem.p),
+         human.rights = 0 + 0.1*gdp + 10 * democracy + rnorm(n(), 0, 10),
+         democracy = factor(democracy, levels = c(0, 1), labels = c("Non-Democracy", "Democracy")))
+
+ggplot(exampledata, aes(x = gdp, y = human.rights)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_flynn(base_family = "oswald") +
+  scale_y_continuous(breaks = seq(-25, 50, 10)) +
+  viridis::scale_color_viridis("magma", discrete = TRUE, begin = 0.1, end = 0.9) +
+  labs(x = "GDP",
+       y = "Human rights performance",
+       title = "Do wealthier countries better respect human rights?",
+       subtitle = "The relationship appears to be positive",
+       color = "Regime type")
+
+```
+
+
+---
+class: center, middle
+```{r human-rights-ex-2, fig.align='center'}
+
+ggplot(exampledata, aes(x = gdp, y = human.rights, color = factor(democracy))) +
+  geom_point() +
+  geom_smooth(method = "lm", show.legend = FALSE) +
+  theme_flynn(base_family = "oswald") +
+  scale_y_continuous(breaks = seq(-25, 50, 10)) +
+  viridis::scale_color_viridis(option = "magma", discrete = TRUE, begin = 0.1, end = 0.8) +
+  labs(x = "GDP",
+       y = "Human rights performance",
+       title = "Do wealthier countries better respect human rights?",
+       subtitle = "But once we adjust for a confounder things become more complicated",
+       color = "Regime type")
+
+```
+
+
 
 ---
 class: left, top
@@ -152,6 +205,11 @@ Causation
 - Correlation does not equal causation (except when it does)
 
 - Alternatively, causation does not necessarily equal (observable) correlation
+
+- Examples:
+
+  - Does a country's level of democracy affect the frequency with which it goes to war?
+  - Will expanding public transportation reduce poverty in a city?
 
 
 ???

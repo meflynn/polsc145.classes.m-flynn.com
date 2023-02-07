@@ -301,6 +301,20 @@ class: center, middle, inverse
 
 
 
+---
+class: center, middle
+
+
+```{r, fig.align="center", out.width="50%", fig.cap="Taliban fighters pose for a photograph in Kabul, Afghanistan, on Thursday, August 19, 2021. (AP Photo/Rahmat Gul). Photo taken from Times of Israel online."}
+knitr::include_graphics("https://static.timesofisrael.com/www/uploads/2021/08/AP21231369084677.jpg")
+```
+
+???
+
+# Notes:
+
+- Interstate wars are important, but lots of wars in the post-WWII period look more like this.
+- Note features of the fighters (no uniforms, often wearing sneakers, poor training like the guy flagging his fellow fighter.)
 
 ---
 class: center, middle

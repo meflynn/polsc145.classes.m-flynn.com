@@ -3,7 +3,7 @@ title: "World Politics"
 subtitle: "War as an Empirical Phenomenon"
 author: "Michael E. Flynn"
 institute: "Kansas State University"
-date: "`r Sys.Date()`"
+date: "Last Updated: `r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: ["default", "lecture_theme.css"]
@@ -26,6 +26,9 @@ library(xaringanExtra)
 library(here)
 library(ghibli)
 library(viridis)
+library(flynnprojects)
+
+#devtools::install_github("meflynn/flynnprojects")
 
 xaringanExtra::use_scribble()
 xaringanExtra::use_editable(expires = 365)
@@ -35,45 +38,6 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
 
-# Windows and Mac seem to process the font differently
-if (Sys.info()[[1]] == "Windows"){
-
-basesize <- 35
-
-} else {
-  
-basesize <-  11
-  
-}
-
-update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
-
-
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-      theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-        
-        theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-              plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-              plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 1, margin = margin(t = 0.2, unit = "cm")),
-              panel.border = element_rect(fill = NA, size = 0.2),
-              strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-              strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-              panel.background = element_rect(size = 0.2),
-              panel.grid.major = element_line(color = "gray70", size = 0.15),
-              panel.grid.minor = element_line(color = "gray90", size = 0.1),
-              axis.title = element_text(face = "bold", size = basesize),
-              axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-              axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-              axis.ticks = element_line(size = 0.1),
-              axis.ticks.length = unit(0.1, "cm"),
-              legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = -0.3, l = 0, r = 0, unit = "cm")),
-              legend.text = element_text(margin = margin(l = -0.3, unit = "cm")),
-              plot.margin = margin(0.5, 0.5, 0.5, 0.5, unit = "cm"),
-              legend.margin = margin(t=0, b=0, r=0, l=0),
-              legend.box.margin = margin())
-}
 
 #install.packages("RefManageR")
 
@@ -94,20 +58,9 @@ theme_flynn <- function(){
 
 # Lecture Overview
 
-1. The puzzle of war
-2. What do states fight over?
-3. Defining war
-4. How to analyze war?
-
-???
-
-Notes:
-
-Exercises:
-
-1. Ask students to define war for themselves at the beginning.
-2. Ask students to list wars they can think of from memory
-3. Later, ask students to estimate casualties
+1. Defining war
+2. Disaggregating war
+3. How to analyze war?
 
 
 
@@ -126,7 +79,7 @@ class: left, top
 ---
 class: center, middle, inverse
 
-# The Puzzle of War
+# Defining War
 
 
 
@@ -137,6 +90,14 @@ class: center, middle
 ```{r, fig.align="center", out.width="60%", fig.cap="British soldiers during the Battle of the Somme, 1916. British Imperial War Museum."}
 knitr::include_graphics("https://winstonchurchill.org/wp-content/uploads/2021/05/Somme_1916-1.jpg", error = FALSE)
 ```
+
+???
+
+# Notes
+- "The 1916 Somme offensive was one of the largest and bloodiest battles of the First World War (1914-18). The opening day of the attack, 1 July 1916, saw the British Army sustain 57,000 casualties, the bloodiest day in its history. The campaign finally ended in mid-November after an agonising five-month struggle that failed to secure a breakthrough." [British National Army Museum summary.](https://www.nam.ac.uk/explore/battle-somme)
+- Somme offensive comprised 12 separate battles that lasted several weeks throughout the summer and ended in November.
+- The British Empire had suffered 420,000 casualties and the French 200,000 in the process. German losses were at least 450,000 killed and wounded.
+
 
 
 ---
@@ -157,9 +118,23 @@ On April 19, 1945, a freight train with nearly 4,500 prisoners from Buchenwald p
 
 
 ---
-class: center, middle, inverse
+class: center, middle
 
-# Defining War
+
+```{r, fig.align="center", out.width="50%", fig.cap="A man looks on as Soviet tanks drive into Wenceslas Square, Prague, August 21, 1968. Photograph by Vladimír Lammer / Courtesy Czech Center New York. Photo taken from the New Yorker online."}
+knitr::include_graphics("https://media.newyorker.com/photos/5b80697e704454095b40f79c/master/w_1600,c_limit/01%20Lammer%20VL.jpg")
+```
+
+???
+
+# Notes:
+
+Soviet troops invaded Czechoslovakia in August of 1968 to crush reformist movements aimed at liberalizing social and economic policies. Soviet leaders feared that these reforms might lead to similar changes in other Soviet satellite states. The goal was to install a more conservative government more friendly to Soviet interests.
+
+# Exercises:
+
+1. Ask students to list wars they can think of from memory
+2. Ask students to get into groups and define war for themselves at the beginning.
 
 
 
@@ -170,7 +145,7 @@ class: left, top
 
 Why do we need a definition?
 
-- "War" presupposes a condition that is "not War"
+- "War" implies a condition that is "not War"
 
 - "Conflict" is a very broad concept
 
@@ -195,24 +170,6 @@ A couple of definitions
 
 > **Correlates of War (COW)**: Sustained combat involving organized armed forces resulting in a minimum of 1,000 battle-related combatant fatalities within a 12-month period. Must also meet effective resistence criteria.
 
-
-
----
-class: center, middle
-
-```{r war-table}
-
-wartable <- tibble::tribble(~`Party 1`, ~`Party 2`, ~Location, ~Category,
-                            "State/Government", "State/Government", "Between or within states' territories", "Interstate War",
-                            "State/Government", "Non-State Actors", "Within a state's territory", "Civil War/Intrastate War",
-                            "State/Government", "Non-State Actors", "Outside of the state's territory", "Extra-State War",
-                            "Non-State Actor", "Non-State Actor", "Anywhere", "Non-State War")
-
-kable(wartable, booktabs = TRUE, caption = "Four categories of war according to the Correlates of War Project") %>% 
-  kable_styling(bootstrap_options = "striped") %>% 
-  row_spec(0, background = "#512888", color = "white", bold = TRUE) 
-
-```
 
 
 
@@ -260,8 +217,8 @@ combined <- tibble(year = seq(1815, 2015)) %>%
 
 # Number of Wars
 ggplot(data = combined, aes(x = year, y = warcount)) +
-  geom_bar(stat = "identity", fill = "darkgreen", color = "black") +
-  theme_flynn() +
+  geom_bar(stat = "identity", fill = "darkgreen", color = "black", size = 0.2) +
+  theme_flynn(base_family = "oswald", base_size = 12) +
   labs(x = "Year",
        y = "Count",
        title = "Number of interstate wars per year",
@@ -281,8 +238,8 @@ class: center, middle
 ```{r}
 # Number of Warring Countries per year
 ggplot(data = combined, aes(x = year, y = warringcountries)) +
-  geom_bar(stat = "identity", fill = "khaki1", color = "black") +
-  theme_flynn() +
+  geom_bar(stat = "identity", fill = "khaki1", color = "black", size = 0.2) +
+  theme_flynn(base_family = "oswald", base_size = 12) +
   labs(x = "Year",
        y = "Count",
        title = "Number of countries engaged in inter-state war per year",
@@ -324,7 +281,7 @@ ggplot(data = wardata, aes(x = duration/365, y = (((..count..)/sum(..count..)))*
   geom_histogram(position = "dodge", binwidth = 1, boundary = 0, closed = "left", fill = "#1C77A3FF", color = "black", size = 0.1) +
   annotate("text", x = 6, y = 40, label = "Mean = 1.12 Years") +
   annotate("text", x = 6, y = 35, label = "Median = 0.38 Years") +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 12) +
   labs(x = "Years",
        y = "Percent",
        title = "Duration of Interstate Wars",
@@ -335,6 +292,32 @@ ggplot(data = wardata, aes(x = duration/365, y = (((..count..)/sum(..count..)))*
 
 ```
 
+
+
+---
+class: center, middle, inverse
+
+# Disaggregating War
+
+
+
+
+---
+class: center, middle
+
+```{r war-table}
+
+wartable <- tibble::tribble(~`Party 1`, ~`Party 2`, ~Location, ~Category,
+                            "State/Government", "State/Government", "Between or within states' territories", "Interstate War",
+                            "State/Government", "Non-State Actors", "Within a state's territory", "Civil War/Intrastate War",
+                            "State/Government", "Non-State Actors", "Outside of the state's territory", "Extra-State War",
+                            "Non-State Actor", "Non-State Actor", "Anywhere", "Non-State War")
+
+kable(wartable, booktabs = TRUE, caption = "Four categories of war according to the Correlates of War Project") %>% 
+  kable_styling(bootstrap_options = "striped") %>% 
+  row_spec(0, background = "#512888", color = "white", bold = TRUE) 
+
+```
 
 
 ---
@@ -422,7 +405,7 @@ ggplot(data = combined_annual, aes(x = year, y = total)) +
   scale_x_continuous(breaks = seq(1815,2010,15)) +
   scale_y_continuous(breaks = seq(0,30,5), limits = c(0,30)) +
   viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 12) +
   labs(caption = "Data obtained from Correlates of War Data: http://www.correlatesofwar.org/data-sets/COW-war",
        x = "Year", 
        y = "", 
@@ -440,7 +423,7 @@ class: center, middle
 ```{r wars-combined-disaggregated}
 ggplot(data = combined, aes(x = year, y = Value, fill = Category)) +
   geom_area(alpha = .8, colour = "black", size = .1, alpha = .8) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 12) +
   scale_x_continuous(breaks = seq(1815,2010,15)) +
   scale_y_continuous(breaks = seq(0,30,5), limits = c(0,30)) +
   viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
@@ -463,9 +446,7 @@ ggplot(data = combined, aes(x = year, y = Value, fill = Category)) +
   scale_x_continuous(breaks = seq(1815,2010,15), expand = c(0,0)) +
   scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
   viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
-  theme_flynn() +
-  theme(legend.title = element_text(margin = margin(b = -0.3, unit = "cm")),
-        legend.text = element_text(margin = margin(l = -0.3, unit = "cm"))) +
+  theme_flynn(base_family = "oswald", base_size = 12) +
   labs(caption = "Data obtained from Correlates of War Data: http://www.correlatesofwar.org/data-sets/COW-war",
        x = "Year", 
        y = "", 
@@ -473,6 +454,15 @@ ggplot(data = combined, aes(x = year, y = Value, fill = Category)) +
        subtitle = "But what can we learn from the changing frequency of different types of war over time?") 
   
 ```
+
+
+???
+
+# Interactive part
+
+- Ask students to list which wars they think are the most deadly?
+- Which wars do you think are the longest?
+
 
 
 
@@ -566,7 +556,7 @@ war.fatality.table
 ---
 class: left, top
 
-# Defining War
+# Disaggregating War
 
 What are we leaving on the table?
 
@@ -588,7 +578,7 @@ set.seed(123)
 
 war.sim <- data.table(time = seq(1, 30, 1),
                       year = seq(1990, 2020, 1)) %>% 
-  mutate(fatalities = round(rnorm(length(year), mean = 900, sd = 50) + (5 * time)),
+  mutate(fatalities = round(rnorm(length(year), mean = 800, sd = 70) + (10 * time)),
          war = ifelse(fatalities>1000, "War", "Not War"))
 
 ggplot(war.sim, aes(x = year, y = fatalities)) +
@@ -596,7 +586,7 @@ ggplot(war.sim, aes(x = year, y = fatalities)) +
   geom_hline(yintercept = 1000, size = 1.2, color = "red") +
   scale_fill_viridis(option = "magma", discrete = TRUE, begin = 0.1, end = 0.8) +
   scale_y_continuous(breaks = seq(0, 1200, 200)) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 12) +
   labs(title = "Simulated annual fatality counts and war categorization",
        subtitle = "Simple measurement schemes have advantages, but they can also have tradeoffs",
        x = "Year",
@@ -658,7 +648,7 @@ midtimeseries2 <- midtimeseries %>%
 
 ggplot(data = midtimeseries2, aes(x = year, y = midcount, fill = level, group = level)) +
   geom_area(position = "stack", alpha = .8, colour = "black", size = .1) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 12) +
   scale_fill_viridis(option = "magma", discrete = TRUE, labels = c("Threat", "Display", "Use of Force")) +
   scale_x_continuous(breaks = seq(1815,2010,15)) +
   scale_y_continuous(breaks = seq(0,80,20), limits = c(0,80))+
@@ -688,7 +678,7 @@ states <- peacesciencer::create_stateyears(system = "gw") %>%
 
 ggplot(states, aes(x = year, y = states)) +
   geom_area(alpha = 0.8, fill = "#AE93BEFF", color = "black", size = 0.2) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 12) +
   labs(x = "Year",
        y = "Count",
        title = "Number of states in the international system, 1815–2021",

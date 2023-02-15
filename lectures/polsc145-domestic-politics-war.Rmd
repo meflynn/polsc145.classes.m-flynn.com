@@ -3,7 +3,7 @@ title: "World Politics"
 subtitle: "Domestic Politics and War"
 author: "Michael E. Flynn"
 institute: "Kansas State University"
-date: "`r Sys.Date()`"
+date: "Last Updated `r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: ["default", "lecture_theme.css"]

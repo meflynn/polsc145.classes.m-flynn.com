@@ -606,7 +606,9 @@ Special Interests
 ]
 
 .pull-right[
-<img src="../images/Jacobo Arbenz.jpg" style="width:60%;">
+```{r arbenz-image, fig.cap="Jacobo Arbenz, President of Guatemala, 1951-1954.", out.width="70%", fig.align='center'}
+knitr::include_graphics(here::here("images/Jacobo Arbenz.jpg"), error = FALSE)
+```
 ]
 
 

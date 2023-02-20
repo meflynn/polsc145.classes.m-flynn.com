@@ -25,65 +25,16 @@ library(here)
 library(ghibli)
 library(ggforce)
 library(scales)
+library(flynnprojects)
 
 knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
 
-# Windows and Mac seem to process the fotn differently
-if (Sys.info()[[1]] == "Windows"){
-
-basesize <- 35
-
-} else {
-  
-basesize <-  11
-  
-}
-
-update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
+update_geom_defaults("text", list(size = 5, family = "oswald", fontface = "plain", lineheight = 1))
 
 
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-      theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-        
-        theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-              plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-              plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 1, margin = margin(t = 0.2, unit = "cm")),
-              panel.border = element_rect(fill = NA, size = 0.2),
-              strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-              strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-              panel.background = element_rect(size = 0.2),
-              panel.grid.major = element_line(color = "gray70", size = 0.15),
-              panel.grid.minor = element_line(color = "gray90", size = 0.1),
-              axis.title = element_text(face = "bold", size = basesize),
-              axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-              axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-              axis.ticks = element_line(size = 0.1),
-              axis.ticks.length = unit(0.1, "cm"),
-              legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = 0, l = 0, r = 0, unit = "cm")),
-              plot.margin = margin(0.5, 0.5, 0.5, 0.5, unit = "cm"),
-              legend.margin = margin(t=0, b=0, r=0, l=0),
-              legend.box.margin = margin())
-}
-
-#install.packages("RefManageR")
-
-#library(RefManageR)
-#library(bibtex)
-#BibOptions(check.entries = FALSE,
-#           bib.style = "authoryear", # Bibliography style
-#           max.names = 3, # Max author names displayed in bibliography
-#           sorting = "nyt", #Name, year, title sorting
-#           cite.style = "authoryear", # citation style
-#           style = "markdown",
-#           hyperlink = FALSE,
-#           dashed = FALSE)
-
-#myBib <- ReadBib(here::here("../../classrefs.bib", check = FALSE))
 
 ```
 
@@ -206,7 +157,7 @@ ally.year <- time %>%
 
 ggplot(ally.year, aes(x = year, y = allycount, group = highally)) +
   geom_area(fill = "#2F1619FF") +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_continuous(breaks = seq(1815, 2020, 15)) +
   labs(x = "Year",
        y = "Count",
@@ -226,7 +177,7 @@ class: center, middle
 
 ggplot(ally.year, aes(x = year, y = allycount, group = highally, fill = highally)) +
   geom_area(color = "white", size = 0.2) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_continuous(breaks = seq(1815, 2020, 15)) +
   viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
   labs(x = "Year",
@@ -248,7 +199,7 @@ class: center, middle
 
 ggplot(ally.year, aes(x = year, y = allycount, group = highally, fill = highally)) +
   geom_area(position = "fill", color = "white", size = 0.2) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_continuous(breaks = seq(1815, 2020, 15), expand = c(0,0)) +
   scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
   viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
@@ -299,7 +250,7 @@ Example: North Atlantic Treaty Organization (NATO)
 
 - US enjoys specific privileges and advantages
 
-- 14 Article
+- 14 Articles
 
   - Article V: Central to collective defense
   
@@ -413,7 +364,7 @@ fat.data <- readxl::read_xlsx(here("../../../Data Files/icasualties/afghan-iraq-
 ggplot(fat.data, aes(x = Year, y = deaths, fill = country)) +
   geom_bar(stat = "identity", position = "stack", color = "black", size = 0.1) +
   facet_wrap(. ~ War) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_fill_brewer(palette = "Set2") +
   labs(x = "Year",
        y = "Count",
@@ -437,7 +388,7 @@ fat.perc <- readxl::read_xlsx(here("../../../Data Files/icasualties/afghan-iraq-
 
 ggplot(fat.perc, aes(x = Year, y = percent, color = War, linetype = War)) +
   geom_line(size = 1.5) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_color_brewer(palette = "Set2") +
   scale_y_continuous(labels = scales::percent_format()) +
   guides(linetype = FALSE) +
@@ -510,8 +461,8 @@ ggplot() +
   geom_sf(data = mapdata, fill = "gray90", color = "black", size = 0.1) +
   geom_point(data = bases, aes(x = lon, y = lat), color = "purple", size = 4, alpha = 0.5) +
   theme_void() +
-  theme(plot.title = element_text(family = "oswald", face = "bold", size = basesize*1.3),
-        plot.caption = element_text(family = "oswald", size = basesize*0.9)) +
+  theme(plot.title = element_text(family = "oswald", face = "bold", size = 20),
+        plot.caption = element_text(family = "oswald", size = 9)) +
   coord_sf() +
   labs(title = "US overseas military facilities around the globe, 1950-2018",
        caption = "Data obtained from {troopdata} package and originally compiled by David Vine (2017).")

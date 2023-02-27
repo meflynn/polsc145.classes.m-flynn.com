@@ -20,20 +20,22 @@ Lectures will be archived here *after* they are given.
 
 6. [International Security Institutions](lectures/polsc145-alliances.html)
 
-7. [Civil Wars](lectures/polsc145-civil-wars.html)
+7. [The UN and Peacekeeping](lectures/polsc145-collective-security.html)
 
-8. [Terrorism](lectures/polsc145-terrorism.html)
+8. [Civil Wars](lectures/polsc145-civil-wars.html)
 
-9. [Trade](lectures/polsc145-trade.html)
+9. [Terrorism](lectures/polsc145-terrorism.html)
 
-10. [Finance](lectures/polsc145-finance.html)
+10. [Trade](lectures/polsc145-trade.html)
 
-11. [Monetary Policy](lectures/polsc145-monetary-policy.html)
+11. [Finance](lectures/polsc145-finance.html)
 
-12. [Development](lectures/polsc145-development.html)
+12. [Monetary Policy](lectures/polsc145-monetary-policy.html)
 
-13. [Human Rights](lectures/polsc145-human-rights.html)
+13. [Development](lectures/polsc145-development.html)
 
-14. [Environment](lectures/polsc145-environment.html)
+14. [Human Rights](lectures/polsc145-human-rights.html)
 
-15. [Future Challenges](lectures/polsc145-future-challenges.html)
+15. [Environment](lectures/polsc145-environment.html)
+
+16. [Future Challenges](lectures/polsc145-future-challenges.html)

@@ -273,7 +273,6 @@ knitr::include_graphics("https://s4.reutersmedia.net/resources/r/?m=02&d=2019070
 ```
 ]
 
-
 ???
 
 # Notes
@@ -317,7 +316,6 @@ knitr::include_graphics("https://ichef.bbci.co.uk/news/976/cpsprodpb/473E/produc
 ]
 
 ??? 
-
 # Notes
 
 ### Colombian Civil War
@@ -358,7 +356,7 @@ knitr::include_graphics("https://lumiere-a.akamaihd.net/v1/images/hb_disneyplus_
 ```
 ]
 
-
+???
 # Notes
 
 ### Star Wars: 

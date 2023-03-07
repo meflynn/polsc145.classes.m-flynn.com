@@ -36,7 +36,7 @@ library(raster)
 library(broom)
 library(xaringanExtra)
 library(gghighlight)
-
+library(flynnprojects)
 
 xaringanExtra::use_scribble()
 xaringanExtra::use_editable(expires = 365)
@@ -46,59 +46,7 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
 
-# Windows and Mac seem to process the fotn differently
-if (Sys.info()[[1]] == "Windows"){
-  
-  basesize <- 35
-  
-} else {
-  
-  basesize <-  11
-  
-}
-
-update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
-
-
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-  theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-    
-    theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-          plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-          plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 0.3, margin = margin(t = 0.2, unit = "cm")),
-          panel.border = element_rect(fill = NA, size = 0.2),
-          strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-          strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-          panel.background = element_rect(size = 0.2),
-          panel.grid.major = element_line(color = "gray70", size = 0.15),
-          panel.grid.minor = element_line(color = "gray90", size = 0.1),
-          axis.title = element_text(face = "bold", size = basesize),
-          axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-          axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-          axis.ticks = element_line(size = 0.1),
-          axis.ticks.length = unit(0.1, "cm"),
-          legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = -0.3, l = 0, r = 0, unit = "cm")),
-          legend.text = element_text(size = basesize, hjust = 0, margin = margin(t = 0, b = 0, l = -0.5, r = 0, unit = "cm")),
-          legend.box.spacing =  unit(0.2, "cm"),
-          plot.margin = margin(0.3, 0.3, 0.3, 0.3, unit = "cm"))
-}
-
-#install.packages("RefManageR")
-
-#library(RefManageR)
-#library(bibtex)
-#BibOptions(check.entries = FALSE,
-#           bib.style = "authoryear", # Bibliography style
-#           max.names = 3, # Max author names displayed in bibliography
-#           sorting = "nyt", #Name, year, title sorting
-#           cite.style = "authoryear", # citation style
-#           style = "markdown",
-#           hyperlink = FALSE,
-#           dashed = FALSE)
-
-#myBib <- ReadBib(here::here("../../classrefs.bib", check = FALSE))
+update_geom_defaults("text", list(size = 5, family = "oswald", fontface = "plain", lineheight = 1))
 
 ```
 
@@ -161,7 +109,7 @@ Gerry Adams
 ]
 
 .pull-right[
-```{r gerry-adams, out.width="80%"}
+```{r gerry-adams, out.width="60%", fig.align='center'}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Gerry_Adams_-_26370225138.jpg/1280px-Gerry_Adams_-_26370225138.jpg")
 ```
 ]
@@ -186,7 +134,7 @@ Timothy McVeigh
 ]
 
 .pull-right[
-```{r tim-mcveigh, out.width="80%"}
+```{r tim-mcveigh, out.width="80%", fig.align='center'}
 knitr::include_graphics("https://cdn.britannica.com/91/116191-050-02A9E208/Timothy-McVeigh-Okla-Perry-Noble-County-Courthouse.jpg")
 ```
 ]
@@ -210,7 +158,7 @@ Brenton Tarrant
 ]
 
 .pull-right[
-```{r christchurch-shooter, out.width="80%"}
+```{r christchurch-shooter, out.width="80%", fig.align='center'}
 knitr::include_graphics("https://gdb.rferl.org/FAB795A5-C308-4EBC-8B01-F8063B5CCCB7_w1200_r1.jpg")
 ```
 ]
@@ -236,7 +184,7 @@ Nelson Mandela
 ]
 
 .pull-right[
-```{r nelson-mandela, out.width="60%"}
+```{r nelson-mandela, out.width="60%", fig.align='center'}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nelson_Mandela_1994.jpg/1024px-Nelson_Mandela_1994.jpg")
 ```
 ]
@@ -255,7 +203,7 @@ January 6 RNC/DNC Bomber
 ]
 
 .pull-right[
-```{r january-6-bomber, out.width="80%"}
+```{r january-6-bomber, out.width="80%", fig.align='center'}
 knitr::include_graphics("https://s.abcnews.com/images/US/pipe-bomb-suspect-ht-ps-210309_1615319311778_hpEmbed_2_16x9_992.jpg")
 ```
 ]
@@ -277,7 +225,7 @@ Ashin Wirathu
 
 .pull-right[
 ```{r ashin-wirathu, out.width="60%", fig.align="center"}
-knitr::include_graphics("http://img.timeinc.net/time/images/covers/asia/2013/20130701_600.jpg")
+knitr::include_graphics("https://content.time.com/time/images/covers/asia/2013/20130701_600.jpg")
 ```
 ]
 
@@ -452,7 +400,7 @@ sim <- tibble(x = seq(-10, 10, length.out = 100)) %>%
 ggplot(sim, aes(x = x, y = y)) +
   geom_area(fill = "dodgerblue1") +
   gghighlight(abs(x) < 7) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald") +
   theme(axis.text = element_blank()) +
   labs(x= "Policy preferences",
        y = "Number of individuals in society")
@@ -495,7 +443,7 @@ terror.deaths.attacks <- terror.base %>%
   
 ggplot(terror.deaths.attacks %>% filter(Category != "Rate"), aes(x = iyear, y = value, group = Category, colour = Category)) +
   geom_line() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald") +
   viridis::scale_color_viridis(option = "magma", discrete = TRUE, begin = 0.3, end = 0.9) +
   scale_x_continuous(breaks = seq(1970, 2015, 5)) +
   labs(x = "Year",
@@ -517,7 +465,7 @@ class: center, middle
 # Death Rate per attack
 ggplot(terror.deaths.attacks %>% filter(Category == "Rate"), aes(x = iyear, y = value)) +
   geom_line() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald") +
   viridis::scale_color_viridis(option = "magma", discrete = TRUE, begin = 0.3, end = 0.9) +
   scale_x_continuous(breaks = seq(1970, 2015, 5)) +
   labs(x = "Year",
@@ -571,7 +519,7 @@ ggplot(data = combined, aes(x = Year, y = Deaths, group = Cause, colour = Cause)
   annotate("text", x = 1995, y = 2500, label = "Oklahoma City \n bombing", size = 2.5) +
   annotate("text", x = 2001, y = 5500, label = "September 11 \n attacks", size = 2.5) +
   annotate("text", x = 2013, y = 2500, label = "Boston Marathon \n bombing", size = 2.5) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald") +
   scale_x_continuous(breaks = seq(1970, 2015, 5)) +
   viridis::scale_color_viridis(discrete = TRUE, option = "magma", begin = 0.1, end = 0.9) +
   labs(title = "Select causes of deaths among US citizens, 1970-2015",
@@ -598,7 +546,7 @@ terror.groups <- terror.base %>%
 ggplot(data = subset(terror.groups, totalattacks > 1000 & gname != "Unknown"), aes(y = totalattacks, x = reorder(gname, totalattacks))) +
   geom_bar(stat = "identity", fill = ghibli::ghibli_palettes$MarnieLight1[[3]]) +
   coord_flip() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald") +
   scale_y_continuous(breaks = seq(0,5000,1000), expand = c(0, 1)) +
   scale_color_brewer(palette = "Set1") +
   theme(plot.title.position = "plot") +
@@ -619,7 +567,7 @@ class: center, middle
 ggplot(data = subset(terror.groups, totalkills > 2000 & gname != "Unknown"), aes(y = totalkills, x = reorder(gname, totalkills))) +
   geom_bar(stat = "identity", fill = ghibli::ghibli_palettes$MarnieMedium1[[3]]) +
   coord_flip() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald") +
   theme(plot.title.position = "plot") +
   scale_y_continuous(breaks = seq(0,25000,5000), expand = c(0, 1)) +
   labs(x = "",
@@ -642,7 +590,7 @@ class: center, middle
 ggplot(data = subset(terror.groups, totalattacks > 1000 & gname != "Unknown"), aes(y = deathrate, x = reorder(gname, deathrate))) +
   geom_bar(stat = "identity", fill = ghibli::ghibli_palettes$PonyoLight[1]) +
   coord_flip() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald") +
   scale_y_continuous(breaks = seq(0,10,2), expand = c(0,0)) +
   scale_color_brewer(palette = "Set1") +
   theme(plot.title.position = "plot" ) +
@@ -674,7 +622,7 @@ class: center, middle
 ggplot(data = subset(terror.groups, totalsuicide > 10 & gname != "Unknown"), aes(y = totalsuicide, x = reorder(gname, totalsuicide))) +
   geom_bar(stat = "identity", fill = ghibli::ghibli_palettes$LaputaDark[[7]]) +
   coord_flip() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald") +
   scale_y_continuous(expand = c(0,0)) +
   theme(plot.title.position = "plot" ) +
   labs(x = "",
@@ -691,7 +639,7 @@ class: center, middle
 ggplot(data = subset(terror.groups, totalsuicide > 10 & gname != "Unknown"), aes(y = suiciderate, x = reorder(gname, totalsuicide))) +
   geom_bar(stat = "identity", fill = ghibli::ghibli_palettes$TotoroMedium[[3]]) +
   coord_flip() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald") +
   scale_y_continuous(expand = c(0,0)) +
   scale_color_brewer(palette = "Set1") +
   theme(plot.title.position = "plot" ) +
@@ -733,7 +681,7 @@ ggplot(data = suicide.time) +
        y = "Attacks",
        title = "Terrorist attacks by type, 1970-2015",
        subtitle = "Suicide attacks are relatively uncommon historically") +
-  theme_flynn() 
+  theme_flynn(base_family = "oswald") 
   
 ```
 

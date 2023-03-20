@@ -4,14 +4,14 @@
     <title>World Politics</title>
     <meta charset="utf-8" />
     <meta name="author" content="Michael E. Flynn" />
-    <meta name="date" content="2022-03-21" />
-    <script src="polsc145-trade_files/header-attrs-2.11/header-attrs.js"></script>
+    <meta name="date" content="2023-03-20" />
+    <script src="polsc145-trade_files/header-attrs-2.20/header-attrs.js"></script>
     <link href="polsc145-trade_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <script src="polsc145-trade_files/fabric-4.3.1/fabric.min.js"></script>
     <link href="polsc145-trade_files/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
     <script src="polsc145-trade_files/xaringanExtra-scribble-0.0.1/scribble.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x6ebc4020592433a895e530df34f573d","expires":365}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x6d0d36a730a4cdf85e0ae435b4556e0","expires":365}</script>
     <script src="polsc145-trade_files/himalaya-1.1.0/himalaya.js"></script>
     <script src="polsc145-trade_files/js-cookie-3.0.0/js.cookie.js"></script>
     <link href="polsc145-trade_files/editable-0.2.6/editable.css" rel="stylesheet" />
@@ -24,11 +24,21 @@
     <textarea id="source">
 class: middle, left, inverse, title-slide
 
+.title[
 # World Politics
+]
+.subtitle[
 ## International Trade
+]
+.author[
 ### Michael E. Flynn
+]
+.institute[
 ### Kansas State University
-### 2022-03-21
+]
+.date[
+### 2023-03-20
+]
 
 ---
 
@@ -92,7 +102,8 @@ Lots of ways to think about trade:
 - Imports
 - Sector or industry (technology sector, auto industry, etc.)
 - Specific goods and items 
-  - North American Industry Classification System Item #522390: Other Activities Related to Credit Intermediation. This industry comprises establishments primarily engaged in facilitating credit intermediation (except mortgage and loan brokerage; and financial transactions processing, reserve, and clearinghouse activities). Illustrative Examples: Check cashing services, Money order issuance services, Loan servicing, Travelers' check issuance services, Money transmission services, and Payday lending services.
+  - North American Industry Classification System Item #522390: Other Activities Related to Credit Intermediation. This industry comprises establishments primarily engaged in facilitating credit intermediation (except mortgage and loan brokerage; and financial transactions processing, reserve, and clearinghouse activities). 
+  - Illustrative Examples: Check cashing services, Money order issuance services, Loan servicing, Travelers' check issuance services, Money transmission services, and Payday lending services.
 
 
 
@@ -226,6 +237,13 @@ class: center, middle
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+???
+
+# Comparative Advantage
+
+- The values in each cell represent the ours required to produce one unit of a given good. For example, 15 ours to produce one unit of clothing in England, 30 hours to produce one cask of wine in England, etc.
+
+- Note at the beginning that it takes less time to produce both goods in Portugal (compare the values within each good's column). It only takes 10 and 15 hours to produce clothing and wine respectively. 
 
 
 ---
@@ -248,7 +266,7 @@ class: center, middle
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;color: white !important;background-color: #512888 !important;"&gt; Portugal &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Clothing / Wine = 0.66 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Clothing / Wine &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; Wine / Clothing &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -258,6 +276,19 @@ class: center, middle
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+
+
+???
+# Opportunity Costs
+
+- We want to understand the opportunity costs associated with producing a given good. 
+
+- Differently, what are we giving up to produce one unit of X?
+
+- To get at this we simply divide the value of a good in question by the other good we're interestsed in.
+
+- For example: $$ Clothing \over Wine $$ Gives us the opportunity costs of producing clothing—how many units of Wine could we produce in the time it took us to produce one unit of clothing.
+
 
 
 ---
@@ -290,6 +321,14 @@ class: center, middle
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+
+
+???
+
+# Opportunity Costs
+
+- Using these values we want to see which country's value is lower for each good.
+
 
 
 ---
@@ -322,6 +361,15 @@ class: center, middle
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+
+
+???
+
+# Opportunity Costs
+
+- The lower value tells us who should produce a given good.
+
+
 
 
 
@@ -394,7 +442,9 @@ Motivation for protection
 
 Balance of Trade
 
-- `$$\text{Balance of Trade} = \text{Exports} – \text{Imports}$$`
+.center[
+`$$\text{Balance of Trade}_{it} = \text{Exports}_{it} – \text{Imports}_{it}$$`
+]
 
 - Positive values represent a trade surplus
 
@@ -556,6 +606,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

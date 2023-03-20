@@ -37,6 +37,7 @@ library(broom)
 library(xaringanExtra)
 library(gghighlight)
 library(tidyquant)
+library(flynnprojects)
 
 xaringanExtra::use_scribble()
 xaringanExtra::use_editable(expires = 365)
@@ -45,60 +46,6 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
-
-# Windows and Mac seem to process the fotn differently
-if (Sys.info()[[1]] == "Windows"){
-  
-  basesize <- 35
-  
-} else {
-  
-  basesize <-  11
-  
-}
-
-update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
-
-
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-  theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-    
-    theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-          plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-          plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 0.3, margin = margin(t = 0.2, unit = "cm")),
-          panel.border = element_rect(fill = NA, size = 0.2),
-          strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-          strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-          panel.background = element_rect(size = 0.2),
-          panel.grid.major = element_line(color = "gray70", size = 0.15),
-          panel.grid.minor = element_line(color = "gray90", size = 0.1),
-          axis.title = element_text(face = "bold", size = basesize),
-          axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-          axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-          axis.ticks = element_line(size = 0.1),
-          axis.ticks.length = unit(0.1, "cm"),
-          legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = -0.3, l = 0, r = 0, unit = "cm")),
-          legend.text = element_text(size = basesize, hjust = 0, margin = margin(t = 0, b = 0, l = -0.5, r = 0, unit = "cm")),
-          legend.box.spacing =  unit(0.2, "cm"),
-          plot.margin = margin(0.3, 0.3, 0.3, 0.3, unit = "cm"))
-}
-
-#install.packages("RefManageR")
-
-#library(RefManageR)
-#library(bibtex)
-#BibOptions(check.entries = FALSE,
-#           bib.style = "authoryear", # Bibliography style
-#           max.names = 3, # Max author names displayed in bibliography
-#           sorting = "nyt", #Name, year, title sorting
-#           cite.style = "authoryear", # citation style
-#           style = "markdown",
-#           hyperlink = FALSE,
-#           dashed = FALSE)
-
-#myBib <- ReadBib(here::here("../../classrefs.bib", check = FALSE))
 
 ```
 
@@ -159,7 +106,8 @@ Lots of ways to think about trade:
 - Imports
 - Sector or industry (technology sector, auto industry, etc.)
 - Specific goods and items 
-  - North American Industry Classification System Item #522390: Other Activities Related to Credit Intermediation. This industry comprises establishments primarily engaged in facilitating credit intermediation (except mortgage and loan brokerage; and financial transactions processing, reserve, and clearinghouse activities). Illustrative Examples: Check cashing services, Money order issuance services, Loan servicing, Travelers' check issuance services, Money transmission services, and Payday lending services.
+  - North American Industry Classification System Item #522390: Other Activities Related to Credit Intermediation. This industry comprises establishments primarily engaged in facilitating credit intermediation (except mortgage and loan brokerage; and financial transactions processing, reserve, and clearinghouse activities). 
+  - Illustrative Examples: Check cashing services, Money order issuance services, Loan servicing, Travelers' check issuance services, Money transmission services, and Payday lending services.
 
 
 
@@ -189,7 +137,7 @@ trade <- peacesciencer::create_stateyears(syste = "cow") %>%
 
 ggplot(trade, aes(x = year, y = totaltrade)) +
   geom_area(fill = ghibli::ghibli_palettes$PonyoMedium[2]) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_continuous(breaks = seq(1920, 2020, 10)) +
   scale_y_continuous(labels = scales::comma_format()) +
   labs(x = "Year",
@@ -310,6 +258,13 @@ tab <- tribble(~Country, ~Clothing, ~Wine, ~Total,
 tab
 ```
 
+???
+
+# Comparative Advantage
+
+- The values in each cell represent the ours required to produce one unit of a given good. For example, 15 ours to produce one unit of clothing in England, 30 hours to produce one cask of wine in England, etc.
+
+- Note at the beginning that it takes less time to produce both goods in Portugal (compare the values within each good's column). It only takes 10 and 15 hours to produce clothing and wine respectively. 
 
 
 ---
@@ -319,7 +274,7 @@ class: center, middle
 
 tab <- tribble(~Country, ~Clothing, ~Wine,
                 "England", "Clothing / Wine", "Wine / Clothing",
-                "Portugal", "Clothing / Wine = 0.66", "Wine / Clothing",
+                "Portugal", "Clothing / Wine", "Wine / Clothing",
                 "Which is lower?", "", "") %>% 
   kbl(caption = "Production in a 2-good, 2-state world. Hours required to produce 1 unit of each good.", align = "lcc") %>% 
   kable_styling(full_width = TRUE) %>% 
@@ -328,6 +283,19 @@ tab <- tribble(~Country, ~Clothing, ~Wine,
 
 tab
 ```
+
+
+???
+# Opportunity Costs
+
+- We want to understand the opportunity costs associated with producing a given good. 
+
+- Differently, what are we giving up to produce one unit of X?
+
+- To get at this we simply divide the value of a good in question by the other good we're interestsed in.
+
+- For example: $$ Clothing \over Wine $$ Gives us the opportunity costs of producing clothing—how many units of Wine could we produce in the time it took us to produce one unit of clothing.
+
 
 
 ---
@@ -346,6 +314,14 @@ tab <- tribble(~Country, ~Clothing, ~Wine,
 
 tab
 ```
+
+
+???
+
+# Opportunity Costs
+
+- Using these values we want to see which country's value is lower for each good.
+
 
 
 ---
@@ -364,6 +340,15 @@ tab <- tribble(~Country, ~Clothing, ~Wine,
 
 tab
 ```
+
+
+???
+
+# Opportunity Costs
+
+- The lower value tells us who should produce a given good.
+
+
 
 
 
@@ -436,7 +421,9 @@ Motivation for protection
 
 Balance of Trade
 
-- $$\text{Balance of Trade} = \text{Exports} – \text{Imports}$$
+.center[
+$$\text{Balance of Trade}_{it} = \text{Exports}_{it} – \text{Imports}_{it}$$
+]
 
 - Positive values represent a trade surplus
 
@@ -489,7 +476,7 @@ growth.comparison <- us.trade.gdp %>%
 ggplot(data = subset(growth.comparison, variable == "Deficit"), aes(x = year, y = value)) +
   geom_bar(stat = "identity", alpha = .8, fill = "deepskyblue2", colour = "black", size = .1) +
   geom_hline(yintercept = 0) +
-  theme_flynn()+
+  theme_flynn(base_family = "oswald", base_size = 11)+
   labs(x = "Year",
        y = "Millions of 2014 Dollars",
        title = "US trade deficit, 1950-2014",
@@ -594,7 +581,7 @@ man.index <- tq_get("IPMAN",
 
 ggplot(data = man.index) +
   geom_line(aes(x = date, y = price), size = 1.0) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = "5 years") +
   labs(x = "Date",
        y = "Index (2012 = 100)",
@@ -620,10 +607,10 @@ man.com <- bind_rows(man.emp, man.wage) %>%
          group = factor(symbol, levels = c("MANEMP", "CES3000000008"), labels = c("Employment", "Wages")))
 
 ggplot(man.com, aes(x = date, y = index, color = group)) +
-  geom_line(size = 2, alpha = 0.8) +
+  geom_line(size = 1.2, alpha = 0.8) +
   geom_vline(xintercept = as.Date("2018-03-01"), linetype = "dotted") +
-  annotate("text", x = as.Date("2008-01-01"), y = 130, size = 8, label = "Trump announces tariffs\non steel and aluminum\nMarch 2, 2018", hjust = 0) +
-  theme_flynn() +
+  annotate("text", x = as.Date("2008-01-01"), y = 130, size = 2, label = "Trump announces tariffs\non steel and aluminum\nMarch 2, 2018", hjust = 0) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date() +
   scale_color_brewer(palette = "Set1") +
   labs(x = "Date",
@@ -670,7 +657,7 @@ industry.com <- bind_rows(index.alum, index.steel) %>%
 # Steel and aluminum production
 ggplot(data = industry.com, aes(x = date, y = index, color = industry)) +
   geom_line(size = 1, alpha = 0.8) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = seq(as.Date("1972-01-01"), as.Date("2019-01-01"), by = "5 years"), date_labels = "%Y") +
   scale_y_continuous(breaks = seq(50, 200, 50), limits = c(50, 200)) +
   scale_color_brewer(palette = "Set1") +
@@ -703,17 +690,18 @@ ggplot(data = soy.data, aes(x = date, y = settle/100)) +
   geom_vline(xintercept = as.Date("2018-03-23"), linetype = "dotted", size = 1) + # US imposes first steel and aluminum tariffs
   geom_vline(xintercept = as.Date("2018-05-29"), linetype = "dotted", size = 1) + # Talks break down
   geom_vline(xintercept = as.Date("2018-07-06"), linetype = "dotted", size = 1) + # China and US tariffs take effect on same date
-  annotate("text", x = as.Date("2018-03-06"), y = 11.3, size = 6.75, hjust = 0, label = "Trump tweets about tariffs\non steel and aluminum\nMarch 2, 2018") +
-  annotate("text", x = as.Date("2018-03-27"), y = 10.85, size = 6.75, hjust = 0, label = "US tariffs on Chinese goods,\nsteel, and aluminum take effect \nMarch 22-23, 2018") +
-  annotate("text", x = as.Date("2018-06-03"), y = 10.45, size = 6.75, hjust = 0, label = "US-Chinese talks break down \nMay 29, 2018") +
-  annotate("text", x = as.Date("2018-07-10"), y = 9.95, size = 6.75, hjust = 0, label = "US tariffs on Chinese goods \nand Chinese tariffs on US goods \ntake effect \nJuly 6, 2018") +
-  theme_flynn() +
+  annotate("text", x = as.Date("2018-03-06"), y = 11.3, size = 2.75, hjust = 0, label = "Trump tweets about tariffs\non steel and aluminum\nMarch 2, 2018") +
+  annotate("text", x = as.Date("2018-03-27"), y = 10.85, size = 2.75, hjust = 0, label = "US tariffs on Chinese goods,\nsteel, and aluminum take effect \nMarch 22-23, 2018") +
+  annotate("text", x = as.Date("2018-06-03"), y = 10.45, size = 2.75, hjust = 0, label = "US-Chinese talks break down \nMay 29, 2018") +
+  annotate("text", x = as.Date("2018-07-10"), y = 9.95, size = 2.75, hjust = 0, label = "US tariffs on Chinese goods \nand Chinese tariffs on US goods \ntake effect \nJuly 6, 2018") +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = seq(as.Date("2018-01-01"), as.Date("2019-03-29"), by = "2 months"), date_labels = "%b %Y",
                limits = c(as.Date("2018-01-01"), as.Date("2019-03-29"))) +
   scale_y_continuous(breaks = seq(8, 11, 1), 
                      limits = c(8, 11.4),
                      labels = dollar_format()) +
-  labs(y = "Closing price per bushel",
+  labs(y = "Closing price per bushel",,
+       x = "Date",
        title = "Soybean futures contract prices, January 2018-March 2019",
        caption = "Data obtained from https://www.quandl.com/data/CHRIS/CME_S1")
 

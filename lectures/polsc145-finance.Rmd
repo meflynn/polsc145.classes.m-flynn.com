@@ -38,6 +38,7 @@ library(broom)
 library(xaringanExtra)
 library(gghighlight)
 library(tidyquant)
+library(flynnprojects)
 
 xaringanExtra::use_scribble()
 xaringanExtra::use_editable(expires = 365)
@@ -47,59 +48,8 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
 
-# Windows and Mac seem to process the fotn differently
-if (Sys.info()[[1]] == "Windows"){
-  
-  basesize <- 35
-  
-} else {
-  
-  basesize <-  11
-  
-}
 
-update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
-
-
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-  theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-    
-    theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-          plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-          plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 0.3, margin = margin(t = 0.2, unit = "cm")),
-          panel.border = element_rect(fill = NA, size = 0.2),
-          strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-          strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-          panel.background = element_rect(size = 0.2),
-          panel.grid.major = element_line(color = "gray70", size = 0.15),
-          panel.grid.minor = element_line(color = "gray90", size = 0.1),
-          axis.title = element_text(face = "bold", size = basesize),
-          axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-          axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-          axis.ticks = element_line(size = 0.1),
-          axis.ticks.length = unit(0.1, "cm"),
-          legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = -0.3, l = 0, r = 0, unit = "cm")),
-          legend.text = element_text(size = basesize, hjust = 0, margin = margin(t = 0, b = 0, l = -0.5, r = 0, unit = "cm")),
-          legend.box.spacing =  unit(0.2, "cm"),
-          plot.margin = margin(0.3, 0.3, 0.3, 0.3, unit = "cm"))
-}
-
-#install.packages("RefManageR")
-
-#library(RefManageR)
-#library(bibtex)
-#BibOptions(check.entries = FALSE,
-#           bib.style = "authoryear", # Bibliography style
-#           max.names = 3, # Max author names displayed in bibliography
-#           sorting = "nyt", #Name, year, title sorting
-#           cite.style = "authoryear", # citation style
-#           style = "markdown",
-#           hyperlink = FALSE,
-#           dashed = FALSE)
-
-#myBib <- ReadBib(here::here("../../classrefs.bib", check = FALSE))
+update_geom_defaults("text", list(size = 4, family = "oswald", fontface = "plain", lineheight = 1))
 
 ```
 
@@ -250,14 +200,14 @@ data <- WDI(indicator = c("BX.KLT.DINV.CD.WD", "DT.NFL.BOND.CD", "BX.PEF.TOTL.CD
             country = c("XO"),
             start=1960,
             end=2020)  %>% 
-  dplyr::rename("FDI" = 4, "Bonds and Loans" = 5, "Equity" = 6) %>% 
-  pivot_longer(cols = 4:6) %>% 
+  dplyr::rename("FDI" = 5, "Bonds and Loans" = 6, "Equity" = 7) %>% 
+  pivot_longer(cols = 5:7) %>% 
   mutate(name = factor(name, levels = c("Equity", "Bonds and Loans", "FDI"))) 
 
 
 ggplot(data, aes(x = year, y = value, fill = name)) +
   geom_area(stat = "identity", position = "stack") +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   theme(plot.title.position = "plot") +
   viridis::scale_fill_viridis(option = "magma", discrete = TRUE, begin = 0.1, end = 0.9) +
   scale_x_continuous(breaks = seq(1960, 2020, 10)) +
@@ -336,10 +286,10 @@ circles <- data.frame(
 
 plot.2 <- ggplot(data = circles) +
   geom_circle(aes(x0 = x0, y0 = y0, r = r, fill = r), alpha = 0.4, show.legend = FALSE) +
-  geom_label(aes(x = x0, y = y0, label = label), size = basesize*0.6) +
+  geom_label(aes(x = x0, y = y0, label = label)) +
   coord_fixed() +
   theme_void() +
-  theme(plot.title = element_text(size = basesize * 1.5, family = "oswald", face = "bold")) 
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold")) 
 
 plot.2
 
@@ -358,17 +308,17 @@ circles <- data.frame(
   x0 = c(1, 4, 7, 10, 5.5),
   y0 = c(1, 1, 1, 1, 4),
   r = c(1, 1, 1, 1, 1),
-  label = c("0.2%", "1.0%",  "2.0%", "3.0%", "Borrower")
+  label = c("1.2%", "1.0%",  "2.0%", "3.0%", "Borrower")
 )
 
 
 plot.2 <- ggplot(data = circles) +
   geom_circle(aes(x0 = x0, y0 = y0, r = r, fill = r), alpha = 0.4, show.legend = FALSE) +
-  geom_label(aes(x = x0, y = y0, label = label), size = basesize*0.6) +
+  geom_label(aes(x = x0, y = y0, label = label)) +
   geom_segment(aes(x = 5.2, y = 3, xend = 4.5, yend = 2.0), arrow = arrow(length = unit(0.5, "cm"))) +
   coord_fixed() +
   theme_void() +
-  theme(plot.title = element_text(size = basesize * 1.5, family = "oswald", face = "bold")) 
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold")) 
 
 plot.2
 
@@ -405,10 +355,10 @@ circles <- data.frame(
 
 plot.2 <- ggplot(data = circles) +
   geom_circle(aes(x0 = x0, y0 = y0, r = r, fill = r), alpha = 0.4, show.legend = FALSE) +
-  geom_label(aes(x = x0, y = y0, label = label), size = basesize*0.6) +
+  geom_label(aes(x = x0, y = y0, label = label)) +
   coord_fixed() +
   theme_void() +
-  theme(plot.title = element_text(size = basesize * 1.5, family = "oswald", face = "bold")) 
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold")) 
 
 plot.2
 
@@ -433,11 +383,11 @@ circles <- data.frame(
 
 plot.2 <- ggplot(data = circles) +
   geom_circle(aes(x0 = x0, y0 = y0, r = r, fill = r), alpha = 0.4, show.legend = FALSE) +
-  geom_label(aes(x = x0, y = y0, label = label), size = basesize*0.6) +
+  geom_label(aes(x = x0, y = y0, label = label)) +
   geom_segment(aes(x = 6.25, y = 3.35, xend = 9.05, yend = 1.35), arrow = arrow(length = unit(0.5, "cm"))) +
   coord_fixed() +
   theme_void() +
-  theme(plot.title = element_text(size = basesize * 1.5, family = "oswald", face = "bold")) 
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold")) 
 
 plot.2
 
@@ -503,7 +453,7 @@ data <- tibble("Year" = seq(2000, 2006, 1),
 
 ggplot(data, aes(x = Year, y = value, group = name)) +
   geom_bar_pattern(stat = "identity", position = "dodge", pattern = "placeholder", pattern_type = "kitten", color = "black", size = 0.3) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_y_continuous(breaks = seq(0, 1400, 200), labels = scales::dollar_format()) +
   scale_x_continuous(breaks = seq(2000, 2006, 1)) +
   labs(y = "Value",
@@ -588,7 +538,7 @@ combined <- bind_rows(sp500, emerging) %>%
 # Emerging markets and sp 500 comparison
 ggplot(combined, aes(x = date, y = index.close*100, color = index)) +
   geom_line() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = seq(as.Date("2005-01-01"), as.Date("2021-12-31"), by = "2 years"), date_labels = "%b %Y") +
   scale_colour_brewer(palette = "Set1") +
   labs(x = "Date",
@@ -606,7 +556,7 @@ class: center, middle
 
 ```{r index funds, message = FALSE, warning = FALSE, echo = FALSE, comment = FALSE}
 start <- as.Date("2011-01-01")
-end <- as.Date("2022-03-31")
+end <- as.Date("2023-03-31")
 
 brazil <- tq_get("EWZ", "stock.prices", from = start, to = end) %>% mutate(country = "Brazil")
 argentina <- tq_get("ARGT", "stock.prices", from = start, to = end) %>% mutate(country = "Argentina")
@@ -622,7 +572,7 @@ combined <- bind_rows(brazil, argentina, turkey, southafrica, eu, china, russia)
 
 ggplot(data = combined, aes(x = date, y = index*100, color = country, group = country)) +
   geom_line(size = 0.55) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   viridis::scale_color_viridis(option = "magma", discrete = TRUE) +
   scale_y_continuous(breaks = seq(25, 400, 25)) +
   scale_x_date(breaks = seq(as.Date("2011-01-01"), as.Date("2022-04-01"), by = "1 years"), date_labels = "%b %Y") +
@@ -633,6 +583,24 @@ ggplot(data = combined, aes(x = date, y = index*100, color = country, group = co
        caption = "Data obtained from Yahoo finance via tidyquant package.\nFunds include EWZ, TUR, EZA, EURX, VCHI, and ERUS.")
 
 ```
+
+
+
+---
+class: center, middle
+
+<figure>
+<img src="../images/russia-etf-screenshot.jpg", style="border: 4px solid #000000;">
+</figure>
+
+
+
+???
+
+- Russian invasion of Ukraine had far-reaching consequences.
+
+- Many of the initial responses were primarily economic.
+
 
 
 
@@ -720,13 +688,13 @@ class: middle, center
 
 library(priceR)
 ruble <- historical_exchange_rates("RUB", to = "USD",
-                          start_date = "2015-01-01", end_date = "2022-03-15") %>% 
+                          start_date = "2015-01-01", end_date = "2023-03-15") %>% 
   dplyr::rename(rate = 2)
 
 ggplot(ruble, aes(x = date, y = rate)) +
   geom_line() +
-  theme_flynn() +
-  scale_x_date(breaks = seq(as.Date("2015-01-01"), as.Date("2022-04-01"), by = "1 years"), date_labels = "%b %Y") +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(breaks = seq(as.Date("2015-01-01"), as.Date("2023-04-01"), by = "1 years"), date_labels = "%b %Y") +
   scale_y_continuous(n.breaks = 10) +
   labs(x = "Date",
        y = "Dollars per Ruble",
@@ -751,7 +719,7 @@ table <- html_table(page) %>%
 
 ggplot(table, aes(x = Date, y = rates)) +
   geom_step() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(date_breaks = "1 year", date_labels = "%Y %b") +
   labs(x = "Date",
        y = "Interest Rate",

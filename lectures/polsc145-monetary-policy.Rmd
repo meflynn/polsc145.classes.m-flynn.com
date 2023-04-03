@@ -38,6 +38,7 @@ library(broom)
 library(xaringanExtra)
 library(gghighlight)
 library(tidyquant)
+library(flynnprojects)
 
 xaringanExtra::use_scribble()
 xaringanExtra::use_editable(expires = 365)
@@ -47,59 +48,9 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
 
-# Windows and Mac seem to process the fotn differently
-if (Sys.info()[[1]] == "Windows"){
-  
-  basesize <- 35
-  
-} else {
-  
-  basesize <-  11
-  
-}
 
-update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
+update_geom_defaults("text", list(size = 3, family = "oswald", fontface = "plain", lineheight = 1))
 
-
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-  theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-    
-    theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-          plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-          plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 0.3, margin = margin(t = 0.2, unit = "cm")),
-          panel.border = element_rect(fill = NA, size = 0.2),
-          strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-          strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-          panel.background = element_rect(size = 0.2),
-          panel.grid.major = element_line(color = "gray70", size = 0.15),
-          panel.grid.minor = element_line(color = "gray90", size = 0.1),
-          axis.title = element_text(face = "bold", size = basesize),
-          axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-          axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-          axis.ticks = element_line(size = 0.1),
-          axis.ticks.length = unit(0.1, "cm"),
-          legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = -0.3, l = 0, r = 0, unit = "cm")),
-          legend.text = element_text(size = basesize, hjust = 0, margin = margin(t = 0, b = 0, l = -0.5, r = 0, unit = "cm")),
-          legend.box.spacing =  unit(0.2, "cm"),
-          plot.margin = margin(0.3, 0.3, 0.3, 0.3, unit = "cm"))
-}
-
-#install.packages("RefManageR")
-
-#library(RefManageR)
-#library(bibtex)
-#BibOptions(check.entries = FALSE,
-#           bib.style = "authoryear", # Bibliography style
-#           max.names = 3, # Max author names displayed in bibliography
-#           sorting = "nyt", #Name, year, title sorting
-#           cite.style = "authoryear", # citation style
-#           style = "markdown",
-#           hyperlink = FALSE,
-#           dashed = FALSE)
-
-#myBib <- ReadBib(here::here("../../classrefs.bib", check = FALSE))
 
 ```
 
@@ -406,7 +357,7 @@ pound <- tq_get("DEXUSUK", "economic.data",
 
 ggplot(pound, aes(x = date, y = price)) +
   geom_line() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = seq(as.Date("1970-01-01"), as.Date("2022-04-01"), by = "10 years"), date_labels = "%b %Y") +
   scale_y_continuous(n.breaks = 10) +
   labs(x = "Date",
@@ -454,7 +405,7 @@ data <- data.table::fread(here::here("../../../Data Files/IMF/COFER_03-31-2018 0
 
 ggplot(data = data %>% filter(year >= 1999 & Currency %in% c("Dollar", "Pound", "Euro", "Franc", "Renminbi", "Yen", "Deutsche Mark")), aes(x = year, y = percent, group = Currency, fill = Currency)) +
   geom_area(alpha = .7, colour = "black", size = .1) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   viridis::scale_fill_viridis( discrete = TRUE) +
   scale_y_continuous(breaks = seq(0, 100, 20), limits = c(0, 100)) +
   labs(x = "Year",
@@ -513,7 +464,7 @@ yuan <- tq_get("DEXCHUS", "economic.data",
 
 ggplot(yuan, aes(x = date, y = price)) +
   geom_line() +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = seq(as.Date("1970-01-01"), as.Date("2022-04-01"), by = "10 years"), date_labels = "%b %Y") +
   scale_y_continuous(n.breaks = 10) +
   labs(x = "Date",
@@ -567,7 +518,7 @@ chinareserves <- tq_get("TRESEGCNM052N", "economic.data",
 
 ggplot(chinareserves, aes(x = date, y = price)) +
   geom_area(fill = "dodgerblue1", color = "black", size = 0.2) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = seq(as.Date("1980-01-01"), as.Date("2024-01-01"), "5 years"), date_labels = "%b %Y") +
   scale_y_continuous(n.breaks = 8, label = scales::dollar_format()) +
   labs(x = "Date",
@@ -590,8 +541,8 @@ pound <- tq_get("DEXUSUK", "economic.data",
 ggplot(pound, aes(x = date, y = price)) +
   geom_vline(aes(xintercept = as.Date("2016-06-23")), color = "red", alpha = 0.6) +
   geom_line(size = 0.8) +
-  annotate("text", x = as.Date("2016-07-10"), y = 1.45, label = "June 23, 2016: United Kingdom\nEuropean Union Membership\nReferendum", size = 9, hjust = 0) +
-  theme_flynn() +
+  annotate("text", x = as.Date("2016-07-10"), y = 1.45, label = "June 23, 2016: United Kingdom\nEuropean Union Membership\nReferendum", size = 3, hjust = 0) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = seq(as.Date("2016-01-01"), as.Date("2018-04-01"), by = "3 months"), date_labels = "%b %Y") +
   scale_y_continuous(n.breaks = 10) +
   labs(x = "Date",
@@ -687,7 +638,7 @@ goldprice <- goldprice %>%
 
 ggplot(data = goldprice, aes(x = year, y = gold.price)) +
   geom_area(fill = "deepskyblue", color = "black", size = .3, alpha = .6) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_continuous(breaks = seq(1930,2020,10)) +
   scale_y_continuous(breaks = seq(0, 1600, 400)) +
   labs(x = "Year",
@@ -707,7 +658,7 @@ class: center, middle
 ggplot(data = subset(goldprice, year >= 1929)) +
   geom_line(aes(x = year, y = inflation)) +
   annotate("rect", xmin = 1971, xmax = 2020, ymin = -Inf, ymax = Inf, alpha = .2) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_continuous(breaks = seq(1934, 2015, 20), limits = c(1929, 2020)) +
   scale_y_continuous(breaks = seq(-10, 20, 5)) +
   labs(x = "Year",

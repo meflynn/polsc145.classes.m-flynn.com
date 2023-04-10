@@ -41,6 +41,7 @@ library(broom)
 library(xaringanExtra)
 library(gghighlight)
 library(tidyquant)
+library(flynnprojects)
 
 xaringanExtra::use_scribble()
 xaringanExtra::use_editable(expires = 365)
@@ -50,59 +51,9 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
 
-# Windows and Mac seem to process the fotn differently
-if (Sys.info()[[1]] == "Windows"){
-  
-  basesize <- 35
-  
-} else {
-  
-  basesize <-  11
-  
-}
 
-update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
+update_geom_defaults("text", list(size = 3, family = "oswald", fontface = "plain", lineheight = 0.2))
 
-
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-  theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-    
-    theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-          plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-          plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 0.3, margin = margin(t = 0.2, unit = "cm")),
-          panel.border = element_rect(fill = NA, size = 0.2),
-          strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-          strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-          panel.background = element_rect(size = 0.2),
-          panel.grid.major = element_line(color = "gray70", size = 0.15),
-          panel.grid.minor = element_line(color = "gray90", size = 0.1),
-          axis.title = element_text(face = "bold", size = basesize),
-          axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-          axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-          axis.ticks = element_line(size = 0.1),
-          axis.ticks.length = unit(0.1, "cm"),
-          legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = -0.3, l = 0, r = 0, unit = "cm")),
-          legend.text = element_text(size = basesize, hjust = 0, margin = margin(t = 0, b = 0, l = -0.5, r = 0, unit = "cm")),
-          legend.box.spacing =  unit(0.2, "cm"),
-          plot.margin = margin(0.3, 0.3, 0.3, 0.3, unit = "cm"))
-}
-
-#install.packages("RefManageR")
-
-#library(RefManageR)
-#library(bibtex)
-#BibOptions(check.entries = FALSE,
-#           bib.style = "authoryear", # Bibliography style
-#           max.names = 3, # Max author names displayed in bibliography
-#           sorting = "nyt", #Name, year, title sorting
-#           cite.style = "authoryear", # citation style
-#           style = "markdown",
-#           hyperlink = FALSE,
-#           dashed = FALSE)
-
-#myBib <- ReadBib(here::here("../../classrefs.bib", check = FALSE))
 
 ```
 
@@ -236,7 +187,7 @@ mapdata <- rnaturalearth::ne_countries(scale = 110, returnclass = "sf") %>%
 
 ggplot(mapdata %>% filter(admin != "Antarctica")) +
   geom_sf(aes(fill = as.factor(quartile)), color = "black", size = 0.1) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   theme(panel.background = element_blank(),
         panel.border = element_blank(),
         panel.grid.major = element_blank(),
@@ -244,9 +195,10 @@ ggplot(mapdata %>% filter(admin != "Antarctica")) +
         axis.line = element_blank(),
         axis.text.x.bottom = element_blank(),
         axis.ticks.x = element_blank()) +
+  guides(fill = guide_legend(reverse = TRUE)) +
   viridis::scale_fill_viridis(discrete = TRUE) +
   labs(fill = "Income Quartile",
-       title = "Countries grouped by income, 2011 GDP per capita values")
+       title = "Countries grouped by income, 2015 GDP per capita values")
 
 ```
 
@@ -314,8 +266,8 @@ class: center, middle
 
 poverty <- WDI::WDI("SI.POV.DDAY", country = "all") %>% 
   filter(year == 2015 | year == 2000) %>% 
-  dplyr::select(2, 3, 4) %>% 
-  dplyr::rename("Country" = 1, "Poverty Rate" = 2, "Year" = 3) %>% 
+  dplyr::select("country", "SI.POV.DDAY", "year") %>% 
+  dplyr::rename("Country" = "country", "Poverty Rate" = "SI.POV.DDAY", "Year" = "year") %>% 
   filter(!is.na(`Poverty Rate`)) %>% 
   mutate(ccode = countrycode::countrycode(Country, "country.name", "cown")) %>% 
   filter(!is.na(ccode)) 
@@ -337,7 +289,7 @@ pov.table.1
 ---
 class: middle, center
 
-```{r}
+```{r lorenz-curve-1}
 
 data <- data.frame(x = seq(0, 100),
                    y = seq(0,100)) %>% 
@@ -350,13 +302,13 @@ ggplot(data, aes(x = x, y = y)) +
   coord_equal() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(position = "right", expand = c(0,0)) +
-  theme(plot.title = element_text(size = 30, face = "bold"),
-        plot.subtitle = element_text(size = 26, face = "bold"),
+  theme(plot.title = element_text(size = 22, face = "bold"),
+        plot.subtitle = element_text(size = 18, face = "bold"),
         plot.title.position = "plot",
         axis.line.x.bottom = element_line(size = 1),
         axis.line.y.right = element_line(size = 1, color = "black"),
-        axis.title.x.bottom = element_text(face = "bold", size = 25, margin = margin(t = 0.2, unit = "cm")),
-        axis.title.y.right = element_text(face = "bold", size = 25, margin = margin(l = 0.2, unit = "cm"))) +
+        axis.title.x.bottom = element_text(face = "bold", size = 18, margin = margin(t = 0.2, unit = "cm")),
+        axis.title.y.right = element_text(face = "bold", size = 18, margin = margin(l = 0.2, unit = "cm"))) +
   labs(x = "% of Population",
        y = "% of Wealth",
        title = "Lorenz Curve and the Gini Coefficient",
@@ -370,7 +322,7 @@ ggplot(data, aes(x = x, y = y)) +
 ---
 class: middle, center
 
-```{r}
+```{r lorenz-curve-2}
 
 data <- data.frame(x = seq(0, 100),
                    y = seq(0,100)) 
@@ -385,13 +337,13 @@ ggplot(data, aes(x = x, y = y)) +
   coord_equal() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(position = "right", expand = c(0,0)) +
-  theme(plot.title = element_text(size = 30, face = "bold"),
-        plot.subtitle = element_text(size = 26, face = "bold"),
+  theme(plot.title = element_text(size = 22, face = "bold"),
+        plot.subtitle = element_text(size = 18, face = "bold"),
         plot.title.position = "plot",
         axis.line.x.bottom = element_line(size = 1),
         axis.line.y.right = element_line(size = 1, color = "black"),
-        axis.title.x.bottom = element_text(face = "bold", size = 25, margin = margin(t = 0.2, unit = "cm")),
-        axis.title.y.right = element_text(face = "bold", size = 25, margin = margin(l = 0.2, unit = "cm"))) +
+        axis.title.x.bottom = element_text(face = "bold", size = 18, margin = margin(t = 0.2, unit = "cm")),
+        axis.title.y.right = element_text(face = "bold", size = 18, margin = margin(l = 0.2, unit = "cm"))) +
   labs(x = "% of Population",
        y = "% of Wealth",
        title = "Lorenz Curve and the Gini Coefficient",
@@ -461,6 +413,10 @@ International factors
 
 - Position in the international economy
 
+- Access to international finance
+
+- Monetary policy
+
 - Are international economic institutions biased?
 
 
@@ -478,7 +434,7 @@ oda <- fread(here::here("../../../Data Files/OECD Data/ODA/DP_LIVE_0804202219321
 
 ggplot(oda, aes(x = reorder(LOCATION, Value), y = Value)) +
   geom_bar(stat = "identity", color = "black", fill = "dodgerblue1") +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   theme(axis.text.x.bottom = element_text(angle = 45)) +
   scale_y_continuous(labels = scales::dollar_format()) +
   labs(y = "Millions of USD",
@@ -500,7 +456,7 @@ oda <- fread(here::here("../../../Data Files/OECD Data/ODA/DP_LIVE_0804202219321
 
 ggplot(oda, aes(x = reorder(LOCATION, Value), y = Value)) +
   geom_bar(stat = "identity", color = "black", fill = "dodgerblue1") +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   theme(axis.text.x.bottom = element_text(angle = 45)) +
   labs(y = "% of GNP",
        x = "",

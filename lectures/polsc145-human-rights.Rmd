@@ -43,6 +43,7 @@ library(broom)
 library(xaringanExtra)
 library(gghighlight)
 library(tidyquant)
+library(flynnprojects)
 
 xaringanExtra::use_scribble()
 xaringanExtra::use_editable(expires = 365)
@@ -52,59 +53,8 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
 
-# Windows and Mac seem to process the fotn differently
-if (Sys.info()[[1]] == "Windows"){
-  
-  basesize <- 35
-  
-} else {
-  
-  basesize <-  11
-  
-}
 
 update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
-
-
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-  theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-    
-    theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-          plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-          plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 0.3, margin = margin(t = 0.2, unit = "cm")),
-          panel.border = element_rect(fill = NA, size = 0.2),
-          strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-          strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-          panel.background = element_rect(size = 0.2),
-          panel.grid.major = element_line(color = "gray70", size = 0.15),
-          panel.grid.minor = element_line(color = "gray90", size = 0.1),
-          axis.title = element_text(face = "bold", size = basesize),
-          axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-          axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-          axis.ticks = element_line(size = 0.1),
-          axis.ticks.length = unit(0.1, "cm"),
-          legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = -0.3, l = 0, r = 0, unit = "cm")),
-          legend.text = element_text(size = basesize, hjust = 0, margin = margin(t = 0, b = 0, l = -0.5, r = 0, unit = "cm")),
-          legend.box.spacing =  unit(0.2, "cm"),
-          plot.margin = margin(0.3, 0.3, 0.3, 0.3, unit = "cm"))
-}
-
-#install.packages("RefManageR")
-
-#library(RefManageR)
-#library(bibtex)
-#BibOptions(check.entries = FALSE,
-#           bib.style = "authoryear", # Bibliography style
-#           max.names = 3, # Max author names displayed in bibliography
-#           sorting = "nyt", #Name, year, title sorting
-#           cite.style = "authoryear", # citation style
-#           style = "markdown",
-#           hyperlink = FALSE,
-#           dashed = FALSE)
-
-#myBib <- ReadBib(here::here("../../classrefs.bib", check = FALSE))
 
 ```
 
@@ -176,6 +126,18 @@ knitr::include_graphics("https://www.nps.gov/elro/learn/historyculture/images/D1
 ```
 ]
 
+???
+
+# Notes
+
+Image: Eleanor Roosevelt and the United Nations Universal Declaration of Human Rights 
+  - Adopted on December 10, 1948
+  - Provides a basic listing of rights.
+  - “Soft law”. The declaration is viewed by many as a listing of aspirations, and not as a binding legal agreement. 
+  - Eleanor Roosevelt: Chaired the United Nations Human Rights Commission, which was tasked with drafting a declaration of human rights.
+  - Rene Cassin: French law professor. Composed the first draft of the United Nations Declaration. Essentially the Thomas Jefferson of the UNDHR.
+ 
+  - Pen Chung Chang: Diplomat, philosopher, and Chinese representative to the UN Human Rights Commission. Studied Islam and Asian philosophers, such as Confucius and Mencius. Argued that the Commission had to consider other philosophical traditions when considering a "universal declaration of rights". This debate between Western and non-Western rights would carry on through the Cold War. 
 
 
 ---
@@ -184,37 +146,37 @@ knitr::include_graphics("https://www.nps.gov/elro/learn/historyculture/images/D1
 ### Univeral Declaration of Human Rights
 .small[
 .pull-left[
-* Life, liberty, and security of person	
-* No slavery or forced servitude
-* No torture, cruel and unusual punishment, inhuman or degrading treatment	
-* Recognition as a person before the law
-* Equal protection before the law	
-* Right to effective remedy by national tribunals
-* No arbitrary arrest, detention, or exile	
-* Fair and public hearings by an independent and impartial tribunal
-* Presumed innocence until guilt is proven	
-* Protection from arbitrary interference in an individual’s private, family, or home life, and * in personal correspondence
-* Freedom of movement, both within and between countries	
-* Freedom from persecution and access to asylum
-* Right to a nationality and to change nationality	
-* Freedom of consensual marriage and to raise a family
-* Right to own property
+1. Life, liberty, and security of person	
+2. No slavery or forced servitude
+3. No torture, cruel and unusual punishment, inhuman or degrading treatment	
+4. Recognition as a person before the law
+5. Equal protection before the law	
+6. Right to effective remedy by national tribunals
+7. No arbitrary arrest, detention, or exile	
+8. Fair and public hearings by an independent and impartial tribunal
+9. Presumed innocence until guilt is proven	
+10. Protection from arbitrary interference in an individual’s private, family, or home life, and in personal correspondence
+11. Freedom of movement, both within and between countries	
+12. Freedom from persecution and access to asylum
+13. Right to a nationality and to change nationality	
+14. Freedom of consensual marriage and to raise a family
+15. Right to own property
 ]
 
 .pull-right[
-* Freedom of thought, conscience, and religion
-* Freedom of opinion and expression	
-* Freedom of peaceful assembly and association
-* Freedom of political participation and universal suffrage	
-* Access to essential economic, social, and cultural rights necessary for individual development and dignity
-* Right to work, without discrimination, for fair pay, and in favorable conditions. 
-* Right to joint trade unions.	
-* Right to rest, leisure, and limited working hours
-* Access to basic standards of living, including healthcare, food, clothing, and housing.	
-* Right to equally partake in the cultural and scientific life of the community
-* Right to enjoy a social and international order that facilitates the realization of these rights	
-* Limitations on these rights only to the extent that they are necessary to secure the ability of others to enjoy their rights
-* Nothing in the UNDHR will be interpreted as a license to destroy or harm the freedoms outlined herein
+16. Freedom of thought, conscience, and religion
+17. Freedom of opinion and expression	
+18. Freedom of peaceful assembly and association
+19. Freedom of political participation and universal suffrage	
+20. Access to essential economic, social, and cultural rights necessary for individual development and dignity
+21. Right to work, without discrimination, for fair pay, and in favorable conditions. 
+22. Right to joint trade unions.	
+23. Right to rest, leisure, and limited working hours
+24. Access to basic standards of living, including healthcare, food, clothing, and housing.	
+25. Right to equally partake in the cultural and scientific life of the community
+26. Right to enjoy a social and international order that facilitates the realization of these rights	
+27. Limitations on these rights only to the extent that they are necessary to secure the ability of others to enjoy their rights
+28. Nothing in the UNDHR will be interpreted as a license to destroy or harm the freedoms outlined herein
 ]
 ]
 
@@ -230,13 +192,31 @@ UNDHR followed up by several treaties
 
 - Though most states agree on UNDHR, specific treaties are more contentious due to binding nature
 
+- Levels/stages of committment
+
+  - Signature
+  - Ratification
+  - Reservations
+
+???
+
+# Notes
+
+- Treaties are important in democracies in particular because they open the door to legal/statutory challenges to state policies that may conflict with human rights treaty obligations.
+
+- Signature: Where the signature is subject to ratification, acceptance or approval, the signature does not establish the consent to be bound. However, it is a means of authentication and expresses the willingness of the signatory state to continue the treaty-making process. The signature qualifies the signatory state to proceed to ratification, acceptance or approval. It also creates an obligation to refrain, in good faith, from acts that would defeat the object and the purpose of the treaty. (UN Treaty Collection Glossary)
+
+- Ratification: The country agrees to be actually bound by the contents of the treaty. This means that it carries the force of law, and in the US, can be cited in domestic cases. (UN Treaty Collection Glossary)
+
+- Reservations: A reservation is a declaration made by a state by which it purports to exclude or alter the legal effect of certain provisions of the treaty in their application to that state. A reservation enables a state to accept a multilateral treaty as a whole by giving it the possibility not to apply certain provisions with which it does not want to comply. Reservations can be made when the treaty is signed, ratified, accepted, approved or acceded to. Reservations must not be incompatible with the object and the purpose of the treaty. Furthermore, a treaty might prohibit reservations or only allow for certain reservations to be made. (UN Treaty Collection Glossary)
+
 
 
 
 ---
 class: center, middle
 
-```{r, fig.align="center", out.width="80%"}
+```{r, fig.align="center", out.width="70%"}
 knitr::include_graphics("WORPOL3_Table12.01.01.jpg", error = FALSE)
 ```
 
@@ -244,7 +224,7 @@ knitr::include_graphics("WORPOL3_Table12.01.01.jpg", error = FALSE)
 ---
 class: center, middle
 
-```{r, fig.align="center", out.width="80%"}
+```{r, fig.align="center", out.width="70%"}
 knitr::include_graphics("WORPOL3_Table12.01.02.jpg", error = FALSE)
 ```
 
@@ -361,7 +341,7 @@ torture <- ggplot(hr.score, aes(x = YEAR, y = TORT)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Torture")
@@ -371,7 +351,7 @@ prison <- ggplot(hr.score, aes(x = YEAR, y = POLPRIS)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Political Imprisonment")
@@ -381,7 +361,7 @@ kill <- ggplot(hr.score, aes(x = YEAR, y = KILL)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Extrajudicial Killings")
@@ -391,7 +371,7 @@ disap <- ggplot(hr.score, aes(x = YEAR, y = DISAP)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Disappearances")
@@ -401,7 +381,7 @@ disap <- ggplot(hr.score, aes(x = YEAR, y = DISAP)) +
 plots <- (torture | prison) / (kill | disap)
 
 plots + plot_annotation(title = "Physical Integrity Rights Measures for North Korea , 1980-2012",
-                        theme = theme_flynn())
+                        theme = theme_flynn(base_size = 11, base_family = "oswald"))
 
 ```
 
@@ -418,7 +398,7 @@ ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
   geom_line() +
   geom_ribbon(aes(ymin = theta_mean - 2*theta_sd, ymax = theta_mean + 2*theta_sd), alpha= 0.5, fill = "dodgerblue1") +
   scale_x_continuous(breaks = seq(1950, 2020, 10)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Latent Human Rights Score for North Korea, 1946-2017",
@@ -451,6 +431,26 @@ knitr::include_graphics("https://pi.tedcdn.com/r/s3.amazonaws.com/talkstar-photo
 ```
 ]
 
+
+???
+
+# Notes
+
+- More than 200,000 men, women, and children are imprisoned in labor camps in North Korea. 
+- North Korean famine. 1994–1998. Approximately 2.5–3.5 million deaths.
+- Kim Jong Un issued a “shoot on sight” order for border guards who observe people fleeing across the border. 
+- North Koreans who have defected to South Korea often become involved in human rights activism and the collection of information on North Korean human rights abuses. 
+- North Korean Army major provided video footage of public executions. He was executed in 2008.
+
+- Amy Hyatt anecdote. State Department official who traveled to North Korea during the early 2000s. Witnessed people sweeping snow from roads with pine bows. Was looking for slippers in her hotel room, couldn’t find them, and then there was a knock on the door and someone had left slippers outside of her hotel room. 
+
+- Yeonmi Park: Witnessed the public execution of her friend’s mother when she was 8-years old. The women had watched South Korean films and lent DVDs to friends. Her mother was raped by people smugglers during their journey into China. Father died during the journey and they had to bribe a crematorium to destroy his body so they wouldn’t be detected by Chinese authorities, who would deport them back to North Korea. They were surrounded by border guards during an attempt to get into Mongolia, and threatened to cut their own throats if the guards deported them back to China. They were taken into custody and handed over to South Korean officials. She frequently appears on television and international speaking events to talk about repression in North Korea. South Korean police monitor defectors and the detective assigned to her case told her that she’d be added to a kill list in North Korea for speaking out. See Telegraph Store on Yeonmi Park. 
+
+- Note that the journey out of North Korea is a difficult one. People typically flee through China and have to make it to Mongolia or some other Southeast Asian country in order to escape.
+
+
+
+
 ---
 class: center, middle
 
@@ -465,7 +465,7 @@ torture <- ggplot(hr.score, aes(x = YEAR, y = TORT)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Torture")
@@ -475,7 +475,7 @@ prison <- ggplot(hr.score, aes(x = YEAR, y = POLPRIS)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Political Imprisonment")
@@ -485,7 +485,7 @@ kill <- ggplot(hr.score, aes(x = YEAR, y = KILL)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Extrajudicial Killings")
@@ -495,7 +495,7 @@ disap <- ggplot(hr.score, aes(x = YEAR, y = DISAP)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Disappearances")
@@ -505,7 +505,7 @@ disap <- ggplot(hr.score, aes(x = YEAR, y = DISAP)) +
 plots <- (torture | prison) / (kill | disap)
 
 plots + plot_annotation(title = "Physical Integrity Rights Measures for China , 1980-2012",
-                        theme = theme_flynn())
+                        theme = theme_flynn(base_size = 11, base_family = "oswald"))
 
 ```
 
@@ -524,7 +524,7 @@ ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
   geom_line() +
   geom_ribbon(aes(ymin = theta_mean - 2*theta_sd, ymax = theta_mean + 2*theta_sd), alpha= 0.5, fill = "dodgerblue1") +
   scale_x_continuous(breaks = seq(1950, 2020, 10)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Latent Human Rights Score for China, 1946-2017",
@@ -553,6 +553,23 @@ knitr::include_graphics("https://i.guim.co.uk/img/media/ea7020d862e3cf0afa91e6ad
 ```
 ]
 
+???
+
+# Notes
+
+- Between 1998 and 2010 China committed more than 40,000 people to high-security psychiatric facilities. Many for politically-motivated reasons. Patients forcibly medicated and subjected to electro-shock therapy against their will. 
+
+- Example 1: 2010. According to a June 29 NGO report, Liao Meizhi was detained in February by individuals allegedly engaged by the Qianjiang Bureau of Health and the Laoxin Town Public Health Clinic while she was in petitioning with family members. She subsequently was committed to a psychiatric hospital. Liao had previously been detained in psychiatric institutions for petitioning. It was not known whether an independent doctor assessed her mental health. 
+
+- Example 2: 2010. On June 5, a Beijing Chaoyang District Court ruled that China Petroleum and Chemical Corporation (Sinopec) had not violated the rights of former employee Chen Miaocheng, who died after 13 years of detention in a psychiatric institution. Chen, was involuntarily hospitalized in 1995 for ”paranoid schizophrenia” but cleared for release in December 1996 by doctors at Beijing’s Huilongguan Hospital. However, the hospital refused to discharge Chen unless his employer, Sinopec, agreed to his release. Sinopec refused, and Chen died in the hospital 12 years after being cleared for discharge. It remains unclear why Chen’s employer needed to clear his release, or why this was withheld. Chen’s widow filed a lawsuit against Sinopec, arguing that by having Chen involuntarily committed to a psychiatric institution, Sinopec had violated Chen’s rights to life, liberty, and health. The court ruled that Sinopec had not violated the law when it committed Chen to the hospital and was not liable for his death since Chen died from pneumonia.
+
+- Example 3: Ai Wei Wei
+
+  - Family sent to labor camp when Weiwei was 1 year old.
+  - Studied in the US for years before returning to China.
+  - Has blogged about corruption in the Chinese government. 
+  - 2008 Sichuan earthquake. In 2009 Ai Weiwei was imprisoned for blogging about shoddy construction of student housing and trying to publicize information about students who died in the quake. 
+  - Studio demolition. 2010 he was placed under house arrest. In early 2011 his studio was demolished by local government officials. Government officials encouraged him to build the building as a part of a new “cultural center”. Officials subsequently claimed that he did not follow appropriate guidelines.
 
 
 
@@ -570,7 +587,7 @@ torture <- ggplot(hr.score, aes(x = YEAR, y = TORT)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Torture")
@@ -580,7 +597,7 @@ prison <- ggplot(hr.score, aes(x = YEAR, y = POLPRIS)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Political Imprisonment")
@@ -590,7 +607,7 @@ kill <- ggplot(hr.score, aes(x = YEAR, y = KILL)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Extrajudicial Killings")
@@ -600,7 +617,7 @@ disap <- ggplot(hr.score, aes(x = YEAR, y = DISAP)) +
   geom_point(color = "dodgerblue1", size = 2) +
   scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
   scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Disappearances")
@@ -610,7 +627,7 @@ disap <- ggplot(hr.score, aes(x = YEAR, y = DISAP)) +
 plots <- (torture | prison) / (kill | disap)
 
 plots + plot_annotation(title = "Physical Integrity Rights Measures for United States , 1980-2012",
-                        theme = theme_flynn())
+                        theme = theme_flynn(base_size = 11, base_family = "oswald"))
 
 ```
 
@@ -628,7 +645,7 @@ ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
   geom_line() +
   geom_ribbon(aes(ymin = theta_mean - 2*theta_sd, ymax = theta_mean + 2*theta_sd), alpha= 0.5, fill = "dodgerblue1") +
   scale_x_continuous(breaks = seq(1950, 2020, 10)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Latent Human Rights Score for United States, 1946-2017",
@@ -659,6 +676,16 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/e/
 ```
 ]
 
+???
+
+# Notes
+
+- Example 1: (2010) Death penalty. Amnesty International notes that many executions are botched, taking multiple hours for lethal injection to actually kill the condemned. They also note that”[n]ine people were released from death rows during the year on grounds of innocence, bringing to more than 130 the number of such cases since 1976.”
+
+- Example 2: Tasers. (Several years) Dozens of deaths each year resulting from tasers that are used inappropriately. 
+
+- Example 3: (2012) Anwar al-Awlaki. US citizen, born in New Mexico. Attended college at Colorado State, San Diego State, and George Washington Universities. Awlaki, and later one of his sons, were killed in US drone strikes in Yemen.
+
 
 
 ---
@@ -686,6 +713,19 @@ Lots of things...
 - Political Factors (HROs and shaming, mobilization, etc.)
 
 
+???
+
+# Notes
+
+- Violations and protection are a function of:
+  - Structural factors, like institutions, economy, etc.
+  - Behavior
+
+- Talk more about monitoring and oversight.
+- Principal-agent problems
+- Also talk about strategic actors and detection-avoidance. If you're in a system that values punishing abusers then you're likely to adopt strategies/tactics that make abuse harder to detect. 
+- Example: Police turning off body cameras.
+
 
 
 ---
@@ -699,7 +739,7 @@ all <- ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
   geom_jitter(alpha = 0.3) +
   geom_smooth() +
   scale_x_continuous(breaks = seq(1950, 2020, 10)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Score",
        title = "Latent Human Rights Score for All Countries, 1946-2017",
@@ -708,7 +748,7 @@ all <- ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
 inset <- ggplot(hr.score, aes(x = YEAR, y = average)) +
   geom_smooth() +
   scale_x_continuous(breaks = seq(1950, 2020, 10)) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Year",
        y = "Mean")
 

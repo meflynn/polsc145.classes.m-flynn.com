@@ -462,6 +462,14 @@ ggplot(data, aes(x = Year, y = value, group = name)) +
 ```
 
 
+???
+
+# Notes
+
+- Basic idea is that your tax rate doesn't have to change to increase government revenues.
+
+- But this means you have to grow the economy.
+
 ---
 class: top, left
 
@@ -550,6 +558,18 @@ ggplot(combined, aes(x = date, y = index.close*100, color = index)) +
 ```
 
 
+???
+
+# Notes
+
+- Helps to show broader investment patterns and relative valuation over time, rather than just outflows from US. 
+
+- Also helps to look at a wider range of investment flows. FDI is more intensive investment. These funds are not focusing on such major investments. 
+
+- Price increases/decreases can tell us something about investors’ expectations.
+
+- Emerging markets have the potential to be very profitable, but also expose investors to significant volatility and risk.
+
 
 ---
 class: center, middle
@@ -623,7 +643,29 @@ knitr::include_graphics("https://www.bilaterals.org/IMG/jpg/owens630md.jpg")
 ```
 ]
 
+???
 
+# Notes
+
+- 1,162 companies nationalized by Venezuelan government between 2002 and 2012. 
+
+- Owens–Illinois plant expropriated in 2010.
+
+- Operated plant in Venezuela for 52 years. 
+
+- Chavez accused the company of environmental damage and exploiting workers.  
+
+- Venezuelan law requires that the legislature declares the expropriation is “in the public interest”, and the subject of the expropriation is allowed to present a defense against expropriation and they are also entitled to receive compensation. But this does not happen.
+
+- Executive decree ignores Chavez’ rationale and instead says the company was unfairly exploiting its dominant market position. 
+
+- Company given no advanced notice of expropriation and staff were kicked out a few days after the announcement. 
+
+- International tribunal awarded Owens–Illinois $455 million, but it’s unclear when, or how much, they will be paid.
+
+- As of 2017 they have still not recovered their investment costs. A GM plant was also expropriated by the Venezuelan government in 2017. 
+
+- See Wall Street Journal article, Economist article, and Toledo Blade article.
 
 
 ---

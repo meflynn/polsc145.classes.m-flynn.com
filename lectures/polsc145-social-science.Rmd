@@ -30,9 +30,10 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
 
-update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
+update_geom_defaults("text", list(size = 5, family = "oswald", fontface = "plain", lineheight = 0.2))
 
 
 
@@ -65,7 +66,7 @@ class: left, top
 class: center, middle
 
 ```{r, out.width="60%", fig.cap="Be mindful of your limits"}
-knitr::include_graphics("../../How much I know graph.jpg", error = FALSE)
+knitr::include_graphics("../images/How much I know graph.jpg", error = FALSE)
 ```
 
 
@@ -73,7 +74,7 @@ knitr::include_graphics("../../How much I know graph.jpg", error = FALSE)
 class: center, middle
 
 ```{r, out.width="60%", fig.cap="Care with data analytics is not often conducive to riveting TV."}
-knitr::include_graphics("../../../media/phd-comics-news-statistics.jpg", error = FALSE)
+knitr::include_graphics("../images/phd-comics-news-statistics.jpg", error = FALSE)
 ```
 
 
@@ -576,77 +577,6 @@ Organizing analysis
 
 
 
-
----
-class: left, top
-
-# The Research Process
-
-Actors
-
-  - States
-  - Individuals
-  - Corporations
-  - Groups
-  - Factors of production (i.e. labor/capital)
-
-
-  
-  
-
-
----
-class: left, top
-
-# The Research Process
-
-Actors
-
-  - We often treat actors *as if* they are unitary (even when we know they're not)
-  
-  - Assumptions and simplifications are necessary (otherwise we're not building a model)
-  
-  Examples:
-    - Political Parties
-    - Voting blocs
-    - Governments
-    
-    
-
-
----
-class: left, top
-
-# The Research Process
-
-Interests
-
-  - What do actors want?
-  
-  - How do we conceptualize interests?
-  
-  - Rationality
-
-$$X = \{X^i, X^{ii}, X^{iii}\}$$
-
-$$X^i \geq X^{ii} \geq X^{iii}$$
-
-
-
----
-class: left, top
-
-# The Research Process
-
-Institutions
-
-- Rules that govern interactions between different actors
-
-- The "rules of the game"
-
-- Formal vs informal
-
-- Enforcement
 
 
 

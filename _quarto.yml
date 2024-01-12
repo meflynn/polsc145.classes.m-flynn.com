@@ -26,8 +26,12 @@ website:
         text: Instructor
       - href: posts.qmd
         text: Blog
-      - href: syllabus-s2023.qmd
-        text: Syllabus
+      - text: "Syllabus"
+        menu:
+          - href: syllabus-s2024.qmd
+            text: "Syllabus"
+          - href: syllabus-boilerplate-stuff.qmd
+            text: "University Syllabus Statements"
       - text: "Archives"
         menu:
           - href: syllabi-archive.qmd

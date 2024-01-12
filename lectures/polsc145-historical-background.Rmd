@@ -25,9 +25,10 @@ library(here)
 library(ghibli)
 library(flynnprojects)
 
-knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
+knitr::opts_chunk$set(comment = '', dpi = 300, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
 
 sysfonts::font_add_google("Oswald", family = "oswald")
+showtext::showtext_opts(dpi = 300)
 showtext::showtext_auto()
 
 
@@ -623,7 +624,7 @@ Example: The "Corn Laws"
 ]
 
 .pull-right[
-```{r, out.width="200%", fig.cap="Object: The Blessings of peace or, the curse of the Corn Bill. Wealthy landowners reject wheat, saying they don't care how cheap it is and that the poor can starve if they can't afford it. Poorer people in the picture comment that they'll quit their native country. Print made by: George Cruikshank Published by: S W Fores. https://www.britishmuseum.org/collection/object/P_1868-0612-1281"}
+```{r, out.width="100%", fig.cap="Object: The Blessings of peace or, the curse of the Corn Bill. Wealthy landowners reject wheat, saying they don't care how cheap it is and that the poor can starve if they can't afford it. Poorer people in the picture comment that they'll quit their native country. Print made by: George Cruikshank Published by: S W Fores. https://www.britishmuseum.org/collection/object/P_1868-0612-1281"}
 
 knitr::include_graphics("../../../media/corn-law-cartoon.png", error = FALSE)
 ```
@@ -1131,6 +1132,14 @@ Terrorism and transnational actors
 - Rise of Islamic State of Iraq and Syria (ISIS)
 
 - Expanded ant-terror operations in Middle East, Africa, Central Asia, and Southeast Asia
+
+Rise of China
+
+- Changing balance of power in the international system
+
+- Potentially revisionist in its approach to global institutions
+
+- Increasingly challenging US global military dominance
 
 
 

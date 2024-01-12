@@ -87,7 +87,8 @@ img, video, iframe {
 
 img {
     padding-bottom: 5px;
-    position: relative; /* Declared position allows for location changes */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .iframe{
@@ -139,34 +140,34 @@ blockquote {
   quotes: "\201C""\201D""\2018""\2019";
 }
 
-figure {
-  display: inline-block;
+.figure {
   float: center;
   text-align: center;
-  margin: auto; /* adjust as needed */
+  margin-left: auto; /* adjust as needed */
+  margin-right: auto;
 }
-figure img {
+.figure img {
   vertical-align: middle;
   align-content: center;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 figure figcaption {
-  font-size: 12px;
+  font-size: 11px;
   text-shadow: none;
-  margin: auto;
   color: black;
   height: auto;
   word-wrap: break-word;
-  text-align: center;
-  max-width: 50%;
+  text-align: left;
   caption-side: bottom;
 }
 
 .caption {
   font-size: 11px;
-  max-width: 50%;
-  margin: auto;
-  text-align: center;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 
 
@@ -186,10 +187,9 @@ figure figcaption {
 
 .column img {
   margin-top: 3px;
+  margin-left: auto;
+  margin-right: auto;
   vertical-align: middle;
-  text-align: center;
-  width: 80%;
-  height: 80%;
 }
 
 

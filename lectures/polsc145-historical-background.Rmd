@@ -393,7 +393,11 @@ Examples of mercantilist policies:
   
 The writings of Adam Smith are a direct response to this time period.
   
-  
+- This also represents another misuse of history. Smith's writings are often presented as a wholesale rejection of government. Not so. Smith advocated for government and taxation to play a role in places where individual profit-seeking was insufficient to provide what people need.
+
+- He was mostly opposed to protection and tariffs. He viewed them as inefficient, and viewed the pursuit of colonies as a dangerous endeavor that put nations and their people at risk of war. 
+
+- Capitalism was in many ways contrary to the established order because it sought to position the locus of economy activity somewhere other than landholding elites. 
   
   
 ---
@@ -598,7 +602,7 @@ Wait, what are these words you keep using?
 > **Protectionism**: Policies aimed at protecting domestic industries, often by blocking competing imports from other countries or using subsidies to prop up domestic industries.
 
 
-> **Tariff**: A tax on imported goods. A major tool used to advance protectionist policies.
+> **Tariff**: A tax on imported goods paid by consumers. A major tool used to advance protectionist policies.
 
 
 > **Subsidies**: Spending by governments to help businesses defray the costs of operating.
@@ -763,6 +767,14 @@ knitr::include_graphics("https://static.independent.co.uk/s3fs-public/thumbnails
 ```
 ]
 
+
+???
+
+- This picture shows again how our field of vision matters.
+
+- The BLM protests can be interpreted in a certain way if we view it primarily as a function of US politics and history. 
+
+- We might draw very different lessons if we see similar protests errupting around the world over similar themes. 
 
 ---
 class: inverse, center, middle

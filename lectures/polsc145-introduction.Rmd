@@ -21,47 +21,14 @@ library(data.table)
 library(peacesciencer)
 library(tidyverse)
 library(janitor)
+library(flynnprojects)
 
 knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE)
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
-# Windows and Mac seem to process the fotn differently
-if (Sys.info()[[1]] == "Windows"){
-
-basesize <- 35
-
-} else {
-  
-basesize <-  11
-  
-}
-
-# Regular plot theme
-theme_flynn <- function(){ 
-  
-      theme_linedraw(base_size = basesize, base_family = "oswald") %+replace% 
-        
-        theme(plot.title = element_text(face = "bold", size = basesize * 1.3, hjust = 0, margin = margin(t = 0, b = 0.2, l = 0, r = 0, unit = "cm")),
-              plot.subtitle = element_text(size = basesize, hjust = 0, margin = margin(t = 0.0, b = 0.2, unit = "cm")),
-              plot.caption = element_text(face = "italic", size = basesize * 0.6, hjust = 1, lineheight = 1, margin = margin(t = 0.2, unit = "cm")),
-              panel.border = element_rect(fill = NA, size = 0.2),
-              strip.background = element_rect(fill = "gray80", color = "black", size = 0.2),
-              strip.text = element_text(size = basesize, color = "black", face = "bold", margin = margin(t = 0.2, b = 0.2, l = 0.2, r = 0.2, unit = "cm")),
-              panel.background = element_rect(size = 0.2),
-              panel.grid.major = element_line(color = "gray70", size = 0.15),
-              panel.grid.minor = element_line(color = "gray90", size = 0.1),
-              axis.title = element_text(face = "bold", size = basesize),
-              axis.title.y = element_text(angle = 90, margin = margin(t = 0, r = 0.2, b = 0, l = 0, unit = "cm")),
-              axis.title.x = element_text(margin = margin(t = 0.2, r = 0, b = 0, l = 0, unit = "cm")),
-              axis.ticks = element_line(size = 0.1),
-              axis.ticks.length = unit(0.1, "cm"),
-              legend.title = element_text(size = basesize, face = "bold", hjust = 0, margin = margin(t = 0, b = 0, l = 0, r = 0, unit = "cm")),
-              plot.margin = margin(0.5, 0.5, 0.5, 0.5, unit = "cm"),
-              legend.margin = margin(t=0, b=0, r=0, l=0),
-              legend.box.margin = margin(-10,-10,-10,-10))
-  }
 
 ```
 
@@ -157,7 +124,7 @@ combined <- aid %>%
 # economic aid over gdp
 ggplot(data = subset(combined, type == "Economic"), aes(x = year, y = aid.gdp, group = type)) +
   geom_area(fill = "#1C77A3FF") + 
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   scale_x_continuous(breaks = seq(1950, 2015, 5)) +
   scale_y_continuous(breaks = seq(0, 0.02, 0.005), limits = c(0,0.02), labels = scales::percent_format()) +
   labs(x = "Year",
@@ -210,7 +177,7 @@ ggplot(data = wardata, aes(x = duration/365, y = (((..count..)/sum(..count..)))*
   geom_histogram(position = "dodge", binwidth = 1, boundary = 0, closed = "left", fill = "#1C77A3FF") +
   annotate("text", x = 6, y = 40, label = "Mean = 1.12 Years") +
   annotate("text", x = 6, y = 35, label = "Median = 0.38 Years") +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   labs(x = "Years",
        y = "Percent",
        title = "Duration of Interstate Wars",
@@ -252,7 +219,7 @@ terror.groups <- terror.base %>%
 
 ggplot(terror.groups %>% filter(totalsuicide > 10 & gname != "Unknown"), aes(x = totalsuicide, y = reorder(gname, totalsuicide))) +
   geom_bar(stat = "identity", fill = "#1C77A3FF") +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   theme(plot.title.position = "plot") +
   viridis::scale_fill_viridis(option = "magma") +
   scale_x_continuous(expand = c(0, 1)) +
@@ -289,7 +256,7 @@ colnames(poverty)[5] <- "not.poverty"
 # Percent of world pop living in extreme poverty
 ggplot(poverty, aes(x = Year, y = poverty / (poverty + not.poverty))) +
   geom_line() +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   scale_x_continuous(breaks = seq(1820, 2020, 20)) +
   scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1), labels = scales::percent_format()) +
   labs(y = "",
@@ -355,7 +322,7 @@ combined <- cpi %>%
 ggplot(data = subset(combined, group == "Gross domestic product"), aes(x = year, y = value.con, group = group)) +
   geom_area(alpha = .9, colour = "black", size = 0.1, fill = "#67B8D6FF") +
   theme(legend.key.height=unit(2, "cm")) +
-  theme_flynn() +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   scale_x_continuous(breaks = seq(1945, 2015, 10), limits = c(1945, 2015)) +
   scale_y_continuous(labels = scales::dollar_format()) +
   scale_fill_brewer(palette = "Spectral") +

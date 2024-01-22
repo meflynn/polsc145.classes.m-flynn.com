@@ -32,6 +32,8 @@ title-slide-attributes:
 ---
 
 ```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
+#devtools::install_github("meflynn/flynnprojects")
+
 library(ggplot2)
 library(data.table)
 library(peacesciencer)
@@ -40,6 +42,9 @@ library(janitor)
 library(flynnprojects)
 
 
+sysfonts::font_add_google("Oswald", family = "oswald")
+showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
 
 ```
@@ -49,7 +54,7 @@ library(flynnprojects)
 
 Course Information
 
-- POLSC 145 Intro to World Politics (Spring 2023)
+- POLSC 145 Intro to World Politics (Spring 2024)
 
 - Instructor: Dr. Michael Flynn, Department of Political Science
 
@@ -80,11 +85,11 @@ We can talk about the details of the course later, but first let's have some fun
 
 # Quiz Time!  (Just Kidding)  (Sort of)
 
+##
 
-## 
 
-<iframe src="https://embed.polleverywhere.com/free_text_polls/XgtaEAPQQA3sVpJ9qicjv?controls=none&short_poll=true" width="800px" height="600px"></iframe>
 
+<iframe src="https://embed.polleverywhere.com/free_text_polls/XgtaEAPQQA3sVpJ9qicjv?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 ::: {.notes}
 
@@ -96,7 +101,7 @@ What word best describes the world as you see it?
 
 ##
 
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/dbe1n265orgLxlzK2rgSJ?controls=none&short_poll=true" width="800px" height="600px"></iframe>
+<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/dbe1n265orgLxlzK2rgSJ?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 
 
@@ -136,14 +141,14 @@ ggplot(data = subset(combined, type == "Economic"), aes(x = year, y = aid.gdp, g
   labs(x = "Year",
        y = "",
        title = "US economic aid as a percent of GDP, 1950-2011",
-       subtitle = "What is the appropriate waey to measure aid ''effort''?",
+       subtitle = "What is the appropriate way to measure aid ''effort''?",
        caption = "Aid data obtained from the State Department's Overseas Loans and Grants Green Book.\nGDP data obtained from Gleditsch's Expanded Trade and GDP Data (v6.0)")
 ```
 
 
 ##
 
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/EjXtK6kGhNaNGlby4aXQ8?controls=none&short_poll=true" width="800px" height="600px"></iframe>
+<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/EjXtK6kGhNaNGlby4aXQ8?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 
 
@@ -193,7 +198,7 @@ ggplot(data = wardata, aes(x = duration/365, y = (((..count..)/sum(..count..)))*
 
 ##
 
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/o9YS3NJer5MPCOjp2mEAE?controls=none&short_poll=true" width="800px" height="600px"></iframe>
+<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/o9YS3NJer5MPCOjp2mEAE?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 
 
@@ -203,7 +208,7 @@ ggplot(data = wardata, aes(x = duration/365, y = (((..count..)/sum(..count..)))*
 ```{r}
 #| fig-align: center
 
-terror.base <- fread("../../../../Data Files/START Data/globalterrorismdb_0616dist.csv")
+terror.base <- fread("../../../../Data Files/START Data/globalterrorismdb_0522dist.csv")
 
 # Terrorist attack types by group
 terror.groups <- terror.base %>% 
@@ -218,7 +223,7 @@ terror.groups <- terror.base %>%
 
 ggplot(terror.groups %>% filter(totalsuicide > 10 & gname != "Unknown"), aes(x = totalsuicide, y = reorder(gname, totalsuicide))) +
   geom_bar(stat = "identity", fill = "#1C77A3FF") +
-  theme_flynn(base_size = 11, base_family = "Oswald") +
+  theme_flynn(base_size = 11, base_family = "oswald") +
   theme(plot.title.position = "plot") +
   viridis::scale_fill_viridis(option = "magma") +
   scale_x_continuous(expand = c(0, 1)) +
@@ -233,7 +238,7 @@ ggplot(terror.groups %>% filter(totalsuicide > 10 & gname != "Unknown"), aes(x =
 
 ##
 
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/AlOpJVs8z4MVUqAbebF1l?controls=none&short_poll=true" width="800px" height="600px"></iframe>
+<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/AlOpJVs8z4MVUqAbebF1l?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 
 
@@ -271,7 +276,7 @@ ggplot(poverty, aes(x = Year, y = poverty / (poverty + not.poverty))) +
 
 ##
 
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/Rd94IY3DIUbOJc4InDTuc?controls=none&short_poll=true" width="800px" height="600px"></iframe>
+<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/Rd94IY3DIUbOJc4InDTuc?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 
 
@@ -330,7 +335,7 @@ ggplot(data = subset(combined, group == "Gross domestic product"), aes(x = year,
 
 ##
 
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/W3XON7I0CD1Kz2n2fvfQK?controls=none&short_poll=true" width="800px" height="600px"></iframe>
+<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/W3XON7I0CD1Kz2n2fvfQK?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 
 
@@ -340,14 +345,14 @@ ggplot(data = subset(combined, group == "Gross domestic product"), aes(x = year,
 ```{r, eval=TRUE}
 #| fig-align: center
 
-knitr::include_graphics("../../../../media/slavery-profile.png", error = FALSE)
+knitr::include_graphics("../images/slavery-profile.png", error = FALSE)
 ```
 
 
 
 ##
 
-<iframe src="https://embed.polleverywhere.com/free_text_polls/xw9PsnOLqnwxzmyTozNST?controls=none&short_poll=true" width="800px" height="600px"></iframe>
+<iframe src="https://embed.polleverywhere.com/free_text_polls/xw9PsnOLqnwxzmyTozNST?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 
 
@@ -362,13 +367,20 @@ knitr::include_graphics("../../../../media/slavery-profile.png", error = FALSE)
 
 Evaluation:
 
-- 4 Exams (70%)
+- 4 Exams (60%)
 
 - Homework (30%)
 
-Textbook:
+- Attendance and Participation (10%)
+
+Books:
 
 - Frieden, Lake, and Schultz. World Politics: Interests, Interactions, and Institutions.
+
+- Bates, Robert. 2009. Prosperity & Violence: The Political Economy of Development. W. W. Norton & Company.
+
+- Villa, Monique. 2019. Slaves Among Us: The Hidden World of Human Trafficking. Rowman & Littlefield.
+
 
 Syllabus can be found [here](https://polsc145.classes.m-flynn.com/syllabus-s2023.html)
 

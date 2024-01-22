@@ -7,10 +7,12 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+devtools::install_github("vdeminstitute/vdemdata")
 library(peacesciencer)
 library(tidyverse)
 library(kableExtra)
 library(data.table)
+library(vdemdata)
 ```
 
 # Assignment
@@ -21,9 +23,9 @@ You can find the worksheet in the Files folder here on Canvas. Download that for
 
 # Tasks
 
-1. **Entry**: Identify the year that the country entered the international system.
+1. **Entry**: Identify the year that the country entered the international system according to the Varieties of Democracy data. I.e. what is the earliest year listed for your country?
 2. **Colony** Was the country a former colony? If so, name the colonizing country.
-3. **Regime Type**: What is the country's Polity Score? Does it classify as an Autocracy, Anocracy, or Democracy? The worksheet contains the score ranges. IF the Polity Score is less than -10 or is listed as NA it will not have an accompanying category so just record the given score and leave the category slot blank. 
+3. **Regime Type**: What is the country's regime type? Using the Varieties of Democracy Polyarchy Index scores provided below, record the **most recent** Democracy Index scores for each of your countries. If the score is listed as NA it is missing. 
 4. **Income Level**: What is the country's income level according to the World Bank?
 5. **Currency**: What currency does the country use? (e.g. US Dollars, Euros, Yen, etc.)
 6. **Recent Events**: Find a news store discussing something to do with this country from the last year (i.e. 2021 or later)
@@ -31,7 +33,7 @@ You can find the worksheet in the Files folder here on Canvas. Download that for
 # Resources
 
 1. [CIA World Factbook](https://www.cia.gov/the-world-factbook/countries/)
-2. Polity Data (see list below)
+2. Democracy Index Data (see list below)
 3. [World Development Indicators](https://data.worldbank.org/country). See the upper right corner where it says "Income Level".
 4. [Global Currencies](https://en.wikipedia.org/wiki/List_of_circulating_currencies)
 5. Recent Events: Search for events using reputable news sources (e.g. BBC World News, New York Times, Washington Post, CNN, Financial Times, the Economist, Fox News, etc.)
@@ -44,34 +46,35 @@ You can find the worksheet in the Files folder here on Canvas. Download that for
 # Make sure I can track who had which countries
 set.seed(66502)
 
-states <- peacesciencer::cow_states %>% 
+states <- peacesciencer::cow_states |> 
   filter(endyear == 2016)
 
-roster <- fread(here::here("homework/polsc145-s2023-roster.csv")) %>% 
-  filter(!is.na(`Wildcat ID`)) %>% 
-  dplyr::select(Name) %>% 
-  rowwise() %>% 
-  mutate(`Country` = list(sample(states$statenme, replace = FALSE, 3))) %>% 
-  separate(Country, into = c("Country #1", "Country #2", "Country #3"), sep = ",") %>% 
+roster <- fread(here::here("homework/polsc145-s2024-roster.csv")) |> 
+  dplyr::mutate(Name = glue::glue("{lastName}, {firstName}")) |> 
+  dplyr::select(Name)  |>  
+  rowwise() |> 
+  mutate(`Country` = list(sample(states$statenme, replace = FALSE, 3))) |> 
+  separate(Country, into = c("Country #1", "Country #2", "Country #3"), sep = ",") |> 
   mutate(across(starts_with("Country"), ~gsub(',|"|c\\(|\\)', "", .x)),
          Name = gsub(",", ", ", Name))
 
-kableExtra::kable(roster, "html", booktabs = TRUE) %>% 
-  kable_styling(bootstrap_options = "striped") %>% 
+kableExtra::kable(roster, "html", booktabs = TRUE) |> 
+  kable_styling(bootstrap_options = "striped") |> 
   scroll_box(height = "400px")
 ```
 
 
-# Polity Data Series
+# Varieties of Democracy Polyarchy Data Series
 
 ```{r, echo = FALSE, message=FALSE}
-polity <- peacesciencer::create_stateyears("gw") %>% 
-  add_democracy() %>% 
-  filter(year == 2017) %>% 
-  dplyr::select(statename, year, polity2) %>% 
-  dplyr::rename("Country" = "statename", "Year" = "year", "Polity" = "polity2")
+demdata <- vdemdata::vdem |> 
+  dplyr::rename("Country" = "country_name", "Year" = "year", "Democracy Index" = "v2x_polyarchy") |> 
+  dplyr::select(Country, Year, `Democracy Index`) |> 
+  group_by(Country) |> 
+  dplyr::filter(Year == min(Year) | Year == max(Year)) |> 
+  arrange(Country, Year)
 
-kableExtra::kable(polity, "html", booktabls = TRUE) %>% 
-  kable_styling(bootstrap_options = "striped") %>% 
+kableExtra::kable(demdata, "html", booktabls = TRUE) |> 
+  kable_styling(bootstrap_options = "striped") |> 
   scroll_box(height = "400px")
 ```

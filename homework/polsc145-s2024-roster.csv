@@ -1,24 +1,51 @@
-lastName,firstName,section,degreeProgram,classLevel
-Al-Birekdar,Vinny,POLSC 145 A,Political Science,Junior
-Aubert,Ludivine,POLSC 145 A,Political Science,Sophomore
-Conoan,Leander,POLSC 145 A,Anthropology,Sophomore
-Ediger,Evelynn,POLSC 145 A,Political Science,Sophomore
-Finlen,James,POLSC 145 A,Criminology,Junior
-Flores Gonzalez,Gabriel,POLSC 145 A,Political Science,Freshman
-Franklin,McCartney,POLSC 145 A,Criminology,Freshman
-Funk,Andrew,POLSC 145 A,Political Science,Sophomore
-Hillman,Cooper,POLSC 145 A,Political Science,Sophomore
-Kennedy,Macy,POLSC 145 A,Political Science,Freshman
-Le,Andrew,POLSC 145 A,Political Science,Sophomore
-Mattingly,Jocelyn,POLSC 145 A,Psychology,Sophomore
-Mitchell,McKenzie,POLSC 145 A,Criminology,Freshman
-Monterroza,Victor,POLSC 145 A,News and Sports Media,Junior
-Moyer,Hannah,POLSC 145 A,Political Science,Sophomore
-Nall,Bailey,POLSC 145 A,Pre-Profes Secondary Ed,Sophomore
-Santos,Maria,POLSC 145 A,Business Admin-PreProfessional,Freshman
-Scott,Mason,POLSC 145 A,Sociology,Junior
-Spencer,Mia,POLSC 145 A,Political Science,Freshman
-Stockwell,Brady,POLSC 145 A,"Fish, Wlife, Cons & Env Bio",Sophomore
-Suchanek,Samantha,POLSC 145 A,Political Science,Sophomore
-Volpe,Alex,POLSC 145 A,Pre-Profes Secondary Ed,Sophomore
-Wiebe,Jonah,POLSC 145 A,Social Transformation Studies,Junior
+﻿Notify,Wildcat ID,Name,Units,Program and Plan,Sub-Plan,Level
+,838885465,"Al-Birekdar ,Vinny Fayad",3.00,"AS Undergraduate Degree - 
+Philosophy/Political Science",The Law Track,Junior
+,890316592,"Aubert ,Ludivine",3.00,"AS Undergraduate Degree - 
+Political Science",,Sophomore
+,830166331,"Avery,Sierra Josephine",3.00,"AS Undergraduate Degree - 
+Political Science",,Freshman
+,826787382,"Conoan ,Leander Orion",3.00,"AS Undergraduate Degree - 
+Anthropology",,Sophomore
+,855462141,"Ediger ,Evelynn Marie",3.00,"AS Undergraduate Degree - 
+Political Science",,Sophomore
+,845286348,"Finlen,James Thomas",3.00,"AS Undergraduate Degree - 
+Criminology",,Junior
+,876273134,"Flores Gonzalez ,Gabriel Jesus",3.00,"AS Undergraduate Degree - 
+Political Science",,Freshman
+,805366632,"Franklin ,McCartney Phillup",3.00,"AS Undergraduate Degree - 
+Criminology/Political Science",,Freshman
+,812972220,"Funk,Andrew Preston",3.00,"AS Undergraduate Degree - 
+Political Science",,Sophomore
+,896908523,"Hillman,Cooper",3.00,"AS Undergraduate Degree - 
+Economics/Political Science",The Law Track,Sophomore
+,819533544,"Kennedy,Macy Lynette",3.00,"AS Undergraduate Degree - 
+Political Science",,Freshman
+,860548605,"Le,Andrew Quang",3.00,"AS Undergraduate Degree - 
+Political Science",Public Service Track,Sophomore
+,821599009,"Mattingly,Jocelyn A",3.00,"AS Undergraduate Degree - 
+Psychology",,Sophomore
+,899523617,"Mitchell,McKenzie Rae",3.00,"AS Undergraduate Degree - 
+Criminology",,Freshman
+,873720182,"Monterroza,Victor Manuel",3.00,"AS Undergraduate Degree - 
+News and Sports Media",,Junior
+,895663018,"Moyer,Hannah Marie",3.00,"AS Undergraduate Degree - 
+Political Science",,Sophomore
+,862128035,"Nall,Bailey Ann",3.00,"ED Undergraduate Degree - 
+Pre-Profes Secondary Ed",Social Studies,Sophomore
+,865945318,"Santos,Maria Pinto Reis Baptista",3.00,"BA Undergraduate Degree - 
+Business Admin-PreProfessional",,Freshman
+,837647064,"Scott,Mason",3.00,"AS Undergraduate Degree - 
+Sociology",Criminology Option,Junior
+,875564824,"Spencer,Mia Mikayle",3.00,"AS Undergraduate Degree - 
+Political Science",,Freshman
+,814144700,"Stockwell,Brady Paul",3.00,"AS Undergraduate Degree - 
+Fish, Wlife, Cons & Env Bio",Wildlife Ecology & Mgmt,Sophomore
+,859160990,"Suchanek,Samantha Marie",3.00,"AS Undergraduate Degree - 
+Political Science",Society and Environment,Sophomore
+,820384473,"Volpe,Alex Ford",3.00,"ED Undergraduate Degree - 
+Pre-Profes Secondary Ed",Social Studies,Sophomore
+,840354506,"White,Nicholas Hayden",3.00,"AS Undergraduate Degree - 
+Criminology",,Freshman
+,833829048,"Wiebe,Jonah William",3.00,"AS Undergraduate Degree - 
+Social Transformation Studies",,Junior

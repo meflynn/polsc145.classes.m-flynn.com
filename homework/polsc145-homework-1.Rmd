@@ -50,7 +50,6 @@ states <- peacesciencer::cow_states |>
   filter(endyear == 2016)
 
 roster <- fread(here::here("homework/polsc145-s2024-roster.csv")) |> 
-  dplyr::mutate(Name = glue::glue("{lastName}, {firstName}")) |> 
   dplyr::select(Name)  |>  
   rowwise() |> 
   mutate(`Country` = list(sample(states$statenme, replace = FALSE, 3))) |> 

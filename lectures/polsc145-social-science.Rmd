@@ -36,8 +36,6 @@ showtext::showtext_opts(dpi = 300)
 update_geom_defaults("text", list(size = 5, family = "oswald", fontface = "plain", lineheight = 0.2))
 
 
-
-
 ```
 
 # Lecture Overview

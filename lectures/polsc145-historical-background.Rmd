@@ -180,6 +180,31 @@ Agricultural Revolution:
 - Hunter/gatherer and agriculture two strategies and develop alongside one another
 
 
+???
+# Notes
+
+Agricultural Revolution 
+- Begins around 10,000 BCE (~12,000 years ago)
+- We shouldn’t think that agriculture just spontaneously developed at this point in time. It’s beginnings can be traced roughly to this era, but it unfolds over thousands of years.
+  - 9000 BC in Middle East
+  - 7000 BC in East Asia
+  - 4500 BC in Central America
+  - 2000 BC in North America
+- Development of agriculture proceeds at different pace in various regions across the globe.
+  - Some settle to live off land and farm permanently
+  - Some live as hunter-gatherers and farm seasonally
+  - Some live as hunter-gatherers full time
+- We should think of these as two strategies, and historically they were typically mixtures are employed. They’re not mutually exclusive. Overall trend through time, though, is towards agriculture and farming.
+
+Advantages and Disadvantages:
+- Agriculture typically requires a long time-frame (you could starve waiting for some plants to yield food)
+- Some crops have better/worse yields. Examples of high-yield crop groups include:
+- Cereals/Grains (wheat, barley, millets, rice)
+- Pulses (peas, soybeans, peanuts, chickpea)
+- These crops also grow quickly
+- Other crops, like lettuce, take a lot of time and space to grow, and they aren’t even that nutritionally dense.
+
+
 ---
 class: left, top
 
@@ -193,6 +218,7 @@ Domestication of Animals
 - Food surpluses mean populations can grow more quickly
 - Population can also congregate in one place
 - Larger populations require more animals means more disease (e.g. flu, tuberculosis, malaria, plague, etc.)
+
 
 
 
@@ -210,10 +236,33 @@ animals <- tibble::tribble(~Category, ~Eurasia, ~`Sub-Saharan Africa`, ~Americas
 kableExtra::kable(animals, booktabs = TRUE, caption = "Percent of Large Animals Domesticated", align = "lcccc") %>% 
   kable_styling(bootstrap_options = "striped", full_width = FALSE) %>% 
   row_spec(0, background = "#512888", color = "#FFFFFF") %>% 
-  footnote(number = c("Candidates are defined as species of terrestrial, herbivorous, or omnivorous, wild mammals weighing on average over 100lbs. See Diamond (1997, 162"),
+  footnote(number = c("Candidates are defined as species of terrestrial, herbivorous, or omnivorous, wild mammals weighing on average over 100lbs. See Diamond (1997, 162)"),
            threeparttable = TRUE)
 
 ```
+
+
+
+???
+
+# Notes
+
+Subordinating other species
+- Cooperation can be beneficial for agricultural development, but it can also be inter-species relationships.
+- Begins very early (~12,000 years ago for big animals)
+- Roots of domestication can be seen in hunter-gatherer societies
+  - Dogs among first animals to be domesticated from wolves
+  - Evidence indicates that some wolves would follow roving humans and feed off their scraps. Wolves with less flight instinct would benefit more from closeness to humans, as they’d be among the first to approach and get scraps. 
+
+- Six Criteria for Domestication (Jared Diamond Guns, Germs, and Steel (1997)): 
+  - Diet: How much food does it require? 
+  - Dogs are omnivores and can survive on different foods. Lions require 17–20 lbs/day. 
+  - Growth Rate: How fast? Dogs grow up quickly. Animals like elephants do not. Almost two years for a n elephant to be born!.
+  - Captive Breeding: Some animals don’t breed in captivity. For example, Cheetahs are incredibly difficult to breed in captivity. 
+  - Disposition: Will they kill you? Are they aggressive? Think bears, zebra.
+  - Temperament: Do they panic? Deer and other such animals have a very low flight threshold. The can scare easily and die in captivity. 
+  - Social Hierarchy: Can humans become the alpha? Are they susceptible to herd- 
+ing? Dogs are great at this, and we know in fact that their organizational behavior has adapted to life around humans by taking on a more hierarchical form of pack relations.
 
 ---
 class: center, middle
@@ -223,6 +272,20 @@ class: center, middle
 
 This is Atlas. The wondrous culmination of millennia of domestication efforts.
 
+
+
+???
+
+# Notes
+
+Domestication vs. Taming: 
+- Domestication implies the animal is captured and is bred in captivity for human purposes. 
+- Taming implies the animal is captured and brought under human control, but never modified in any fundamental way. 
+- Many different species are tamed and some used for hunting (Monkeys, Cheetah, Bears, Eagle, etc.) 
+- Actual domestication is highly skewed towards Eurasia 
+- Dogs in North America are among the first animals to be domesticated 
+- Genetic evidence links modern dogs to wolves 
+- Recent research suggests wolves are more communal/cooperative, but dogs are more submissive. Humans likely selected for submissive traits when breeding. Wolves tend to share food, while dogs with higher status in pack have greater access. [See Science Magazine article](news.sciencemag.org/brain-behavior/2014/08/wolves-cooperate-dogs-submit-study-suggests)
 
 ---
 class: left, top
@@ -390,6 +453,25 @@ Examples of mercantilist policies:
 ???
   
 # Notes
+
+Examples of Mercantilist policies:
+- Colonialism: The direct territorial conquest of another part of the globe. Typically characterized by direct political and military rule by the imperial power. British government directly controlled the American colonies. Often used to extract raw materials and to provide markets for finished goods.
+- Monopolies: Government-granted exclusivity to merchants/company/corporations to operate in a particular area or trade. Government-backed firm is the sole supplier, thereby driving up prices on the goods in question. Would-be competitors are driven out of business by the state. The state benefits from the higher prices in the form of duties or taxation. Rents—the government uses its authority to extract rents from the corporation, and ultimately from consumers. 
+- Restrictions on trade 
+  - Import tariffs: Taxes on imported goods. 
+  - Quotas: Limits on how much of a particular good can be imported for a given amount.
+- Colonies have a wide range of benefits
+  - Food: E.g., England or Japan. Limited territory. Agricultural development may be limited in some areas.
+  - Raw materials: Similar to previous point. Limited resources are available in some territories.     Geography! 
+  - Slaves and forced labor: Labor is essential to increase production prior to the industrial revolution. Also, conscription during times of war. Thousands of Indian soldiers were conscripted by the British during WWI.
+  - Prestige: Think “the sun never sets on the British Empire”. Overseas colonies can also provide access (potentially exclusive) to rare goods not found in Europe. Tobacco for example. 
+  - Land / Territory: See previous points on resources. Can also serve to enhance power projection capabilities. Supply depots, military bases, etc. 
+  - Markets: Markets: Home state depends upon foreign markets to soak up the goods the home state produces. American colonies buying British tea. 
+- Example of American colonies:
+  - Colonies could only import manufactured goods from Britain 
+  - Colonies could only sell some goods, like tobacco, to Britain 
+  - Taxes levied on American colonists at the end of the French and Indian War (Seven-Years’ War) were intended to help recoup costs associated with waging war on the French. 
+  
   
 The writings of Adam Smith are a direct response to this time period.
   
@@ -590,7 +672,18 @@ Global Economic Relations
   
   - Tariff reductions throughout the 1800s
   
-  
+
+???
+
+# Notes
+
+- Technological innovations increase efficiency and productivity. Wealth is moving from the landed elites to urban manufacturers. 
+  - Steam technology helps to increase trans-Atlantic transit time. 
+  - First hybrid sail/steam ship crossed Atlantic in 1818. Doesn’t start to take off 
+until about 1840. 
+  - Transit time could be 6–10 weeks by sail. Steam cut it down to 7–14 days by early 1900s. Record is 3–4 days. 
+- Ships were faster, but also became larger. Carry more people and goods. 
+
 
 ---
 class: left, top
@@ -651,6 +744,12 @@ The/A Gold Standard
 - Essentially acted as a common currency
 
 - This becomes more "global" around the 1870s. Many states bi-metallic before this.
+
+???
+
+# Notes
+
+Britain returned to gold in 1819 to help reduce inflationary pressures following Napoleonic Wars. Government wanted to maintain faith of creditors. Monetary policy partially designed to help stabilize currency and prevent inflation by tying currency to gold. 
 
 
 ---

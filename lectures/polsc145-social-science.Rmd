@@ -274,6 +274,27 @@ plot.com
 ```
 
 
+---
+class: center, middle
+
+```{r confounding-car-1, fig.pos="center", out.width="88%"}
+N <- 1e3
+
+cardata <- data.frame(incline = runif(n = N, min = 0, max = 45)) |> 
+  mutate(pedal_pressure = 20 + incline * 1.2 + rnorm(n = N, mean = 0, sd = 0.4),
+         speed = 45 + 1.25*pedal_pressure - 1.50*incline + rnorm(n = N, mean = 0, sd = 0.2)) 
+
+ggplot(cardata, aes(x = pedal_pressure, y = speed)) +
+  geom_point(size = 3.5, shape = 21, fill = "black") +
+  theme_flynn(base_family = "oswald") +
+  scale_x_continuous(breaks = seq(20, 100, 10)) +
+  viridis::scale_fill_viridis(option = "magma") +
+  labs(x = "Pedal Pressure",
+       y = "Speed (mph)",
+       title = "Car speed and pedal pressure",
+       subtitle = "We should expect cars to go faster as we apply more pressure, so what gives?")
+
+```
 
 ---
 class: left, top

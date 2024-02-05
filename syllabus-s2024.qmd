@@ -152,7 +152,7 @@ dfr <- data.frame(date=seq(as.Date('2024-01-15'), as.Date('2024-05-31'), by = 1)
          month = factor(strftime(date, format="%B"),levels=c("January","February","March", "April", "May")),
          ddate = factor(strftime(date, format="%d")),
          comment = case_when(
-           date == as.Date("2024-02-02") ~ "Exam 1",
+           date == as.Date("2024-02-09") ~ "Exam 1",
            date == as.Date("2024-03-08") ~ "Exam 2",
            date == as.Date("2024-04-12") ~ "Exam 3",
            date >= as.Date("2024-05-09") & date <=as.Date("2024-05-09") ~ "Exam 4",

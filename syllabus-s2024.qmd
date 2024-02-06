@@ -241,7 +241,6 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
 
   - Tuesday: Alliances
   - Thursday: Collective security
-    - Guest Lecture: Lieutenant Commander Jean Anne Kim, USN.
 
   - Read: Chapter 5 - International Institutions and War
 

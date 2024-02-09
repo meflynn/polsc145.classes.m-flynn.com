@@ -32,6 +32,7 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
 #
 
@@ -160,7 +161,7 @@ Carl von Clausewitz
 
 .pull-right[
 ```{r clausewitz, out.width="70%", fig.align="center"}
-knitr::include_graphics("https://www.clausewitz.com/images/Clausewitz-romantik.jpg")
+knitr::include_graphics("https://www.clausewitz.com/images/Clausewitz-romantik.jpg", error = FALSE)
 ```
 ]
 
@@ -233,7 +234,7 @@ table
 class: center, middle
 
 ```{r, out.width="40%"}
-knitr::include_graphics("WORPOL3_FIGUN03.p99.jpg", error = FALSE)
+knitr::include_graphics("../images/WORPOL3_FIGUN03.p99.jpg", error = FALSE)
 ```
 
 
@@ -241,7 +242,7 @@ knitr::include_graphics("WORPOL3_FIGUN03.p99.jpg", error = FALSE)
 class: center, middle
 
 ```{r, out.width="40%"}
-knitr::include_graphics("WORPOL3_FIGUN03.p98.jpg", error = FALSE)
+knitr::include_graphics("../images/WORPOL3_FIGUN03.p98.jpg", error = FALSE)
 ```
 
 
@@ -348,19 +349,24 @@ Japanese sent many feelers and attempted to negotiate with the Russians. Russian
 
 
 ---
-class: center, middle
+class: left, top
 
-.middle[
+# Sources of Bargaining Failure
+
+.center[
+.pull-left[
 <figure>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/1200px-George-W-Bush.jpeg" style="height:450px; width:400px; align:center; margin:auto;"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/1200px-George-W-Bush.jpeg" style="height:400px; width:300px;"/>
 <figcaption> George W. Bush </figcaption>
 </figure>
+]
 
-
+.pull-right[
 <figure>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Saddam_Hussein_at_trial%2C_July_2004-edit1.JPEG/1200px-Saddam_Hussein_at_trial%2C_July_2004-edit1.JPEG" style="height:450px; width:400px; align:center; margin:auto;"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Saddam_Hussein_at_trial%2C_July_2004-edit1.JPEG/1200px-Saddam_Hussein_at_trial%2C_July_2004-edit1.JPEG" style="height:400px; width:300px;"/>
 <figcaption> Saddam Hussein </figcaption>
 </figure>
+]
 ]
 
 ???

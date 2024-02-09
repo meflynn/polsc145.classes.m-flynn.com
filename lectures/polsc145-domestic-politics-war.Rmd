@@ -34,12 +34,11 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
 
 update_geom_defaults("text", list(size = 6, family = "oswald", fontface = "plain", lineheight = 0.2))
 basesize <- 6
-
-
 
 ```
 
@@ -87,15 +86,37 @@ War—what is it good for?
 ---
 # The Purpose of War?
 
-War and the national Interest
+War and the national interest
 
 - War advances or preserves broad, shared interests
 
 - War is for the "common good"
 
-- We can think of broad concepts like "national security", "national defense", etc.
+- We can think of broad concepts like "national security", "self/national defense", etc.
+
+- This doesn't mean that war can't be used to protect more narrow segments of the population, though.
+  
+  - Can protect nationals abroad if they're in danger
+  
+  - Humanitarian interventions
 
 
+???
+
+# Notes
+
+Talk about just war here. 
+
+- This is a subject of concern for militaries, policymakers, publics, theologians, etc.
+- Emphasis on self defense and when war can be a necessary evil. For example, if war is necessary to prevent bad people from doing terrible things.
+- Lays the groundwork for humanitarian interventions.
+- War must also be a last resort
+- War should only be undertaken by competent and just authorities 
+  - Does the US qualify, with its poor record on post-war planning?
+  - Can democracies qualify if elections imply instability and fickle decision-making?
+- Force should be proportionate and discriminatory. No widespread or gratuitous violence. Avoid unnecessary casualties.
+- In cases of civilian fatalities, is there evidence of a positive commitment to saving non-combatant lives?
+- "The conduct of war should always keep in mind the possibility of future peace" (Crawford 2003, 7).
 
 ---
 # The Purpose of War?
@@ -625,7 +646,23 @@ Reasons to be skeptical
 
 - US intervened in many other countries where such strong ties did not exist
 
+- Leaders often have to provide broader justifications that appeal to the public
 
+
+???
+
+# Notes
+
+- Conflicts can spiral, meaning that leaders have to be cognizant of risks that they will consume greater amounts of blood and treasure.
+
+- Maxey's research shows that presidents make appeals to humanitarian interests to try to build broader coalitions
+
+- Vladimir Putin through lots of explanations and justifications for invading Ukraine at the wall to see what would stick.
+
+  - Blamed NATO aggression and expansion
+  - Claimed Ukraine was run by Nazis
+  - Restoration of Russia's place as a major power
+  - Lots of other stuff, too.
 
 
 ---
@@ -652,8 +689,18 @@ Reasons to be skeptical
 
 - No evidence that military leaders can use positions to substantially influence spending decisions
 
+- Many military's have strong normative constraints to the use of force.
 
 
+???
+
+# Notes
+
+Just War Theory
+
+- Western militaries place a lot of emphasis on concepts like "just wars". 
+- St. Augustine quote from Crawford (2003, 7)
+> “waging war and extending their sway over conquered nations may seem to wicked men to be felicity, but to good men it is seen only as a necessary evil. Since it would be still worse for the unrighteous to lord it over the just, even this necessary evil is not improperly called a kind of felicity.”
 
 
 ---

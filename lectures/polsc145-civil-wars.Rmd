@@ -44,6 +44,7 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
 
 update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
@@ -54,7 +55,7 @@ update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plai
 
 # Lecture Overview
 
-1. Defining civil wars (revisisted)
+1. Defining civil wars (revisited)
 
 2. Why do we see civil wars?
 
@@ -184,7 +185,7 @@ combined_annual <- combined %>%
 
 ggplot(data = combined, aes(x = year, y = Value, fill = Category)) +
   geom_area(alpha = .8, colour = "black", size = .1, alpha = .8) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_continuous(breaks = seq(1815,2010,15)) +
   scale_y_continuous(breaks = seq(0,30,5), limits = c(0,30)) +
   viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
@@ -207,7 +208,7 @@ ggplot(data = combined, aes(x = year, y = Value, fill = Category)) +
   scale_x_continuous(breaks = seq(1815,2010,15), expand = c(0,0)) +
   scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
   viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   labs(caption = "Data obtained from Correlates of War Data: http://www.correlatesofwar.org/data-sets/COW-war",
        x = "Year", 
        y = "", 
@@ -249,10 +250,27 @@ knitr::include_graphics("https://georgiainfo.galileo.usg.edu/gastudiesimages/Jef
 
 ### American Civil War
 - This is what we typically think of. 
-- Secessionist, policy-oriented conflict. Policy was slavery.
-- Mississippi’s Articles of Secession: “Our position is thoroughly identified with the institution of slavery—the greatest material interest of the world. Its labor supplies the product which constitutes by far the largest and most important portions of commerce of the earth. These products are peculiar to the climate verging on the tropical regions, and by an imperious law of nature, none but the black race can bear exposure to the tropical sun. These products have become necessities of the world, and a blow at slavery is a blow at commerce and civilization. That blow has been long aimed at the institution, and was at the point of reaching its consummation. There was no choice left us but submission to the mandates of abolition, or a dissolution of the Union, whose principles had been subverted to work out our ruin.”
+- Policy dispute was slavery. Secession was the solution to the inability to control the federal government or to successfully take over the North. 
+- Articles for Mississippi, South Carolina, Georgia, Texas, and Virginia (Virginia's secession ordinance) mention slavery 84 times as a justification for secession.  
 
-- Articles for Mississippi, South Carolina, Georgia, Texas, and Virginia mention slavery ~80 times as a justification for secession. References to “rights” typically concern the rights to hold slaves. http://www.ucs.louisiana.edu/~ras2777/amgov/secession.html
+
+- Mississippi’s Articles of Secession: 
+
+>Our position is thoroughly identified with the institution of slavery—the greatest material interest of the world. Its labor supplies the product which constitutes by far the largest and most important portions of commerce of the earth. These products are peculiar to the climate verging on the tropical regions, and by an imperious law of nature, none but the black race can bear exposure to the tropical sun. These products have become necessities of the world, and a blow at slavery is a blow at commerce and civilization. That blow has been long aimed at the institution, and was at the point of reaching its consummation. There was no choice left us but submission to the mandates of abolition, or a dissolution of the Union, whose principles had been subverted to work out our ruin.
+
+- Texas Declaration of Secession: 
+
+>We hold as undeniable truths that the governments of the various States, and of the confederacy itself, were established exclusively by the white race, for themselves and their posterity; that the African race had no agency in their establishment; that they were rightfully held and regarded as an inferior and dependent race, and in that condition only could their existence in this country be rendered beneficial or tolerable.
+
+> That in this free government all white men are and of right ought to be entitled to equal civil and political rights; that the servitude of the African race, as existing in these States, is mutually beneficial to both bond and free, and is abundantly authorized and justified by the experience of mankind, and the revealed will of the Almighty Creator, as recognized by all Christian nations; while the destruction of the existing relations between the two races, as advocated by our sectional enemies, would bring inevitable calamities upon both and desolation upon the fifteen slave-holding states.
+
+
+- https://www.battlefields.org/learn/primary-sources/declaration-causes-seceding-states#virginia
+- https://www.historians.org/teaching-and-learning/teaching-resources-for-historians/the-decision-to-secede-and-establish-the-confederacy-a-selection-of-primary-sources
+- https://avalon.law.yale.edu/19th_century/csa_texsec.asp
+- https://avalon.law.yale.edu/19th_century/csa_geosec.asp
+- https://avalon.law.yale.edu/19th_century/csa_missec.asp
+- https://avalon.law.yale.edu/19th_century/csa_scarsec.asp
 
 
 ---
@@ -282,6 +300,8 @@ knitr::include_graphics("https://s4.reutersmedia.net/resources/r/?m=02&d=2019070
 ```
 ]
 
+
+
 ???
 
 # Notes
@@ -301,7 +321,7 @@ knitr::include_graphics("https://s4.reutersmedia.net/resources/r/?m=02&d=2019070
 .pull-left[
 Colombian Civil War
 
-- 1989-2016(Maybe?)
+- 1989-2016 (Maybe?)
 
 - Issues at stake
 
@@ -324,7 +344,9 @@ knitr::include_graphics("https://ichef.bbci.co.uk/news/976/cpsprodpb/473E/produc
 ```
 ]
 
-??? 
+
+???
+
 # Notes
 
 ### Colombian Civil War
@@ -385,14 +407,14 @@ class: center, middle, inverse
 ---
 # Why Civil War?
 
-## Motivations
+### Motivations
 
 - Greed
 - Grievance
 
 --
 
-## Conflict aims and types
+### Conflict aims and types
 
 - Policy
 - Government control
@@ -403,7 +425,7 @@ class: center, middle, inverse
 ---
 # Why Civil War?
 
-## Policy
+### Policy
 
 - Rebel groups seek to change status quo in some policy area
 
@@ -418,7 +440,7 @@ class: center, middle, inverse
 ---
 # Why Civil War?
 
-## Control of Government
+### Control of Government
 
 - Rebel groups seek to take control of central government
 
@@ -433,7 +455,7 @@ class: center, middle, inverse
 ---
 # Why Civil War?
 
-## Territory
+### Territory
 
 - Rebel group striving to break their region/territory off from the main state
 
@@ -449,18 +471,89 @@ class: center, middle, inverse
 
 
 ---
-class: center, middle
+class: left, top
 
-```{r, fig.cap="Sudan and South Sudan.", out.width="50%"}
+# Why Civil War?
+
+.pull-left[
+
+Sudan and South Sudan
+
+- South Sudan emerged as an independent state in 2011
+
+- It broke off as an independent state from Sudan
+
+]
+
+.pull-right[
+
+```{r, out.width="60%", fig.align="center"}
 
 knitr::include_graphics("https://ichef.bbci.co.uk/news/464/mcs/media/images/58096000/gif/_58096920_sudan_oil464.gif", error = FALSE)
 ```
+
+]
 
 ???
 
 # Sudan and South Sudan. 
 
 Example of secessionist conflict. First map shows the two countries’ borders. Second map shows the distribution of oil fields and pipelines. South joined international system in 2011 and contains majority of Sudan’s oil reserves. South mostly Christian while the North predominately Muslim. Conflict ultimately led to secession of the South.
+
+
+
+---
+class: left, top
+
+# Why Civil War?
+
+.pull-left[
+Northern Ireland
+
+- Ethnic and religious in its roots
+
+- Longstanding Irish/Catholic opposition to Protestant/English control over Ireland
+
+- Irish War for Independence (1919-1921) and Anglo-Irish Treaty (1921) lead to Ireland breaking into two separate governing units (North and South)
+
+- "The Troubles": A period of armed conflict in Northern Ireland lasting from the 1960s through the Good Friday Agreement in 1998.
+]
+
+
+.pull-right[
+
+<p style="margin-top:-140px; margin-left:-100px;"/>
+
+```{r northern-ireland, fig.height=8, fig.width=5, fig.align='center'}
+
+map.ireland <- getData("GADM", country = "IRL", level = 0) |>  
+  sf::st_as_sf()
+
+map.uk <- getData("GADM", country = "GBR", level = 0) |> 
+  sf::st_as_sf()
+
+map.northernireland <- getData("GADM", country = "GBR", level = 1) |> 
+  sf::st_as_sf() |> 
+  filter(NAME_1 == "Northern Ireland")
+
+ggplot() +
+  geom_sf(data = map.ireland, aes(geometry = geometry)) +
+  geom_sf(data = map.uk, aes(geometry = geometry)) +
+  geom_sf(data = map.northernireland, aes(geometry = geometry), fill = "red") +
+  theme_flynn_map() +
+  theme(plot.margin = margin(b = 0, 0, 0, 0, "cm"))
+
+```
+
+]
+
+???
+
+# Notes
+
+- English control over Ireland dates back to the 1600s
+
+- 
 
 
 ---
@@ -474,14 +567,14 @@ class: center, middle, inverse
 ---
 # Organization and Mobilization
 
-## Why do people fight? 
+### Why do people fight? 
 
 - Collective action problem
 
   - Why participate?
   - War is dangerous, so why not enjoy benefits without suffering risks?
 
-- So what factors facilitate and/or incentives rebellion?
+- So what factors facilitate and/or incentivizes rebellion?
 
   - Individual-level
   - Group-level
@@ -542,18 +635,15 @@ Group-level factors
 State-level factors
 
 - Wealth and development
-
   - Grievances
   - Greed
   - State capacity
 
 - Regime type
-
   - Political opportunities
   - Mechanisms for resolving grievances
 
 - Geography
-
   - Opportunities to fight
   - Can shape locus of conflict
   - Resources and points of extraction
@@ -573,7 +663,7 @@ data <- tibble(x = x,
 
 ggplot(data, aes(x = x, y = y)) +
   geom_area(fill = "darkgreen") +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   theme(axis.text.y = element_blank()) +
   labs(x = "Polity Score",
        y = "Pr(Civil War)")
@@ -613,6 +703,9 @@ Example: Afghanistan
 ]
 
 .pull-right[
+
+<p style="margin-top:70px;"/>
+
 ```{r, out.width="100%", fig.align='center', fig.pos='middle' , fig.cap="US and Afghan security personnel patrol in a field of poppies in Afghanistan."}
 knitr::include_graphics("https://ichef.bbci.co.uk/news/976/cpsprodpb/E1BD/production/_106598775_soldiers_976alamy.jpg", error = FALSE)
 ```
@@ -623,7 +716,7 @@ knitr::include_graphics("https://ichef.bbci.co.uk/news/976/cpsprodpb/E1BD/produc
 
 - In 2016 after over a decade of trying to eradicate poppy production, it shot up to
 
-- Counternarcotics operations often hurt the poorest and most marginalized groups, and also increase opposition to US-led counterinsurgency operations.
+- Counter-narcotics operations often hurt the poorest and most marginalized groups, and also increase opposition to US-led counterinsurgency operations.
 
 - Overall poppy production is worth over $30 billion to Afghan economy (https://www.brookings.edu/blog/order-from-chaos/2017/11/21/afghanistans-opium-production-is-through-the-roof-why-washington-shouldnt-overreact/)/
 
@@ -650,7 +743,7 @@ afghan_fatality_long <- gather(afghan_fatality_wide, month, deaths, -year) %>%
 
 ggplot(data = afghan_fatality_long, aes(x = date)) +
   geom_bar(stat = "identity", aes(y = deaths, group = `Season`, fill = `Season`)) +
-  theme_flynn() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = seq(as.Date("2001-10-1"), as.Date("2016-12-1"), by = "3 years"), labels = date_format("%B %Y")) +
   scale_y_continuous(breaks = seq(0,125,20)) +
   viridis::scale_fill_viridis(option = "magma", discrete = TRUE, begin = 0.1, end = 0.8, direction = -1) +
@@ -713,7 +806,7 @@ turkmenistan <- getData("GADM", country = "TKM", level = 0) %>%
 
 
 
-# Getting the right group aes identifyer is REALLY important here.
+# Getting the right group aes identifier is REALLY important here.
 # It prevents the weird lines from appearing that connect random points. 
 ggplot() +
   geom_sf(data = afghan, aes(group = NAME_1, fill = `Fatalities`)) +
@@ -750,7 +843,7 @@ terrain.df <- as.data.frame(rasterToPoints(terrain))
 ggplot(terrain.df) +
   geom_tile(aes(x = x, y= y, fill = AFG_msk_alt)) +
   theme_void() +
-  theme(plot.title = element_text(size = 25, family = "oswald"),
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold"),
         text = element_text(size = 11, family = "oswald")) +
   viridis::scale_fill_viridis(option = "magma") +
   #scale_fill_gradient(low = "tan", high = "brown3") +
@@ -773,7 +866,7 @@ class: inverse, center, middle
 ---
 # Bargaining Problems
 
-## Bargaining in Civil Wars
+### Bargaining in Civil Wars
 
 Basic problems resemble those in interstate wars
 
@@ -860,4 +953,5 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/en/b/ba/The_Terr
 
 - South Vietnamese military dropped Napalm on fleeing civilians they believed to be Viet Cong militants. 
 - Because insurgents typically try to blend in with the population, it can be difficult (intentionally so) to identify militants. 
+- Pronounced "Kim Fook"
 

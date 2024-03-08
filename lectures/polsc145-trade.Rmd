@@ -46,6 +46,7 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
 ```
 
@@ -92,7 +93,7 @@ Key points
 
 - Trade occurs between individuals
 
-- States don’t trade with one another, but we talk about them anyway
+- States don’t *usually* trade with one another, but we talk about them anyway
 
 
 
@@ -217,6 +218,8 @@ David Ricardo
 - 1772–1823
 
 - Refined the idea of **comparative advantage**
+
+- It's less about being the **best** and more about what you're **better** at
 ]
 
 .pull-right[
@@ -510,6 +513,41 @@ But this is still a politically powerful idea used to mobilize broader support
 
 
 ---
+class: center, middle
+
+```{r iphone-x-bom, out.width="53%"}
+knitr::include_graphics(here::here("../../media/iphone-x-bom.jpeg"), error = FALSE)
+```
+
+
+???
+
+# Notes
+
+- First, this just includes the costs of materials used.
+- Second, the parts come from firms based all over the world:
+  - Samsung is based in Korea
+  - Apple is based in the United States
+  - Qualcomm is based in the United States
+  - Dialog Semiconductor is based in the United Kingdom
+  - STMicroelectronics is based in Switzerland
+  - Broadcom LTD is based in the United States
+  - Skyworks Solutions is based in the United States
+  - Cirrus Logic is based in the United States
+  - NXP Semiconductors is based in the Netherlands
+  - Bosch Sensortec is based in Germany
+  - Alps Electric is based in Japan
+  - AMS is based in Austria
+  - Texas Instruments is based in Japan
+  - Murata Manufacturing is based in Japan
+  - Sunwoda electronics is based in China
+  
+  - Overall value added from China is about $18 but the total value is counted against the US-China balance of trade. See this [NPR story](https://www.npr.org/2011/01/18/133029198/Tracing-The-Trade-Deficit-Back-To-The-iPhone#:~:text=the%20whole%20story.-,The%20Apple%20iPhone%20is%20an%20iconic%20American%20product%2C%20invented%2C%20designed,of%20hundreds%20of%20individual%20parts.) and [this story](https://theconversation.com/the-guts-of-an-apple-iphone-show-exactly-what-trump-gets-wrong-about-trade-119223) from the Conversation.
+  
+- Third, labor costs typically fall in the $5-$10 range for iPhones like this. This is the value added from manufacturing in China.
+
+
+---
 # Trade Protection
 
 Economic explanations for protectionism
@@ -525,6 +563,15 @@ Economic explanations for protectionism
 - Support and opposition to free trade are linked to sector-specific interests
 
 - Assumes that factors of production are immobile
+
+
+
+---
+class: center, middle
+
+```{r czech-farmers, fig.cap="Farmers drive tractors in front of government office, where they dumped manure, during a protest against European Union agricultural policies, grievances shared by farmers across Europe, in Prague, Czech Republic, March 7, 2024. REUTERS/Eva Korinkova", out.width="70%"}
+knitr::include_graphics("https://static.country-guide.ca/wp-content/uploads/2024/03/07125116/2024-03-07T114807Z_1929593197_RC2YG6AYAV71_RTRMADP_3_EUROPE-FARMERS-CZECH-scaled-e1709831415661.jpg")
+```
 
 
 

@@ -207,6 +207,29 @@ knitr::include_graphics("https://fathertheo.files.wordpress.com/2011/02/adam-smi
 ]
 
 
+???
+
+# Notes
+
+- Smith emphasized specialization, but that requires larger markets. Doesn't make as much sense if there's not sufficient demand to sustain an activity. Noted that specialization requires large markets. Uses examples of porters and carpenters. They need large towns to be able to develop a skill and focus on that one area. People in small villages with small markets cannot afford to specialize because they can’t sell enough to subside. 
+
+- Colonialism and tariffs are detrimental to overall welfare since they result in an inefficient allocation of resources.
+> “That this monopoly of the home-market frequently gives great encouragement to that particular species of industry which enjoys it, and frequently turns towards that employment a greater share of both he labour and sock of the society than would have gone to it, cannot be doubted. But whether it tends either to increase the general industry of the society, or to give it the most advantageous direction, is not, perhaps, altogether so evident” (Smith 1776 [2004], 297-298).
+  
+  - Colonial residents are usually forced to buy finished goods manufactured int he metropole/mother country, and are prohibited from, or charged exorbitant fees to, buy goods made in other countries. 
+Smith saw colonies as starting up trouble with other countries, too, resulting in greater military burdens on taxpayers. 
+
+- On tariffs (general) (Smith 1776 [2004], 314):
+> “The undertaker of a great manufacture, who, by the home markets being suddenly laid open to the competition of foreigners, should be obliged to abandon his trade, would no doubt suffer very considerably…The equitable regard, therefore, to his interests requires that changes of this kind should never be introduced suddenly, but slowly, gradually, and after a very long warning. The legislature, were it possible that its deliberations could be always directed, not by the clamorous importunity of partial interests, but by an extensive view of the general good, ought upon this very account, perhaps, to be particularly careful neither to establish any new monopolies of this kind, nor to extend further those which are already established.”
+
+- Two cases where governments should tax foreign trade (Smith 1776 [2004], 307-308):
+  - First, cases where national security is somehow at issue. 
+  - Second, if some tax is imposed on domestically produced goods, an equal tax levied on foreign goods of the same type would level the playing field. It doesn’t discriminate, only matches. 
+
+- State has three primary purposes (Smith 1776 [2004], Book V):
+  - Provide for national defense
+  - Administration of justice and enforcing contracts: “The second duty of the sovereign, that of protecting, as far as possible, every member of the society from the injustice or oppression of every other member of it…”
+  - Providing for various public goods: “The third and last duty of the sovereign is that of erecting and maintaining those public institutions and those public works , which, though they may be in the highest degree advantageous to a great society, are however, of such a nature, that the profit could never repay the expense to any individual or small number of individuals, and which it therefore cannot be expected that any individual or small number of individuals should erect or maintain.”
 
 
 ---

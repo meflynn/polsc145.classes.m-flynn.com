@@ -452,7 +452,7 @@ data <- tibble("Year" = seq(2000, 2006, 1),
   pivot_longer(cols = c("Economy", "Tax Revenue"))
 
 ggplot(data, aes(x = Year, y = value, group = name)) +
-  geom_bar_pattern(stat = "identity", position = "dodge", pattern = "placeholder", pattern_type = "kitten", color = "black", size = 0.3) +
+  geom_bar(stat = "identity", position = "dodge", color = "black", size = 0.3) +
   theme_flynn(base_family = "oswald", base_size = 11) +
   scale_y_continuous(breaks = seq(0, 1400, 200), labels = scales::dollar_format()) +
   scale_x_continuous(breaks = seq(2000, 2006, 1)) +
@@ -729,14 +729,23 @@ class: middle, center
 ```{r russian exchange rate}
 
 library(priceR)
-ruble <- historical_exchange_rates("RUB", to = "USD",
-                          start_date = "2015-01-01", end_date = "2023-03-15") %>% 
-  dplyr::rename(rate = 2)
+library(quantmod)
+library(fredr)
 
-ggplot(ruble, aes(x = date, y = rate)) +
+fredr::fredr_set_key("afeafe7157073f92c7fd1cc2550f6218")
+
+start <- as.Date("2015-01-01")
+end <- as.Date("2024-03-01")
+
+ruble <- fredr::fredr(series_id = "CCUSMA02RUM618N",
+                      observation_start = start,
+                      observation_end = end)  
+
+
+ggplot(ruble, aes(x = date, y = value)) +
   geom_line() +
   theme_flynn(base_family = "oswald", base_size = 11) +
-  scale_x_date(breaks = seq(as.Date("2015-01-01"), as.Date("2023-04-01"), by = "1 years"), date_labels = "%b %Y") +
+  scale_x_date(breaks = seq(as.Date("2015-01-01"), as.Date("2024-04-01"), by = "1 years"), date_labels = "%b %Y") +
   scale_y_continuous(n.breaks = 10) +
   labs(x = "Date",
        y = "Dollars per Ruble",

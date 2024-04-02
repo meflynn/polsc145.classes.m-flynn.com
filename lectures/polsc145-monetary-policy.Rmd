@@ -500,7 +500,7 @@ ggplot(yuan, aes(x = date, y = price)) +
   scale_x_date(breaks = seq(as.Date("1970-01-01"), as.Date("2022-04-01"), by = "10 years"), date_labels = "%b %Y") +
   scale_y_continuous(n.breaks = 10) +
   labs(x = "Date",
-       y = "Dollars per Yuan",
+       y = "Yuan per Dollar",
        title = "US Dollar-Chinese Renminbi Exchange Rate",
        caption = "Data obtained from FRED data series DEXCHUS using tidyquant R package.")
 ```
@@ -639,6 +639,60 @@ Effects of lowering interest rates
 - Increased demand and consumption will drive prices up and unemployment down
   
   
+
+
+---
+class: center, middle
+
+```{r}
+
+data <- readxl::read_xlsx(here::here("../../../Data Files/US Government Files/Federal Reserve/fed_rates.xlsx")) |> 
+  filter(`Rate Type` == "EFFR") |> 
+  mutate(date = as.Date(`Effective Date`, format = "%m/%d/%Y")) 
+
+ggplot(data, aes(x = date, y = `Rate (%)`)) +
+  geom_line() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(breaks = seq(as.Date("2000-01-01"), as.Date("2024-04-01"), by = "2 years"), date_labels = "%b %Y") +
+  scale_y_continuous(n.breaks = 10) +
+  labs(x = "Date",
+       y = "Rate",
+       title = "Effective Federal Funds Rate, 2000-2024",
+       caption = "Data obtained from https://www.newyorkfed.org/markets/reference-rates/effr")
+
+
+
+```
+  
+  
+  
+  
+---
+class: center, middle
+
+```{r}
+
+data <- readxl::read_xlsx(here::here("../../../Data Files/US Government Files/Federal Reserve/fed_rates.xlsx")) |> 
+  filter(`Rate Type` == "EFFR") |> 
+  mutate(date = as.Date(`Effective Date`, format = "%m/%d/%Y")) 
+
+ggplot(data, aes(x = date, y = `Rate (%)`)) +
+  geom_line() +
+  geom_vline(xintercept = as.Date("2008-09-15"), color = "red", alpha = .6) +
+  geom_vline(xintercept = as.Date("2020-03-15"), color = "red", alpha = .6) +
+  geom_text(aes(x = as.Date("2008-09-15"), y = 6), label = "Lehman Brothers\nBankruptcy", size = 3, hjust = 0) +
+  geom_text(aes(x = as.Date("2020-03-15"), y = 6), label = "COVID-19 Pandemic", size = 3, hjust = 0) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(breaks = seq(as.Date("2000-01-01"), as.Date("2024-04-01"), by = "2 years"), date_labels = "%b %Y") +
+  scale_y_continuous(n.breaks = 10) +
+  labs(x = "Date",
+       y = "Rate",
+       title = "Effective Federal Funds Rate, 2000-2024",
+       caption = "Data obtained from https://www.newyorkfed.org/markets/reference-rates/effr")
+
+
+
+```
   
 ---
 # Why Monetary Policy Matters

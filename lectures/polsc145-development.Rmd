@@ -50,6 +50,7 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
 
 update_geom_defaults("text", list(size = 3, family = "oswald", fontface = "plain", lineheight = 0.2))
@@ -78,6 +79,62 @@ class: left, top
 
 3. How do previous topics like conflict, trade, finance, and monetary policy affect development?
 
+
+
+
+---
+class: center, middle
+
+```{r}
+library(ggrepel)
+# Create an object that is a custom palette containing 13 colors. 
+# Choose colors that are visually distinct and colorblind friendly.
+# Do not put similar colors next to one another.
+
+my_palette <- c("#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9", "#92A8D1", "#955251", "#B565A7", "#009B77", "#DD4124", "#D65076", "#45B8AC", "#EFC050", "#9B2335")
+
+
+
+development <- peacesciencer::create_stateyears(system = "cow") %>% 
+  peacesciencer::add_sdp_gdp() %>% 
+  mutate(quartile = ntile(wbgdppc2011est,  5),
+         ccode = ifelse(statenme == "Germany", 255, ccode)) |> 
+  filter(year >= 1960) |> 
+  group_by(ccode) |> 
+  mutate(index = (wbgdp2011est / xts::first(wbgdp2011est)) * 100) |> 
+  filter(statenme %in% c("United States of America", "Mexico", "China", "India", "Germany", "United Kingdom", "Japan", "Brazil", "Russia", "South Africa", "Nigeria", "Saudi Arabia", "Thailand"))
+
+
+ggplot(development, aes(x = year, y = index)) +
+  geom_line(aes(color = statenme),
+            size = 1.0,
+            show.legend = FALSE) +
+  ggrepel::geom_text_repel(data = development %>% filter(year == 2015), 
+                           aes(color = statenme,
+                               label = statenme), 
+                           nudge_x = 0, 
+                           nudge_y = 0, 
+                           direction = "y",
+                           size = 3.0,
+                           show.legend = FALSE,
+                           xlim = c(2015.8, NA),
+                           segment.size = 0.4,
+                           segment.curature = -0.1,
+                           segmend.linetype = "dotted",
+                           segment.alpha = 0.3,
+                           box.padding = 0.4) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(breaks = seq(1960, 2015, 5),
+                     limits = c(1960, 2030),
+                     expand = c(0.01, 3)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  scale_color_manual(values = my_palette) +
+  labs(y = "Index (1960 = 100)",
+       x = "Year",
+       title = "Economic growth over time, 1960-2015")
+
+
+```
 
 
 ---
@@ -298,17 +355,17 @@ data <- data.frame(x = seq(0, 100),
 
 ggplot(data, aes(x = x, y = y)) +
   geom_line(linetype = "dashed") +
-  theme_void() +
   coord_equal() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(position = "right", expand = c(0,0)) +
-  theme(plot.title = element_text(size = 22, face = "bold"),
-        plot.subtitle = element_text(size = 18, face = "bold"),
+  theme_void() +
+  theme(plot.title = element_text(family = "oswald", size = 22, face = "bold"),
+        plot.subtitle = element_text(family = "oswald", size = 16, face = "bold"),
         plot.title.position = "plot",
         axis.line.x.bottom = element_line(size = 1),
         axis.line.y.right = element_line(size = 1, color = "black"),
-        axis.title.x.bottom = element_text(face = "bold", size = 18, margin = margin(t = 0.2, unit = "cm")),
-        axis.title.y.right = element_text(face = "bold", size = 18, margin = margin(l = 0.2, unit = "cm"))) +
+        axis.title.x.bottom = element_text(family = "oswald", face = "bold", size = 18, margin = margin(t = 0.2, unit = "cm")),
+        axis.title.y.right = element_text(family = "oswald", face = "bold", size = 18, margin = margin(l = 0.2, unit = "cm"))) +
   labs(x = "% of Population",
        y = "% of Wealth",
        title = "Lorenz Curve and the Gini Coefficient",
@@ -333,17 +390,17 @@ ggplot(data, aes(x = x, y = y)) +
   geom_function(fun = function(x) 0.0001*x^3, color = "blue", size = 2) +
   annotate("text", label = "A", x = 60, y = 40) +
   annotate("text", label = "B", x = 75, y = 20) +
-  theme_void() +
   coord_equal() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(position = "right", expand = c(0,0)) +
-  theme(plot.title = element_text(size = 22, face = "bold"),
-        plot.subtitle = element_text(size = 18, face = "bold"),
+  theme_void() +
+  theme(plot.title = element_text(family = "oswald", size = 22, face = "bold"),
+        plot.subtitle = element_text(family = "oswald", size = 16, face = "bold"),
         plot.title.position = "plot",
         axis.line.x.bottom = element_line(size = 1),
         axis.line.y.right = element_line(size = 1, color = "black"),
-        axis.title.x.bottom = element_text(face = "bold", size = 18, margin = margin(t = 0.2, unit = "cm")),
-        axis.title.y.right = element_text(face = "bold", size = 18, margin = margin(l = 0.2, unit = "cm"))) +
+        axis.title.x.bottom = element_text(family = "oswald", face = "bold", size = 18, margin = margin(t = 0.2, unit = "cm")),
+        axis.title.y.right = element_text(family = "oswald", face = "bold", size = 18, margin = margin(l = 0.2, unit = "cm"))) +
   labs(x = "% of Population",
        y = "% of Wealth",
        title = "Lorenz Curve and the Gini Coefficient",
@@ -358,6 +415,62 @@ class: middle, center, inverse
 
 # How Do States Develop?
 
+
+
+
+---
+class: center, middle
+
+```{r}
+library(ggrepel)
+# Create an object that is a custom palette containing 13 colors. 
+# Choose colors that are visually distinct and colorblind friendly.
+# Do not put similar colors next to one another.
+
+my_palette <- c("#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9", "#92A8D1", "#955251", "#B565A7", "#009B77", "#DD4124", "#D65076", "#45B8AC", "#EFC050", "#9B2335")
+
+
+
+development <- peacesciencer::create_stateyears(system = "cow") %>% 
+  peacesciencer::add_sdp_gdp() %>% 
+  mutate(quartile = ntile(wbgdppc2011est,  5),
+         ccode = ifelse(statenme == "Germany", 255, ccode)) |> 
+  filter(year >= 1960) |> 
+  group_by(ccode) |> 
+  mutate(index = (wbgdp2011est / xts::first(wbgdp2011est)) * 100) |> 
+  filter(statenme %in% c("United States of America", "Mexico", "China", "India", "Germany", "United Kingdom", "Japan", "Brazil", "Russia", "South Africa", "Nigeria", "Saudi Arabia", "Thailand"))
+
+
+ggplot(development, aes(x = year, y = index)) +
+  geom_line(aes(color = statenme),
+            size = 1.0,
+            show.legend = FALSE) +
+  ggrepel::geom_text_repel(data = development %>% filter(year == 2015), 
+                           aes(color = statenme,
+                               label = statenme), 
+                           nudge_x = 0, 
+                           nudge_y = 0, 
+                           direction = "y",
+                           size = 3.0,
+                           show.legend = FALSE,
+                           xlim = c(2015.8, NA),
+                           segment.size = 0.4,
+                           segment.curature = -0.1,
+                           segmend.linetype = "dotted",
+                           segment.alpha = 0.3,
+                           box.padding = 0.4) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(breaks = seq(1960, 2015, 5),
+                     limits = c(1960, 2030),
+                     expand = c(0.01, 3)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  scale_color_manual(values = my_palette) +
+  labs(y = "Index (1960 = 100)",
+       x = "Year",
+       title = "Economic growth over time, 1960-2015")
+
+
+```
 
 
 
@@ -402,6 +515,92 @@ Resource curse
 
 - Access to lucrative natural resources often associated with corruption
 
+
+
+---
+# How Do States Develop?
+
+Two strategies
+
+- Import Substituting Industrialization (ISI)
+
+- Export Oriented Industrialization (EOI)
+
+
+
+---
+# How Do States Develop?
+
+.pull-left[
+
+Import Substituting Industrialization (ISI)
+
+- Emphasizes development of domestic industry and the enhancement of economic self-sufficiency
+
+- Uses protectionist measure to raise costs of imported goods (high tariffs, quotas, etc.)
+
+- Popular in Latin America
+
+- Has some serious shortcomings
+
+To right: The Mastreta MXT, a sportscar manufactured by the Mexican automaker, Mastreta.
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/7/7f/Mastretta_of_Mexico%2C_The_MXT_-_Flickr_-_Moto%40Club4AG.jpg", error = FALSE)
+
+```
+]
+
+???
+#Notes
+
+Positives
+- Can help to develop domestic industries.
+- Can reduce dependency on foreign imports
+
+Downsides
+- Can be an inefficient allocation of resources
+- Increases prices of goods 
+
+
+
+
+---
+# How Do States Develop?
+
+.pull-left[
+Export oriented industrialization (EOI) 
+
+- Emphasizes the use of abundant (cheap) labor and low production costs
+
+- Builds on comparative advantage framework
+
+- Attractive for foreign investors looking to lower costs of production
+
+- Popular among several Asian countries (South Korea, Singapore, China)
+
+To right: A large container ship loading with shipping containers at port.
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/MAERSK_MC_KINNEY_M%C3%96LLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg/1200px-MAERSK_MC_KINNEY_M%C3%96LLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg", error = FALSE)
+```
+]
+
+
+???
+# Notes
+
+Advantages
+1. Can promote economic growth
+2. Can help to develop a country's industrial base
+3. Can better integrate a country into the global economy
+
+Downsides:
+1. 
 
 
 ---

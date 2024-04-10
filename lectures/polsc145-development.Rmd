@@ -374,6 +374,12 @@ ggplot(data, aes(x = x, y = y)) +
 ```
 
 
+???
+
+# Notes
+
+GINI coefficient is calculated as $$  GINI = {A\over{A+B}} $$
+
 
 
 ---
@@ -601,6 +607,29 @@ Advantages
 
 Downsides:
 1. 
+
+
+
+---
+class: center, middle
+
+```{r Chinese Yuan exchange rate}
+
+library(priceR)
+yuan <- tq_get("DEXCHUS", "economic.data",
+                from = "1960-01-01",
+                to = "2022-01-01")
+
+ggplot(yuan, aes(x = date, y = price)) +
+  geom_line() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(breaks = seq(as.Date("1970-01-01"), as.Date("2022-04-01"), by = "10 years"), date_labels = "%b %Y") +
+  scale_y_continuous(n.breaks = 10) +
+  labs(x = "Date",
+       y = "Yuan per Dollar",
+       title = "US Dollar-Chinese Renminbi Exchange Rate",
+       caption = "Data obtained from FRED data series DEXCHUS using tidyquant R package.")
+```
 
 
 ---

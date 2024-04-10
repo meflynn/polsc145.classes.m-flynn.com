@@ -52,6 +52,7 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
 
 update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
@@ -100,7 +101,7 @@ Think of human rights in two ways:
 
 >**Human Rights**: The rights possessed by all individuals by virtue of being human, regardless of their status as citizens of particular states or members of a group or organization (FLS).
 
-- Second: More specific legal definitions and provisions that represent efforts to protect and respect particular types of activities (we'll get into those shortly. 
+- Second: More specific legal definitions and provisions that represent efforts to protect and respect particular types of activities (we'll get into those shortly). 
 
 
 
@@ -211,22 +212,6 @@ UNDHR followed up by several treaties
 - Reservations: A reservation is a declaration made by a state by which it purports to exclude or alter the legal effect of certain provisions of the treaty in their application to that state. A reservation enables a state to accept a multilateral treaty as a whole by giving it the possibility not to apply certain provisions with which it does not want to comply. Reservations can be made when the treaty is signed, ratified, accepted, approved or acceded to. Reservations must not be incompatible with the object and the purpose of the treaty. Furthermore, a treaty might prohibit reservations or only allow for certain reservations to be made. (UN Treaty Collection Glossary)
 
 
-
-
----
-class: center, middle
-
-```{r, fig.align="center", out.width="70%"}
-knitr::include_graphics("WORPOL3_Table12.01.01.jpg", error = FALSE)
-```
-
-
----
-class: center, middle
-
-```{r, fig.align="center", out.width="70%"}
-knitr::include_graphics("WORPOL3_Table12.01.02.jpg", error = FALSE)
-```
 
 
 
@@ -410,7 +395,7 @@ ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
 # What Are Human Rights
 
 .pull-left[
-North Korean Violations
+North Korean Human Rights Issues
 
 - Torture
 - Imprisonment
@@ -536,7 +521,7 @@ ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
 # What Are Human Rights?
 
 .pull-left[
-Chinese Violations:
+Chinese Human Rights Issues:
 
  - Extrajudicial killings
  - Disappearances
@@ -657,7 +642,7 @@ ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
 # What Are Human Rights?
 
 .pull-left[
-US Violations:
+US Human Rights Issues:
 
  - Rendition programs
  - Torture
@@ -666,6 +651,7 @@ US Violations:
  - Extrajudicial killings
  - Civilian killings from drone strikes
  - Unlawful detention
+ - Immigration detention
 
 To right: Anwar al-Awlaki: Radical Islamist and US citizen killed in drone strike authorized by President Obama. 
 ]

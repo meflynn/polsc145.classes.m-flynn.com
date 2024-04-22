@@ -52,6 +52,7 @@ knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, wa
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
 
 update_geom_defaults("text", list(size = 3, family = "oswald", fontface = "plain", lineheight = 1))
 
@@ -193,7 +194,7 @@ knitr::include_graphics("https://www.thestar.com/content/dam/thestar/news/world/
 class: center, middle
 ```{r aqi, out.width="95%", fig.cap="Snapshot of global air quality station readings, April 20, 2022."}
 
-knitr::include_graphics("aqi-snapshot.png", error = FALSE)
+knitr::include_graphics(here::here("images/aqi-snapshot.jpg"), error = FALSE)
 
 ```
 
@@ -697,10 +698,10 @@ d1 <- dagitty::dagitty('dag{
 
 
 
-ggplot(d1 , aes(x = x, xend = xend, y = y, yend = yend)) +
-  geom_dag_point(aes(color = name), show.legend = FALSE, size = 20) +
+ggplot(d1$data , aes(x = x, xend = xend, y = y, yend = yend)) +
+  geom_dag_point(aes(color = d1$data$name), show.legend = FALSE, size = 20) +
   geom_dag_edges() +  
-  geom_dag_label_repel(aes(label = name), color = "black", size = 6, segment.size = 2, box.padding = 2, point.padding = 2, nudge_y = 10) +
+  geom_dag_label_repel(aes(label = d1$data$name), color = "black", size = 6, segment.size = 2, box.padding = 2, point.padding = 2, nudge_y = 10) +
   theme_dag() +
   viridis::scale_color_viridis(discrete = TRUE, begin = 0.1, end = 0.9)
 
@@ -726,7 +727,7 @@ d1 <- dagitty::dagitty('dag{
 
 
 
-ggplot(d1 , aes(x = x, xend = xend, y = y, yend = yend)) +
+ggplot(d1$data , aes(x = x, xend = xend, y = y, yend = yend)) +
   geom_dag_point(aes(color = name), show.legend = FALSE, size = 20) +
   geom_dag_edges() +  
   geom_dag_label_repel(aes(label = name), color = "black", size = 6, segment.size = 2, box.padding = 2, point.padding = 2, nudge_y = 10) +

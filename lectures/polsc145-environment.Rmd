@@ -442,6 +442,15 @@ Example: Acid Rain
 - Kills fish, insects, amphibians, bacteria, and vegetation
 
 
+???
+# Notes
+
+-General Electric had factories along the Hudson. Dumped massive amounts of PCBs and TCEs into the river. 
+-PCBs: Polychlorinated biphenyl. Used as coolant and insulation for power transformers. 
+-TCEs: Trichloroethene. Industrial solvent. Highly toxic. 
+-Linked to a variety of ailments. 
+-Chemicals have contaminated the river and seeped into local water supplies. GE sought to avoid litigation by promising to provide people with water if they didn’t sue. 
+-NY residents have paid over $50 million in tax dollars to clean up Hudson River. Dredging has taken several years.
 
 
 ---
@@ -646,6 +655,30 @@ There have been successes
 - Whaling
 
 
+
+---
+class: center, middle
+
+```{r ozone-slide, out.width="85%", fig.cap="Maximum yearly size of the ozone hole from 1979 to 2023. Image courtesy of the European Environment Agency."}
+knitr::include_graphics("https://www.eea.europa.eu/en/topics/in-depth/climate-change-mitigation-reducing-emissions/current-state-of-the-ozone-layer/2023-12-11_eea-ozone-webpage-with-copernicus_figure-1.png/@@images/image/great")
+
+```
+
+???
+# Notes
+
+From [NASA's Earth Observatory](https://earthobservatory.nasa.gov/world-of-change/Ozone):
+
+- Records in depth and area have never occurred during the same years (the largest ozone hole occurred in 2006), but the long-term trend in both characteristics is consistent: from 1980 through the early 1990s, the hole rapidly grew in area and depth. In the early years of the 21st century, annual ozone holes roughly stabilized (see the Ozone Hole Watch website for annual averages). Year-to-year fluctuations in area and depth are caused by variations in stratospheric temperature and circulation. Colder conditions result in a larger area and lower ozone values in the center of the hole.
+
+- The ozone hole opened the world’s eyes to the global effects of human activity on the atmosphere. Scientists found out that chlorofluorocarbons (CFCs)—long-lived chemicals that had been used in refrigerators and aerosol sprays since the 1930s—had a dark side. In the layer of the atmosphere closest to Earth (the troposphere), CFCs circulated for decades without degrading or reacting with other chemicals. When they reached the stratosphere, however, their behavior changed. In the upper stratosphere (beyond the protection of the ozone layer), ultraviolet light caused CFCs to break apart, releasing chlorine, a very reactive atom that repeatedly catalyzes ozone destruction.
+
+- The global recognition of the destructive potential of CFCs led to the 1987 Montreal Protocol, a treaty phasing out the production of ozone-depleting chemicals. Scientists estimate that about 80 percent of the chlorine (and bromine, which has a similar ozone-depleting effect) in the stratosphere over Antarctica today comes from human, not natural, sources.
+
+- Models suggest that the concentration of chlorine and other ozone-depleting substances in the stratosphere will not return to pre-1980 levels until the middle decades of the 21st century. Scientists have already seen the first definitive proof of ozone recovery, observing a 20 percent decrease in ozone depletion during the winter months from 2005 to 2016. In 2019, abnormal weather patterns in the upper atmosphere over Antarctica dramatically limited ozone depletion, leading to the smallest hole since 1982. Models predict that the Antarctic ozone layer will mostly recover by 2040.
+
+
+
 ---
 class: left, top
 
@@ -661,6 +694,32 @@ Example: Cap and trade
 - Companies can sell “credits” to other companies for pollution that they don’t produce
 
 - This incentivizes cleaner technologies, as companies can profit from reduced emissions
+
+
+
+---
+class: center, middle
+
+```{r paris-meeting, out.width="85%", fig.cap="Representatives from countries around the world gather for the United Nations Conference on Climate Change in Paris, 2015. Photo from the World Economic Forum."}
+
+knitr::include_graphics("https://assets.weforum.org/article/image/large_45P5CCPtKZg8dtCqP6xzQyytzLtY0Bk_A1hhUcNXE1A.jpg", error = FALSE)
+```
+
+???
+# Notes
+
+- Chapter 27 of the United Nations Charter
+- Adopted on December 12, 2015.
+- Entered into force on November 4, 2016. The Agreement enters into force on the thirtieth day after the date on which at least 55 Parties to the Convention accounting in total for at least an estimated 55 per cent of the total global greenhouse gas emissions have deposited their instruments of ratification, acceptance, approval or accession. 
+Currently 194 signatories. President Trump initiated withdrawal in summer of 2017, making US one of the only countries to not sign on. 
+
+Key provisions:
+- Individual countries can decide how to best reduce emissions.
+- Calls for international cooperation—financial, political, and technological—in pursuit of reductions.
+- Article 2: Hold global average temperature to “well below 2° Celsius above pre-industrial levels and to pursue efforts to limit the temperature increase to 1.5° C above pre-industrial levels. Also says that adaptation to climate change must not threaten food production. Calls for financial flows to be implemented to “reflect equity and the principle of common but differentiated responsibilities and respective capabilities, in the light of different national circumstances.”
+- Article 4: To achieve Article 2, countries aim to reach global peaking of greenhouse gas emission as soon as possible.  Also states that, “Developed country Parties shall continue taking the lead by undertaking economy-wide absolute emission reduction targets. Developing country Parties should continue enhancing their mitigation efforts, and are encouraged to move over time towards economy-wide emission reduction or limitation targets in the light different national circumstances” Basically, this is saying that countries develop their own plans, but developed countries should pursue economy-wide measures and LDCs should have more narrow measures that expand as the economy grows.
+- Article 9: Developed countries will provide less-developed countries with financial assistance to help implement mitigation and adaptation measures. This addresses both 1) limited capacity, and 2) unequal adjustment costs associated with signing the agreement. Agreement sets a fund of $100 billion per year to be allocated by developed countries for the purposes of helping less-developed countries adjust. 
+- Article 10: Calls for financial assistance to develop technologies that can help mitigation efforts, or to share technologies that can help mitigation. 
 
 
 

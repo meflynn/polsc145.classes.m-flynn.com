@@ -8,20 +8,7 @@ date: "`r Sys.Date()`"
   
 All work turned in as a part of this class must be original.
 
-Kansas State University has an Honor & Integrity System based on personal integrity which is presumed to be sufficient assurance in academic matters one’s work is performed honestly and without unauthorized assistance. Undergraduate and graduate students, by registration, acknowledge the jurisdiction of the Honor Integrity System. The policies and procedures of the Honor System apply to all full and part time
-students enrolled in undergraduate and graduate courses on-campus, off-campus, and via distance
-learning.
-
-A component vital to the Honor & Integrity System is the inclusion of the Honor Pledge which applies to all
-assignments, examinations, or other course work undertaken by students. The Honor Pledge is implied,
-whether or not it is stated: “On my honor, as a student, I have neither given nor received unauthorized aid
-on this academic work.”
-
-The default in this class is that ALL work will be accomplished individually, UNLESS my permission is given
-in advance of an assignment/quiz/exam/take-home exam/final. If you are in doubt, please ask.
-
-A grade of XF can result from a breach of academic honesty. The F indicates failure in the course; the X
-indicates the reason is an Honor Pledge violation.
+Kansas State University has an Honor and Integrity System based on personal integrity, which is presumed to be sufficient assurance that, in academic matters, one's work is performed honestly and without unauthorized assistance. Undergraduate and graduate students, by registration, acknowledge the jurisdiction of the Honor and Integrity System. The policies and procedures of the Honor and Integrity System apply to all full and part-time students enrolled in undergraduate and graduate courses on-campus, off-campus, and via distance learning. A component vital to the Honor and Integrity System is the inclusion of the Honor Pledge which applies to all assignments, examinations, or other course work undertaken by students. The Honor Pledge is implied, whether or not it is stated: "On my honor, as a student, I have neither given nor received unauthorized aid on this academic work." A grade of XF can result from a breach of academic honesty. The F indicates failure in the course; the X indicates the reason is an Honor Pledge violation.
 
 For more information, visit the [Honor & Integrity System home web page](http://www.k-state.edu/honor/).
 All work is expected to adhere to the standards outlined by the Kansas State University Handbook. All
@@ -75,16 +62,24 @@ regarding any of these issues please do not hesitate to contact me.
 
 ## Artificial Intelligence
 
-Artificial Intelligence (AI), Large Language Models (LLMs), and chatbots have seen increased use recently. While these resources can be useful tools in certain contexts, their use is prohibited in this course and any such use will be treated as plagiarism and/or unauthorized outside assistance (you shouldn't need them anyway). There are multiple reasons for this. The purpose of taking this course is to learn new material and develop a deeper comprehension of that material to help you make sense of the world around you. This requires you engage directly with the coursework. Second, while these tools can be useful for certain tasks, using them intelligently and effectively often requires you have a strong knowledge of the underlying content. Absent that knowledge you are ill-equipped to judge the usefulness of what these resources generate. 
+Artificial Intelligence (AI), Large Language Models (LLMs), and chatbots (e.g. Chat GPT, Llama, Gemma, etc.) have seen increased use recently. While these resources can be useful tools in certain contexts, their use is prohibited in this course and any such use will be treated as plagiarism and/or unauthorized outside assistance (you shouldn't need them anyway). 
+
+There are multiple reasons for this. The purpose of taking this course is to learn new material and develop a deeper comprehension of that material to help you make sense of the world around you. This requires you engage directly with the coursework. Second, while these tools can be useful for certain tasks, using them intelligently and effectively often requires you have a strong knowledge of the underlying content. Absent that knowledge you are ill-equipped to judge the usefulness of what these resources generate. Different LLMs will frequently generate very different answers to the same question, and the accuracy of different platforms can be more or less stable over time, depending on user engagement and how they "learn". 
+
+This course assumes that all your course work will be done by you. You will not need to use artificial intelligence (AI) tools such as ChatGPT for any of the assignments. In general, for this class, you should not have an AI instrument do the writing of any portion of any assignment, just as you would not have another person do your writing for you. My aim is to keep the focus on your originality and creativity, your learning and reflection. Using an AI tool to generate assignment content would be a violation of the K-State Honor Pledge and is grounds for failure.
+
+## Statement Defining Expectations for Classroom Conduct
+
+All student activities in the University, including this course, are governed by the Student Judicial Conduct Code as outlined in the Student Governing Association By Laws, Article V, Section 3, number 2. Students who engage in behavior that disrupts the learning environment may be asked to leave the class.
 
 
 ## Statement on Mutual Respect and Inclusion in K-State Teaching and Learning Spaces
 
 At K-State, faculty and staff are committed to creating and maintaining an inclusive and supportive learning environment for students from diverse backgrounds and perspectives. K-State courses, labs, and other virtual and physical learning spaces promote equitable opportunity to learn, participate, contribute, and succeed, regardless of age, race, color, ethnicity, nationality, genetic information, ancestry, disability, socioeconomic status, military or veteran status, immigration status, Indigenous identity, gender identity, gender expression, sexuality, religion, culture, as well as other social identities.
 
-Faculty and staff are committed to promoting equity and believe the success of an inclusive learning environment relies on the participation, support, and understanding of all students. Students are encouraged to share their views and lived experiences as they relate to the course or their course experience, while recognizing they are doing so in a learning environment in which all are expected to engage with respect to honor the rights, safety, and dignity of others in keeping with the K-State Principles of Community https://www.k-state.edu/about/values/community/.
+Faculty and staff are committed to promoting equity and believe the success of an inclusive learning environment relies on the participation, support, and understanding of all students. Students are encouraged to share their views and lived experiences as they relate to the course or their course experience, while recognizing they are doing so in a learning environment in which all are expected to engage with respect to honor the rights, safety, and dignity of others in keeping with the K-State [Principles of Community](https://www.k-state.edu/about/values-and-mission/community/).
 
-If you feel uncomfortable because of comments or behavior encountered in this class, you may bring it to the attention of your instructor, advisors, and/or mentors. If you have questions about how to proceed with a confidential process to resolve concerns, please contact the Student Ombudsperson Office. Violations of the student code of conduct can be reported here [https://www.k-state.edu/sga/judicial/student-code-of-conduct.html](https://www.k-state.edu/sga/judicial/student-code-of-conduct.html). If you experience bias or discrimination, it can be reported here [https://www.k-state.edu/report/discrimination/](https://www.k-state.edu/report/discrimination/).
+If you feel uncomfortable because of comments or behavior encountered in this class, you may bring it to the attention of your instructor, advisors, and/or mentors. If you have questions about how to proceed with a confidential process to resolve concerns, please contact the Student Ombudsperson Office. Violations of the [student code of conduct](https://www.k-state.edu/sga/judicial/student-code-of-conduct.html) can be reported using the [Code of Conduct Reporting Form](https://cm.maxient.com/reportingform.php?KansasStateUniv&layout_id=10). You can also report [discrimination, harassment or sexual harassment](https://www.k-state.edu/report/discrimination/), if needed.
 
 
 ## Statement Regarding Wearing of Face Coverings
@@ -94,9 +89,9 @@ Kansas State University strongly encourages, but does not require, that everyone
 
 ## Statement Regarding Discrimination, Harassment, and Sexual Harassment
 
-Kansas State University is committed to maintaining academic, housing, and work environments that are free of discrimination, harassment, and sexual harassment. Instructors support the University’s commitment by creating a safe learning environment during this course, free of conduct that would interfere with your academic opportunities. Instructors also have a duty to report any behavior they become aware of that potentially violates the University’s policy prohibiting discrimination, harassment, and sexual harassment (PPM 3010).  
+Kansas State University is committed to maintaining academic, housing, and work environments that are free of discrimination, harassment, and sexual harassment. Instructors support the University’s commitment by creating a safe learning environment during this course, free of conduct that would interfere with your academic opportunities. Instructors also have a duty to report any behavior they become aware of that potentially violates the University’s policy prohibiting discrimination, harassment, and sexual harassment, as outlined by PPM 3010.
 
-If a student is subjected to discrimination, harassment, or sexual harassment, they are encouraged to make a non-confidential report to the University’s Office for Institutional Equity (OIE) using the online reporting form. Incident disclosure is not required to receive resources at K-State. Reports that include domestic and dating violence, sexual assault, or stalking, should be considered for reporting by the complainant to the Kansas State University Police Department or the Riley County Police Department. Reports made to law enforcement are separate from reports made to OIE. A complainant can choose to report to one or both entities. Confidential support and advocacy can be found with the K-State Center for Advocacy, Response, and Education (CARE). Confidential mental health services can be found with Lafene Counseling and Psychological Services (CAPS). Academic support can be found with the Office of Student Life (OSL). OSL is a non-confidential resource. A comprehensive list of resources is available here. If you have questions about non-confidential and confidential resources, please contact OIE at [equity@ksu.edu](mailto:equity@ksu.edu) or (785) 532–6220. 
+If a student is subjected to discrimination, harassment, or sexual harassment, they are encouraged to make a non-confidential report to the University’s Office of Civil Rights and Title IX (OCR & TIX) using the online reporting form. Incident disclosure is not required to receive resources at K-State. Reports that include domestic and dating violence, sexual assault, or stalking, should be considered for reporting by the complainant to the Kansas State University Police Department or the Riley County Police Department. Reports made to law enforcement are separate from reports made to OCR & TIX. A complainant can choose to report to one or both entities. Confidential support and advocacy can be found with the K-State Center for Advocacy, Response, and Education (CARE). Confidential mental health services can be found with Lafene Counseling and Psychological Services (CAPS). Academic support can be found with the Student Support and Accountability (SSA). SSA is a non-confidential resource. OCR & TIX also provides a comprehensive list of resources on their website. If you have questions about non-confidential and confidential resources, please contact OCR & TIX at civilrights@k-state.edu or (785) 532-6220. 
 
 
 ## Citation and Style
@@ -108,17 +103,15 @@ Science Association style guide.
 
 ## Students with Disabilities
 
-Students with disabilities who need classroom accommodations, access to technology, or information about
-emergency building/campus evacuation processes should contact the Student Access Center and/or their
-instructor. Services are available to students with a wide range of disabilities including, but not limited to,
-physical disabilities, medical conditions, learning disabilities, attention deficit disorder, depression, and anxiety.
-If you are a student enrolled in campus/online courses through the Manhattan or Olathe campuses,
-contact the Student Access Center at [accesscenter@k-state.edu](accesscenter@k-state.edu), 785-532-6441; for Salina campus, contact
-the Academic and Career Advising Center at acac@k-state.edu, 785-826-2649.
+At K-State it is important that every student has access to course content and the means to demonstrate course mastery. Students with disabilities may benefit from services including accommodations provided by the Student Access Center. Disabilities can include physical, learning, executive functions, and mental health. You may register at the Student Access Center or to learn more contact:
 
-If you have any special conditions or needs that will affect your ability to complete the required assignments
-outlined herein, please contact the instructor as soon as possible to discuss your needs. I am happy to help
-you in any way that I can. With advance notice accommodations can be made prior to deadlines and tests.
-Please note, however, that special consideration will not be granted afterwards as a means of addressing a
-grade you do not like.
+Manhattan/Olathe/K-State Online – Student Access Center
+accesscenter@k-state.edu
+785-532-6441
+
+K-State Salina Campus – Julie Rowe; Student Success Coordinator
+jarowe@k-state.edu
+785-820-7908
+
+Students already registered with the Student Access Center please request your Letters of Accommodation early in the semester to provide adequate time to arrange your approved academic accommodations. Once SAC approves your Letter of Accommodation it will be e-mailed to you, and your instructor(s) for this course. Please follow up with your instructor to discuss how best to implement the approved accommodations.
 

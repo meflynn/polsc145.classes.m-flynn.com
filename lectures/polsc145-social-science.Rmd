@@ -407,12 +407,23 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/b/b2/Sur
 
 
 ---
-class: center, middle
+class: left, middle
 
+#
+
+.pull-left[
+> The past tense is a very sturdy thing. It’s earned, but it does take for granted that one has survived.
+
+-- Lady Jane Franklin, AMC's The Terror
+
+
+]
+
+.pull-right[
 ```{r, out.width="60%"}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg", error = FALSE)
 ```
-
+]
 
 
 

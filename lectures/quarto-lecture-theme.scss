@@ -28,18 +28,19 @@ $presentation-body-font: "Roboto", sans-serif, !default;
 //$presentation-heading-text-transform: uppercase !default;
 
 // font sizes;
+$body-font-size: 34px;
 $title-author-font-size: 24px;
-$body-font-size: 20px;
+
 
 
 /*-- scss:rules --*/
 
+/* Next two blocks shrink the font size for the main text slightly. The default is a little bulky */
 
-
-/* This first one does the default fonts */
+/* T his first one does the default fonts */
 .reveal p {
   font-family: $presentation-body-font;
-  font-size: 1em;
+  font-size: $body-font-size;
   line-height: 1.1;
   margin-bottom: 5px;
   padding-bottom: 5px;
@@ -48,7 +49,7 @@ $body-font-size: 20px;
 /* This one handles the bulleted lists */
 .reveal .slide  {
   font-family: $presentation-body-font;
-  font-size: 0.9em;
+  font-size: $body-font-size;
   line-height: 1;
   margin-top: 1px;
 }
@@ -60,20 +61,22 @@ html * {
 }
 
 .slide-background:first-child {
-  background-color: #512888;
+  background-color: $ksu-purple;
   font-family: $presentation-heading-font;
-  font-size: 1.6em;
+  font-size: 1.4em;
+  font-size: 1.3em;
 }
 
 .slide-background > .level1 {
-  background-color: $ksu-purple;
+  background-color: $ksu-purple ;
   line-height: 1;
 }
 
-.slide-background > .title-slide {
-  background-color: $ksu-purple;
-}
 
+
+.inverse{
+  background-color: $ksu-purple !important;
+}
 
 /* Set the basic heading font and weight */
 h1, h2, h3 {
@@ -88,25 +91,38 @@ h2 {
   margin-top: 20%;
   margin-bottom: 35px;
   padding: 15px;
-  border-bottom: 2px solid #512888;
-  border-bottom-width: 95%;
+  border-width: 95%;
   color: #FFFFFF;
   background-color: $ksu-purple;
-  padding-bottom: 15px;
 }
 
-h2:empty {
-  color: #FFFFFF;
-  background-color: #FFFFFF;
-  border-bottom: 0px solid #FFFFFF;
-  border-bottom-width: 0%;
+/* Use a nesting structure with & to overrule the default h2 settings and create blank slide. */
+.blank-slide{
+  & h2 {
+    background-color: #FFFFFF;
+    border-width: 0px;
+    border-color: #FFFFFF;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 }
+
 
 #title-slide {
   text-align: left;
   font-family: $presentation-heading-font;
   margin-top: 30px;
   margin-left: -20px;
+}
+
+
+/* indent ordered and unordered lists */
+.reveal .slide ol {
+  margin-left: 55px;
+}
+
+.reveal .slide ul {
+  margin-left: 55px;
 }
 
 
@@ -122,7 +138,7 @@ h2:empty {
 
 /* this handles the size of the title on the titlepage and intervening title pages */
 .reveal h1 {
-  font-size: 2.9em;
+  font-size: 2.8em;
   margin-top: 20px;
 }
 
@@ -131,37 +147,40 @@ h2:empty {
   margin-bottom: 40px;
   font-weight: 800;
   color: #FFFFFF;
-  font-size: 1.7em;
+  font-size: 1.6em;
+  margin-top: 15px;
+  margin-bottom: 40px;
+  font-weight: 800;
+  border-radius: 10px;
 }
 
+
+.background-white{
+  background-color: #FFFFFF;
+}
 
 p.subtitle {
   font-family: $presentation-heading-font;
   font-size: 1.4em;
   text-align: left;
+  max-width: 70%;
 }
 
 /* Need these next two blocks to move the author name and info to the left and be flush with the title and subtitle.*/
 .reveal .quarto-title-block .quarto-title-authors {
-    justify-content: left;
-    line-height: 1.1;
-    font-size: $title-author-font-size;
-    margin-top: -10px;
-    margin-bottom: 10px;
-    display: block;
-    padding-bottom: 5px;
-}
+  justify-content: left;
+  line-height: 1.1;
+  font-size: $title-author-font-size;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  margin: 0;
+  display: block;
+  padding: 1px;
+  }
 
 .reveal .quarto-title-block .quarto-title-authors .quarto-title-author {
-    padding-left: 0em;
-    padding-right: 0em;
-}
-
-p.date {
-  font-family: $presentation-heading-font;
-  line-height: 1.1;
-  text-align: left;
-  margin-top: 0px;
+  padding-left: 0em;
+  padding-right: 0em;
 }
 
 
@@ -173,16 +192,16 @@ p.date {
 }
 
 .reveal .quarto-title-block .quarto-title-authors .quarto-title-author .quarto-title-author-name {
-    margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 
 .reveal .quarto-title-block .quarto-title-authors .quarto-title-author .quarto-title-affiliation {
-    font-size: 1.3em;
-    line-height: 1.1;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    padding-bottom: 2px;
+  font-size: 1.3em;
+  line-height: 1.1;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-bottom: 2px;
 }
 p.quarto-title-affiliation {
   font-family: $presentation-heading-font;
@@ -191,20 +210,31 @@ p.quarto-title-affiliation {
   text-align: left;
   margin-bottom: 2px;
   margin-top: 2px;
+  font-size: 0.7em;
+  line-height: 1.1;
+  text-align: left;
+}
+
+p.date {
+  font-family: $presentation-heading-font;
+  font-size: 0.8em;
+  line-height: 1.1;
+  text-align: left;
+  margin-top: 1px;
 }
 
 
 /* I set this to push figures vertically towards the center, but I may want to revisit this later. Quarto should have page specific settings I can use to do this. But the question is if I want to set it every time I create a new slide since I use A LOT of dataviz */
 .reveal img {
-  margin: 5%;
+  margin: 0%;
+  margin-top: -2%;
 }
 
-.reveal iframe {
-  align-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  text-align: center;
+
+.small {
+  font-size: .8em;
 }
 
+.blue-text {
+  color: #512888;
+}

@@ -44,7 +44,7 @@ library(flynnprojects)
 
 sysfonts::font_add_google("Oswald", family = "oswald")
 showtext::showtext_auto()
-showtext::showtext_opts(dpi = 300)
+showtext::showtext_opts(dpi = 400)
 
 
 ```
@@ -60,7 +60,7 @@ Course Information
 
 - Meeting Time: Tuesdays and Thursdays 9:30 AM
 
-- Location: 114 Burt Hall
+- Location: 102 Calvin Hall (Finally!)
 
 :::{.notes}
 
@@ -88,7 +88,6 @@ We can talk about the details of the course later, but first let's have some fun
 ##
 
 
-
 <iframe src="https://embed.polleverywhere.com/free_text_polls/XgtaEAPQQA3sVpJ9qicjv?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 ::: {.notes}
@@ -104,46 +103,66 @@ What word best describes the world as you see it?
 <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/dbe1n265orgLxlzK2rgSJ?controls=none&short_poll=true" width="900px" height="700px"></iframe>
 
 
-
-
 ##
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+```{r us-foreign-aid}
 #| fig-align: center
+library(fredr)
 
-gdp <- fread(here::here("../../../../Data Files/expgdpv6.0/gdpv6.txt")) %>% 
-  filter(statenum == 2) %>% 
-  mutate(year = as.numeric(year))
+# FRED key = afeafe7157073f92c7fd1cc2550f6218
 
-aid <- data.table::fread(here::here("../../../../Data Files/US Government Files/US AID/Total_Economic_and_Military_Assistance_1946-2013.csv")) %>% 
-  janitor::row_to_names(row_number = 7) %>% 
-  dplyr::slice(-c(1:7)) %>% 
-  dplyr::mutate(`Fiscal Year` = as.numeric(`Fiscal Year`),
-                `Obligations (Constant Dollars)` = as.numeric(gsub(",", "", `Obligations (Constant Dollars)`))) %>% 
-  dplyr::mutate(`Fiscal Year` = ifelse(`Fiscal Year` == 1976.9, 1976, `Fiscal Year`)) %>% 
-  dplyr::group_by(`Fiscal Year`, `Assistance Category`) %>% 
-  dplyr::summarise(aid = sum(`Obligations (Constant Dollars)`)) %>% 
-  dplyr::rename(c("type" = "Assistance Category", "year" = "Fiscal Year")) %>% 
-  mutate(year = as.numeric(year),
-         aid = as.numeric(aid))
+fredr::fredr_set_key("afeafe7157073f92c7fd1cc2550f6218")
 
-combined <- aid %>% 
-  left_join(gdp) %>% 
-  mutate(aid.gdp = aid / (realgdp*1000000))
+us.cpi <- fredr(
+  series_id = "CPIAUCSL",
+  observation_start = as.Date("1947-01-01"),
+  observation_end = as.Date("2022-01-01")
+) |> 
+  dplyr::mutate(year = str_extract(date, "^\\d{4}"),
+                cpi = value/value[year == 2017]) |> 
+  group_by(year) |> 
+  dplyr::summarise(cpi = mean(cpi, na.rm = TRUE)) |> 
+  dplyr::mutate(year = as.numeric(year))
+
+us.gdp <- fredr(
+  series_id = "GDPC1",
+  observation_start = as.Date("1947-01-01"),
+  observation_end = as.Date("2022-01-01")
+) |> 
+  dplyr::mutate(year = str_extract(date, "^\\d{4}")) |> 
+  group_by(year) |> 
+  dplyr::summarise(gdp_real = mean(value, na.rm = TRUE)) |> 
+  dplyr::mutate(year = as.numeric(year)) |> 
+  left_join(us.cpi, by = "year") |> 
+  dplyr::mutate(gdp_real = (gdp_real/cpi)*1000000000)
 
 
-# economic aid over gdp
-ggplot(data = subset(combined, type == "Economic"), aes(x = year, y = aid.gdp, group = type)) +
-  geom_area(fill = "#1C77A3FF") + 
-  theme_flynn(base_size = 11, base_family = "Oswald") +
-  scale_x_continuous(breaks = seq(1950, 2015, 5)) +
-  scale_y_continuous(breaks = seq(0, 0.02, 0.005), limits = c(0,0.02), labels = scales::percent_format()) +
+us.aid <- readxl::read_xlsx(here::here("../../../../Data Files/US Government Files/US AID/us_foreignaid_greenbook.xlsx")) |>
+  slice(-c(1:6)) |> 
+  dplyr::rename("category" = `...4`,
+                "real_aid" = `...9`,
+                "year" = 1) |> 
+  filter(category == "Economic") |> 
+  dplyr::group_by(year) |> 
+  dplyr::summarise(real_aid = sum(as.numeric(real_aid), na.rm = TRUE)) |> 
+  dplyr::mutate(year = as.numeric(year)) |> 
+  left_join(us.gdp, by = "year") |> 
+  left_join(us.cpi, by = "year") |> 
+  dplyr::mutate(aid_over_gdp = (real_aid/gdp_real)*100)
+
+
+ggplot(us.aid, aes(x = year, y = aid_over_gdp)) +
+  geom_line() + 
+  theme_flynn(base_family = "oswald", base_size = 11) +
   labs(x = "Year",
-       y = "",
-       title = "US economic aid as a percent of GDP, 1950-2011",
-       subtitle = "What is the appropriate way to measure aid ''effort''?",
-       caption = "Aid data obtained from the State Department's Overseas Loans and Grants Green Book.\nGDP data obtained from Gleditsch's Expanded Trade and GDP Data (v6.0)")
+       y = "Aid as a % of GDP",
+       title = "US Economic Aid as a Percentage of GDP, 1947-2020")
+
 ```
+
+
+
+
 
 
 ##
@@ -208,7 +227,7 @@ ggplot(data = wardata, aes(x = duration/365, y = (((..count..)/sum(..count..)))*
 ```{r}
 #| fig-align: center
 
-terror.base <- fread("../../../../Data Files/START Data/globalterrorismdb_0522dist.csv")
+terror.base <- read_csv("../../../../Data Files/START Data/globalterrorismdb_0522dist.csv")
 
 # Terrorist attack types by group
 terror.groups <- terror.base %>% 
@@ -229,7 +248,7 @@ ggplot(terror.groups %>% filter(totalsuicide > 10 & gname != "Unknown"), aes(x =
   scale_x_continuous(expand = c(0, 1)) +
   labs(x = "Count of Suicide Attacks",
        y = "",
-       title = "Organizations Ranked by Total Number of Suicide Terror Attacks, 1970-2015",
+       title = "Organizations Ranked by Total Number of Suicide Terror Attacks, 1970-2020",
        subtitle = "Many of these groups probably look familiar, but which organizations do you not recognize?")
 
 ```
@@ -367,11 +386,11 @@ knitr::include_graphics("../images/slavery-profile.png", error = FALSE)
 
 Evaluation:
 
-- 4 Exams (60%)
+- 4 Exams (50%)
 
-- Homework (30%)
+- Homework (35%)
 
-- Attendance and Participation (10%)
+- Attendance and Participation (15%)
 
 Books:
 
@@ -382,7 +401,7 @@ Books:
 - Villa, Monique. 2019. Slaves Among Us: The Hidden World of Human Trafficking. Rowman & Littlefield.
 
 
-Syllabus can be found [here](https://polsc145.classes.m-flynn.com/syllabus-s2023.html)
+Syllabus can be found [here](https://polsc145.classes.m-flynn.com/syllabus-s2025.html)
 
 
 
@@ -402,3 +421,29 @@ Tips:
 
 - Keep the lines of communication open. Especially if you run into any difficulties during the semester.
 
+
+
+## Course Guidelines
+
+Plagiarism:
+
+- Don't do it!
+
+- Wait, what is it?
+
+- It's passing off someone else's work as your own, or not providing appropriate documentation and credit.
+
+- It can also be using the same work for multiple assignments without prior approval (even if you wrote it yourself!)
+
+- What to do and not to do...
+
+
+## Course Guidelines
+
+Tips for success:
+
+1. Attend class
+
+2. Do the readings
+
+3. Seek additional help

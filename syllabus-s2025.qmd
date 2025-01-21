@@ -213,7 +213,7 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
 #### Topics: 
 
   - Tuesday: Social scientific theories and methods II
-  - Thursday: Discuss @Bates2009
+  - Thursday: **IN CLASS** Discuss @Bates2009
 
 #### Read:
 
@@ -384,5 +384,7 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
 ## `r advdate(mon, 17)`: Finals Week
 
 #### Exam: Transnational Topics (Date TBD)
- 
+
+
+
 

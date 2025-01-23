@@ -74,7 +74,7 @@ html * {
 
 
 
-.inverse{
+.inverse {
   background-color: $ksu-purple !important;
 }
 
@@ -97,7 +97,7 @@ h2 {
 }
 
 /* Use a nesting structure with & to overrule the default h2 settings and create blank slide. */
-.blank-slide{
+.blank-slide {
   & h2 {
     background-color: #FFFFFF;
     border-width: 0px;

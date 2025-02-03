@@ -49,17 +49,33 @@ set.seed(66502)
 states <- peacesciencer::cow_states |> 
   filter(endyear == 2016)
 
-roster <- fread(here::here("homework/polsc145-s2024-roster.csv")) |> 
-  dplyr::select(Name)  |>  
+roster <- fread(here::here("homework/polsc145-s2025-roster.csv")) |> 
+  dplyr::select(Name) |>
+  dplyr::filter(grepl("^[A-Z]", Name)) |> # Remove empty rows
   rowwise() |> 
   mutate(`Country` = list(sample(states$statenme, replace = FALSE, 3))) |> 
   separate(Country, into = c("Country #1", "Country #2", "Country #3"), sep = ",") |> 
   mutate(across(starts_with("Country"), ~gsub(',|"|c\\(|\\)', "", .x)),
-         Name = gsub(",", ", ", Name))
+         Name = gsub(",", ", ", Name)) |> 
+  dplyr::mutate(`Country #1` = case_when(
+    grepl(".*Roys.*", Name) ~ "Japan",
+    TRUE ~ `Country #1`
+  ),
+  `Country #2` = case_when(
+    grepl(".*Roys.*", Name) ~ "Switzerland",
+    TRUE ~ `Country #2`
+  ),
+  `Country #3` = case_when(
+    grepl(".*Roys.*", Name) ~ "Poland",
+    TRUE ~ `Country #3`
+  )) 
 
 kableExtra::kable(roster, "html", booktabs = TRUE) |> 
   kable_styling(bootstrap_options = "striped") |> 
   scroll_box(height = "400px")
+
+
+
 ```
 
 

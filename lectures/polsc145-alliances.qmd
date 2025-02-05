@@ -1,0 +1,469 @@
+---
+title: "World Politics"
+subtitle: "Military Alliances"
+author: 
+  - Michael Flynn
+institute:
+  - Department of Political Science
+  - 011C Calvin Hall
+  - meflynn@ksu.edu
+  - "Last Updated `r Sys.Date()`"
+execute: 
+  warning: false
+  message: false
+format:
+  revealjs:
+    theme: [quarto-lecture-theme.scss, default]
+    #css: quarto-lecture-theme.css
+    slide-number: true
+    chalkboard: true
+    height: 900
+    width: 1600
+    margin: 0.1
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    #incremental: true
+    fig-width: 8
+    fig-height: 6
+    fig-align: center
+title-slide-attributes:
+    data-background-image: "ksu-seal.png"
+    data-background-size: 45%
+    data-background-position: bottom -38% right -19%
+---
+
+```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
+library(ggplot2)
+library(data.table)
+library(peacesciencer)
+library(tidyverse)
+library(janitor)
+library(here)
+library(ghibli)
+library(ggforce)
+library(scales)
+library(flynnprojects)
+
+knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
+
+sysfonts::font_add_google("Oswald", family = "oswald")
+showtext::showtext_auto()
+showtext::showtext_opts(dpi = 400)
+
+update_geom_defaults("text", list(size = 5, family = "oswald", fontface = "plain", lineheight = 1))
+
+```
+
+
+## Lecture Overview
+
+1. Alliances—what are they?
+
+2. Patterns in alliances over time
+
+3. Why and when do states form alliances?
+
+4. Other forms of security cooperation
+
+
+
+## Key Questions and Goals
+
+1. Develop an understanding of the factors that drive states to cooperate militarily in general
+
+2. Develop an understanding of the factors that drive more powerful states to ally with weaker states, specifically
+
+3. Define and understand the security-autonomy trade off
+
+4. Develop an understanding of how other issue areas, like trade, investment, and institutions, relate to alliance relationships
+
+
+
+
+# Defining Alliances
+
+
+
+## Defining Alliances
+
+We talk about alliances a lot, but what are they?
+
+> **Alliance** Institutions that help their members cooperate militarilty in the event of a war (FLS)
+
+- Note that Alliances are *formal* agreements
+
+- States with common interests and policy goals can coordinate action without formally defining their obligations
+
+- This means they're *aligned* but not necessarily *allied*
+
+
+
+
+
+## Defining Alliances
+
+Frieden, Lake, and Schultz offer a basic definition, but some additional detail might be helpful:
+
+Alliances Treaty Obligations and Provisions (ATOP) definition:
+
+> Written agreements, signed by official representatives of at least two independent states, that includ promises to aid a partner in the event of military conflict, to remain neutral in the event of conflict, to refrain from military conflict with one another, or to consult/cooperate in the even tof international crises that create the potential for military conflict (Leeds, Ritter, Mitchell, and Long 2002: 238).
+
+
+
+## Defining Alliances
+
+ATOP's definition includes five alliance pact types:
+
+1. Defense
+
+2. Offense
+
+3. Neutrality
+
+4. Nonaggression
+
+5. Consultation
+
+
+
+
+## {.blank-slide}
+
+```{r alliance-all}
+#| fig-align: center
+
+# need to build basic timeline data frame because not all types are present in all years
+time <- data.frame(highally = c("Defense", "Offense", "Neutrality", "Non-Aggression", "Consultation")) %>% 
+  mutate(year = rep(list(seq(1815, 2018)), 5)) %>% 
+  unnest(year)
+
+# Note that alliances still in effect have endyr coded 0. Don't know why. This seems like a silly coding method.
+allies <- fread(here("../../../../Data Files/ATOP 5_0 (csv)/atop5_0a.csv")) %>% 
+  group_by(atopid) %>% 
+  mutate(endyr = ifelse(endyr == 0, 2018, endyr),
+         year = list(seq(begyr, endyr))) %>% 
+  dplyr::select(atopid, year, defense, offense, neutral, nonagg, consul, bilat) %>% 
+  mutate(provisions = sum(defense, offense, neutral, nonagg, consul),
+         highally = case_when(
+           defense == 1 ~ "Defense",
+           defense == 0 & offense == 1 ~ "Offense",
+           defense == 0 & offense == 0 & neutral == 1 ~ "Neutrality",
+           defense == 0 & offense == 0 & neutral == 0 & nonagg == 1 ~ "Non-Aggression",
+           defense == 0 & offense == 0 & neutral == 0 & nonagg == 0 & consul == 1 ~ "Consultation",
+         )) %>% 
+    unnest(year) 
+
+
+ally.year <- time %>% 
+  left_join(allies) %>% 
+  group_by(year, highally) %>% 
+  dplyr::summarise(allycount = n_distinct(atopid)) %>% 
+  mutate(highally = factor(highally, levels = c("Defense", "Offense", "Neutrality", "Non-Aggression", "Consultation")))
+
+
+
+
+#ghibli::ghibli_palettes$MarnieDark1
+
+ggplot(ally.year, aes(x = year, y = allycount, group = highally)) +
+  geom_area(fill = "#2F1619FF") +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_continuous(breaks = seq(1815, 2020, 15)) +
+  labs(x = "Year",
+       y = "Count",
+       title = "Alliances in the international system, 1815-2016",
+       subtitle = "Where do we see major changes in the number of alliances?",
+       caption = "Data obtained from the Alliance Treaty Obligations and Provisions (ATOP) Data: http://www.atopdata.org/")
+
+  
+```
+
+
+
+## {.blank-slide}
+
+```{r alliance-disaggregated}
+#| fig-align: center
+
+ggplot(ally.year, aes(x = year, y = allycount, group = highally, fill = highally)) +
+  geom_area(color = "white", size = 0.2) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_continuous(breaks = seq(1815, 2020, 15)) +
+  viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
+  labs(x = "Year",
+       y = "Count",
+       fill = "Commitment Type",
+       title = "Alliances in the international system, 1815-2016",
+       subtitle = "Where do we see major changes in the number of alliances?",
+       caption = "Data obtained from the Alliance Treaty Obligations and Provisions (ATOP) Data: http://www.atopdata.org/")
+
+```
+
+
+
+## {.blank-slide}
+
+```{r alliance-disaggregated-percent}
+#| fig-align: center
+
+ggplot(ally.year, aes(x = year, y = allycount, group = highally, fill = highally)) +
+  geom_area(position = "fill", color = "white", size = 0.2) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_continuous(breaks = seq(1815, 2020, 15), expand = c(0,0)) +
+  scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+  viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
+  labs(x = "Year",
+       y = "Count",
+       fill = "Commitment Type",
+       title = "Alliances in the international system, 1815-2016",
+       subtitle = "Where do we see major changes in the number of alliances?",
+       caption = "Data obtained from the Alliance Treaty Obligations and Provisions (ATOP) Data: http://www.atopdata.org/")
+
+```
+
+
+
+
+
+# Alliances as Institutions
+
+
+
+
+## Alliances as Institutions
+
+Alliance agreements outline rules and guidelines for cooperation
+
+- Some may be narrow in scope
+
+- Others can be more comprehensive
+
+
+
+
+
+## Alliances as Institutions
+
+
+::::{.columns}
+:::{.column width=50%}
+Example: North Atlantic Treaty Organization (NATO)
+
+- Annual review process, meetings, etc.
+
+- Rules for expansion, leaving
+
+- US enjoys specific privileges and advantages
+
+- 14 Articles
+
+  - Article V: Central to collective defense
+  
+  - Remaining 13 articles are also really important and talk a lot about mutual obligations and goals.
+
+:::
+
+:::{.column width=50%}
+
+```{r, out.width="60%", fig.align="center", fig.cap="Christopher G. Cavoli, U.S. Army. Commander of United States Eurpean Command and Supreme Allied Commander Europe."}
+knitr::include_graphics("https://www.eucom.mil/Img/42145/Medium/commander")
+```
+:::
+::::
+
+
+
+
+## {.blank-slide}
+
+```{r, out.width="45%", fig.cap="Occupied Germany following World War II"}
+knitr::include_graphics("../../../media/Occupied Germany.png", error = FALSE)
+```
+
+
+
+
+# Why Do States Form Alliances?
+
+
+
+## Why Do States Form Alliances?
+
+A few primary reasons:
+
+- Increase security
+
+- Augment/supplement capabilities
+
+- Balance against rival powers
+
+- Promote other goals
+
+  - Expand influence within regions
+  
+  - Promote trade and investment
+  
+  - Promote other ideological or political goals
+  
+  
+  
+
+
+
+## Why Do States Form Alliances?
+
+Security and capabilities
+
+- Allies supplement your own capabilities 
+
+- Burden sharing
+
+- These can affect other goals
+
+  - Deter rivals
+  
+  - Facilitate attacks against enemies
+  
+  
+  
+  
+## Why Do States Form Alliances?
+
+These things can affect bargaining environment
+
+- Increases in capabilities may reduce uncertainty
+
+- Public commitments may reveal private information, further reducing uncertainty
+
+- Augment cost and benefit calculus
+
+  - Alliances distribute costs across alliance members
+  
+  - Distribution of benefits may be more/less concentrated
+  
+  - Depends upon the public/private nature of the goods
+
+  
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+fat.data <- readxl::read_xlsx(here("../../../../Data Files/icasualties/afghan-iraq-fatalities.xlsx")) %>%
+  mutate(NonUS = Total - US) %>% 
+  select(Year, War, US, NonUS) %>% 
+  pivot_longer(cols = c(3,4),
+               names_to = "country",
+               values_to = "deaths")
+
+ggplot(fat.data, aes(x = Year, y = deaths, fill = country)) +
+  geom_bar(stat = "identity", position = "stack", color = "black", size = 0.1) +
+  facet_wrap(. ~ War) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(x = "Year",
+       y = "Count",
+       fill = "Country",
+       title = "Coalition deaths in Afghanistan and Iraq, 2001-2020",
+       caption = "Data obtained from icasualties.org")
+
+
+```
+
+
+
+
+## {.blank-slide}
+
+```{r coalition fatalities percent}
+#| fig-align: center
+
+fat.perc <- readxl::read_xlsx(here("../../../../Data Files/icasualties/afghan-iraq-fatalities.xlsx")) %>%
+  mutate(percent = US/Total)
+
+ggplot(fat.perc, aes(x = Year, y = percent, color = War, linetype = War)) +
+  geom_line(size = 1.5) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_color_brewer(palette = "Set2") +
+  scale_y_continuous(labels = scales::percent_format()) +
+  guides(linetype = FALSE) +
+  labs(x = "Year",
+       y = "Percent",
+       color = "Conflict",
+       title = "US fatalities as a percentage of total coalition fatalities",
+       subtitle = "Coalition warfighting can spread risk to many states.",
+       caption = "Data obtained from icasualties.org")
+
+#ggsave(here::here("images/burden-sharing-figure.pdf"),
+#       height = 5, 
+#       width = 8)
+```
+
+
+
+
+## Why Do States Form Alliances?
+
+Asymmetric Alliances
+
+- Not all alliances are between equals in power
+
+- Strong states frequently ally with weaker states
+
+--
+
+But why? Lots of reasons
+
+- Project power
+
+- Lower costs of power projection
+
+- Increase influence over smaller states' foreign policies
+
+- Secure commercial relationships
+
+
+
+## Why Do States Form Alliances?
+
+Security-Autonomy Tradeoff
+
+- States give up foreign policy autonomy in exchange for protection
+
+- Smaller states' considerations
+
+  - External threats
+  - Constrained budgets
+  - Coercive patron state
+  
+- Larger states' considerations
+
+  - Importance of smaller states' foreign policy choices
+  - Geographic position of smaller state
+  - Need to project power and force into particulate spaces?
+  
+  
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+bases <- troopdata::basedata 
+
+mapdata <- cshapes::cshp(date = as.Date("2019-01-01"))
+
+ggplot() +
+  geom_sf(data = mapdata, fill = "gray90", color = "black", size = 0.1) +
+  geom_point(data = bases, aes(x = lon, y = lat), color = "purple", size = 4, alpha = 0.5) +
+  theme_void() +
+  theme(plot.title = element_text(family = "oswald", face = "bold", size = 20),
+        plot.caption = element_text(family = "oswald", size = 9)) +
+  coord_sf() +
+  labs(title = "US overseas military facilities around the globe, 1950-2018",
+       caption = "Data obtained from {troopdata} package and originally compiled by David Vine (2017).")
+```
+
+

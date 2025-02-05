@@ -1,0 +1,463 @@
+---
+title: "World Politics"
+subtitle: "Bargaining Models of War"
+author: 
+  - Michael Flynn
+institute:
+  - Department of Political Science
+  - 011C Calvin Hall
+  - meflynn@ksu.edu
+  - "Last Updated `r Sys.Date()`"
+execute: 
+  warning: false
+  message: false
+format:
+  revealjs:
+    theme: [quarto-lecture-theme.scss, default]
+    #css: quarto-lecture-theme.css
+    slide-number: true
+    chalkboard: true
+    height: 900
+    width: 1600
+    margin: 0.1
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    #incremental: true
+    fig-width: 8
+    fig-height: 6
+    fig-align: center
+title-slide-attributes:
+    data-background-image: "ksu-seal.png"
+    data-background-size: 45%
+    data-background-position: bottom -38% right -19%
+---
+
+```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
+library(ggplot2)
+library(data.table)
+library(peacesciencer)
+library(tidyverse)
+library(janitor)
+library(kableExtra)
+library(here)
+library(ghibli)
+library(viridis)
+library(flynnprojects)
+
+#devtools::install_github("meflynn/flynnprojects")
+
+
+knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
+
+sysfonts::font_add_google("Oswald", family = "oswald")
+showtext::showtext_auto()
+showtext::showtext_opts(dpi = 400)
+
+
+```
+
+
+
+
+## Lecture Overview
+
+1. The Puzzle of War
+
+2. Review Previous Explanations
+
+3. Conceptualizing War in a Bargaining Framework
+
+
+
+## Key Questions and Goals
+
+1. What does it mean when we refer to the "puzzle" of war?
+
+2. What are the three sources of bargaining failure?
+
+3. How can states seek to communicate or signal things like resolve?
+
+4. How does the bargaining model build on previous ways of thinking about war?
+
+
+
+
+# The Puzzle of War
+
+
+
+
+
+## The Puzzle of War
+
+Why do states go to war?
+
+- War is very costly
+
+  - Militaries are expensive
+
+  - Lots of suffering
+
+- Opportunity costs
+
+- War can also be highly unpredictable
+
+:::{.notes}
+
+- War is incredibly costly
+- Rarely is there an all-or-nothing situation where it is impossible to negotiate some middle ground
+- So why can’t states settle on an agreement that leaves both sides better off while avoiding the costs of actual war?
+
+:::
+
+
+
+
+
+
+## The Puzzle of War
+
+More specifically
+
+> Given that war is incredibly costly for both sides, why can't states negotiate a settlement that leaves both sides better off?
+
+
+
+
+## The Puzzle of War
+
+Previous explanations
+
+- Bad people
+
+- Anarchy
+
+- Imbalances of power
+
+:::{.notes}
+
+- Bad people don't always go to war. Sometimes good people go to war.
+- Waltz argues that because there is no overarching authority, there is nothing to stop states from going to war. However, anarchy is constant. Can’t explain variation in outcomes. Why aren’t more powerful states always attacking weaker? We observe cooperation under anarchy, so why can’t states reach a settlement?
+- Power imbalances: When one state is more powerful than another it will seek to dominate the less powerful state. This doesn’t explain why states couldn’t reach a bargain.
+
+:::
+
+
+
+
+
+# Conceptualizing War
+
+
+
+
+
+## Conceptualizing War
+
+::::{.columns}
+:::{.column width=50%}
+Carl von Clausewitz
+
+- 1780-1831
+
+- Prussian General
+
+- Military Theorist
+
+- Author of *On War*
+
+:::
+
+:::{.column width=50%}
+```{r clausewitz, out.width="70%", fig.align="center"}
+knitr::include_graphics("https://www.clausewitz.com/images/Clausewitz-romantik.jpg", error = FALSE)
+```
+
+:::
+::::
+
+:::{.notes}
+
+- "War is the continuation of politics by other means."
+- Bargaining framework conceptualizes war as one possible option in the broader bargaining/negotiation taking place between states.
+- "It is, of course, well-known that the only source of war is politics—the intercourse of governments and peoples; but it is apt to be assumed that war suspends that intercourse and replaces it by a wholly different condition, ruled by no law but its own…We maintain, on the contrary, that war is simply a continuation of political intercourse, with the addition of other means. We deliberately use the phrase “with the addition of other means” because we also want to make it clear that war in itself does not suspend political intercourse or change it into something entirely different." Page 605.
+
+:::
+
+
+
+
+
+## Conceptualizing War
+
+
+
+> **Bargaining Model**: A class of itneractions in which actors try to resolve disputes over the allocation of goods.
+
+
+
+:::{.notes}
+
+Schelling supplementary discussion: "[M]ost conflict situations are essentially bargaining situations. They are situations in which the ability of one participant to gain his ends is dependent to an important degree on the choices or decisions that the other participant will make…To characterize the maneuvers and actions of limited war as a bargaining process is to emphasize that, in addition to the divergent of interest over the variables in dispute, there is a powerful common interest in reaching an outcome that is not enormously destructive of values to both sides. A ‘successful’ employees’ strike is not one that destroys the employer financially, it may even be one that need takes place. Something similar can be true of war." (Schelling 1960, 5–6).
+
+:::
+
+
+## Conceptualizing War
+
+> **Crisis Bargaining**: A bargaining interaction in which at least one actor threatens to use force in the event that its demands are not met.
+
+> **Coercive Diplomacy**: The use of threats to influence the outcome of a bargaining interaction.
+
+
+
+## Conceptualizing War
+
+```{r}
+
+table <- tribble(~Variable, ~Notation, ~Value,
+                "Total Value of the good in dispute", "V", 100,
+                "Pre-War bargain share of good", "B", 90,
+                "Expected cost of war", "C", 20,
+                "Value of victory", "V-C", 80,
+                "Value of defeat", "0-C", -20) %>% 
+  kbl(caption = "Basic Bargaining Model Components", align = c("lcc")) %>% 
+  kable_styling(bootstrap_options = "striped", full_width = TRUE) %>% 
+  row_spec(0, color = "white", background = "#512888", bold = TRUE) %>%
+  column_spec(1, width = "10cm") %>% 
+  column_spec(2, width = "4cm") %>% 
+  column_spec(3, width = "4cm") 
+  
+table
+
+```
+
+
+
+## {.blank-slide}
+
+```{r, out.width="40%", fig.align='center'}
+knitr::include_graphics("../images/WORPOL3_FIGUN03.p99.jpg", error = FALSE)
+```
+
+
+## {.blank-slide}
+
+```{r, out.width="40%", fig.align='center'}
+knitr::include_graphics("../images/WORPOL3_FIGUN03.p98.jpg", error = FALSE)
+```
+
+
+
+
+## Conceptualizing War
+
+Mexican-American War (1846-1848)
+
+- US offered Mexico $35 million in cash and debt forgiveness (about \$800 million + in constant dollars)
+
+- US Paid $15 million after the war
+
+- Cost of war to US: $\approx$ $100 million; 13,000+ deaths
+
+- Cost of war to Mexico: $\approx$ 25,000 dead; large economic losses
+
+
+
+
+## {.blank-slide}
+
+```{r ottoman rail networks, out.width="65%", fig.align="center"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f9/Map_of_Ottoman_Rail_Network_in_World_War_I.jpg", error = FALSE)
+```
+
+:::{.notes}
+
+British shelling of Baghdad railway at Alexandretta
+
+- December 20 1914 the HMS Doris begins shelling the Baghdad railway near Alexandretta. Alexandretta is a major hub where troops and supplies are ferried between the Middle East and Europe.
+
+- After the attack, the Doris sails into the harbor at Alexandretta under a white flag. British demand Ottoman garrison surrender all rail stock and war material for the British to destroy. If the Ottomans refused the British threatened to shell the city. Giving fair warning to an unfortified position fulfilled British obligations under Geneva Conventions. 
+
+- Cemal Pasha, one of the ruling triumvirate of Turkey, refused British demands. If the British shelled Alexandretta, Cemal threatened to destroy equivalent British properties in Syria. Cemal refuses to evacuate Ottoman citizens and threatens to execute an equivalent number of British POWs for any Ottoman citizens killed in the British attack. 
+
+- Americans agree to mediate the dispute. Verify that no Ottoman troops are in Alexandretta, and that no Ottoman munitions are apparent in the city or on nearby railways. Negotiate the destruction of two train engines, which were supposed to be the only war material in Alexandretta, to satisfy British objectives. Incident concluded with British sailing away and the incident deescalated. 
+
+- Note that Americans provided credible information regarding presence and amount of war material. Ottoman claims were initially not credible. 
+
+- Cost of fighting to British is loss of British property and POW’s lives, possibly their ships. Also possible that they lose all of this and there’s no real war material to destroy. 
+
+:::
+
+
+
+
+# Sources of Bargaining Failure
+
+
+
+
+## Sources of Bargaining Failure
+
+Three primary reason bargaining fails
+
+1. Private/incomplete information
+
+2. Commitment problems
+
+3. Issue indivisibility
+
+
+
+
+## Sources of Bargaining Failure
+
+Private or Incomplete information
+
+- More information about your own position than your opponent's
+
+- Unknown, or hard to know, variables that may include:
+
+  - Capabilities
+  
+  - Resolve
+  
+- Leads to poor estimates of essential factors
+
+
+
+## {.blank-slide}
+
+```{r russo japanese war, out.width="75%", fig.cap="In the Battle of the Sha River, a Company of Our Forces Drives a Strong Enemy Force to the Left Bank of the Taizi River” by Yoshikuni, November 1904."}
+knitr::include_graphics("https://visualizingcultures.mit.edu/throwing_off_asia_01/image/2000_472_l.jpg")
+```
+
+
+:::{.notes}
+- Russians viewed their chances of winning as nearly 100%. Japanese estimated chances at about 50%. 
+Japanese sent many feelers and attempted to negotiate with the Russians. Russians did not make any real compromises because they believed the Japanese would back down. 
+
+- Historians argue that Japanese intelligence was better than Russian intelligence (and Western intelligence more broadly) and the Japanese had a better sense of their own fighting abilities. Since the Japanese forces had been modernizing, training, and reequipping themselves, no- body else had really seen them fight in actual combat. The Russians believed that the Japanese were over-representing their own military skills in an effort to get a better deal, but the Japanese claims were indeed accurate.
+:::
+
+
+## Sources of Bargaining Failure 
+
+::::{.columns}
+:::{.column width=50%} 
+
+![George W. Bush](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/1200px-George-W-Bush.jpeg){align="center" width=500px height=700px}
+:::
+
+:::{.column width=50%} 
+![Saddam Husssein](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Saddam_Hussein_at_trial%2C_July_2004-edit1.JPEG/1200px-Saddam_Hussein_at_trial%2C_July_2004-edit1.JPEG){align="center" width=500px height=700px}
+:::
+::::
+
+
+:::{.notes}
+
+George W. Bush’s threats to invade Iraq. 
+
+- US demanded that Saddam destroy his capabilities to produce chemical and biological weapons. Saddam did this during the 1990s, but he believed that the US was misrepresenting its willingness to invade Iraq, given a ongoing war in Afghanistan. He also had an incentive to misrepresent himself because he was wary of Iran. 
+
+:::
+
+
+## Sources of Bargaining Failure
+
+Private Incomplete Information
+
+- Why not just tell your opponent? 
+
+- Credibility
+
+- Big incentives to bluff
+
+
+:::{.notes}
+
+- Why not tell your opponent? 
+- Is your information credible?
+- States have big incentives to bluff. If you can lie about your capabilities and get a better deal, then you come out ahead and the other state looks weak and incompetent. 
+
+:::
+
+
+## {.blank-slide}
+
+```{r, fig.cap="Map of US overseas military deployments in 1950."}
+library(sf)
+
+troop.data <- troopdata::get_troopdata(startyear = 1950, endyear = 1950) %>% 
+  filter(ccode != 2) %>% 
+  mutate(ccode = ifelse(ccode == 260, 255, ccode))
+
+
+map.base <- rnaturalearth::ne_countries(returnclass = "sf") |> 
+  filter(admin != "Antarctica")
+
+map.1950 <- cshapes::cshp(date = as.Date("1950-01-01")) %>%  
+  dplyr::mutate(., ccode = countrycode::countrycode(gwcode, "gwn", "cown")) %>% 
+  left_join(troop.data, by = "ccode")
+
+
+ggplot() +
+  geom_sf(data = map.base, aes(geometry = geometry), fill = "gray90", color = "gray90", size = 0.1) +
+  geom_sf(data = map.1950, aes(geometry = geometry, fill = troops_ad), color = "white", size = 0.1) +
+  theme_flynn_map() +
+  theme(text = element_text(family = "oswald"),
+        legend.position = "bottom",
+        legend.key.width = unit(2, units = "cm")) +
+  viridis::scale_fill_viridis(option = "magma", direction = -1, begin = 0.1, end = 0.9, na.value = "gray90", breaks = c(0, 20, 200, 2000, 20000, 200000), limits = c(0, 200000), trans = "log1p", label = scales::comma_format()) +
+  coord_sf(crs = st_crs("ESRI:54030")) +
+  labs(fill = "Deployment\nSize",
+       title = "US overseas military deployments, 1950")
+
+```
+
+:::{.notes}
+
+- Steps can be taken to communicate things like resolve and capabilities.
+- Tying hands/ US troop deployments as signals of willingness and resolve. US has deployed military forces throughout the globe. High-density deployments are located in areas like West Germany, Korea, and Japan. The idea is that if anyone attacks an ally, the US will automatically be involved.
+:::
+
+
+## Sources of Bargaining Failure
+
+Commitment Problems
+
+- Can states agree to a deal and not try to renegotiate or make additional demands in the future?
+
+- Some bargaining arrangements necessarily widen power disparities
+
+- Other deals are made against the backdrop of changing power dynamics
+
+:::{.notes}
+Notes
+
+- Necessarily dynamic—these involve thinking about the future 
+- Even if a deal can be struck now, there are risks associated with the future distribution 
+of power. 
+- Some goods affect the distribution of power. Bargains over them at time t will not necessarily hold over time, as states have an incentive to press for greater demands at time t + 1.
+
+:::
+
+
+
+## Sources of Bargaining Failure
+
+Issue Indivisibility
+
+- Can all goods be divided?
+
+- Does dividing a good destroy its value?
+
+- Indivisibility implies impossibility of compromise
+
+- Skepticism
+
+  - Incentives to bluff
+  
+  - Is physical partition the only solution?
+

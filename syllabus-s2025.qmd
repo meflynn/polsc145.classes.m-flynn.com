@@ -10,7 +10,7 @@ csl: bib/apsr-bibliography.csl
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-mon <- as.Date("2025-01-13")
+mon <- as.Date("2025-01-20")
 
 advdate <- function(obj, adv){
   tmon <- obj + 7*(adv - 1)

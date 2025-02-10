@@ -213,7 +213,7 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
 #### Topics: 
 
   - Tuesday: Social scientific theories and methods II
-  - Thursday: **IN CLASS** Discuss @Bates2009
+  - Thursday: **IN CLASS** Discuss @Bates2009 (Moved because of sick day)
 
 #### Read:
 
@@ -224,8 +224,8 @@ ggplot(dfr, aes(x = day, y = reorder(week, -week), fill = comment)) +
 
 #### Topics: 
 
-  - Tuesday: War as an empirical phenomenon
-  - Thursday: War as a bargaining process
+  - Tuesday: **IN CLASS** Discuss @Bates2009
+  - Thursday: War as an empirical phenomenon
 
 #### Read: 
 

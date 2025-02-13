@@ -468,8 +468,7 @@ ggplot(data = combined, aes(x = year, y = Value, fill = Category)) +
 
 :::{.notes}
 
-# Interactive part
-
+Interactive part
 - Ask students to list which wars they think are the most deadly?
 - Which wars do you think are the longest?
 :::
@@ -722,7 +721,7 @@ Levels of analysis:
 ## Analytical Approaches to Studying War
 
 ::::{.columns}
-:::{.colulmn width=50%}
+:::{.column width=50%}
 Individual-level explanations
 
 - Human nature (People are just violent)
@@ -747,7 +746,7 @@ Criticisms
 ## Analytical Approaches to Studying War
 
 ::::{.columns}
-:::{.colulmn width=50%}
+:::{.column width=50%}
 State-level explanations
 
 - Characteristics of individual units determine behavior
@@ -770,12 +769,13 @@ Criticisms
 
 - Often ignores subnational variation (i.e. changing parties in government, social movements, etc.)
 :::
+::::
 
 
 ## Analytical Approaches to Studying War
 
 ::::{.columns}
-:::{.colulmn width=50%}
+:::{.column width=50%}
 System-level explanations
 
 - Individual parts do not explain outcomes
@@ -787,7 +787,7 @@ System-level explanations
   - Distribution/balance of power
   
   - Blocs of states
-
+  
 :::
 
 :::{.column width=50%}
@@ -801,3 +801,4 @@ Criticisms
 - Normative objections: Do we hold leaders accountable for their decisions if they're just responding to structural incentives and forces?
 
 :::
+::::

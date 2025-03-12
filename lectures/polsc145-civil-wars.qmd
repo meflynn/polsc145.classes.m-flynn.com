@@ -1,0 +1,975 @@
+---
+title: "World Politics"
+subtitle: "Civil Wars"
+author: 
+  - Michael Flynn
+institute:
+  - Department of Political Science
+  - 011C Calvin Hall
+  - meflynn@ksu.edu
+  - "Last Updated `r Sys.Date()`"
+execute: 
+  warning: false
+  message: false
+format:
+  revealjs:
+    theme: [quarto-lecture-theme.scss, default]
+    #css: quarto-lecture-theme.css
+    slide-number: true
+    chalkboard: true
+    height: 900
+    width: 1600
+    margin: 0.1
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    #incremental: true
+    fig-width: 8
+    fig-height: 6
+    fig-align: center
+title-slide-attributes:
+    data-background-image: "ksu-seal.png"
+    data-background-size: 45%
+    data-background-position: bottom -38% right -19%
+---
+
+
+```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
+#remotes::install_github("gadenbuie/xaringanExtra")
+
+library(ggplot2)
+library(data.table)
+library(peacesciencer)
+library(kableExtra)
+library(tidyverse)
+library(janitor)
+library(here)
+library(ghibli)
+library(ggforce)
+library(scales)
+library(rmapshaper)
+library(sf)
+library(sp)
+library(tmap)
+library(raster)
+library(broom)
+library(xaringanExtra)
+library(flynnprojects)
+
+
+knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
+
+sysfonts::font_add_google("Oswald", family = "oswald")
+showtext::showtext_auto()
+showtext::showtext_opts(dpi = 400)
+
+
+update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
+
+
+
+```
+
+
+## Lecture Overview
+
+1. Defining civil wars (revisited)
+
+2. Why do we see civil wars?
+
+3. Bargaining problems
+
+4. Strategies
+
+
+
+## Key Questions and Goals
+
+1. Be able to recognize some of the issues and challenges that make civil wars different from inter-state wars
+
+2. What factors motivate individuals to rebel against their governments?
+
+3. How do geographic and spatial factors affect mobilization, onset, and duration of civil wars?
+
+
+
+## {.blank-slide}
+
+<iframe width="700" height="375" src="https://www.youtube.com/embed/y2TLJmIF220" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+
+
+
+
+
+# Defining Civil Wars
+
+
+
+
+## Defining Civil Wars
+
+> **Civil War**: A war in which the main participants are within the same state, such as the government and a rebel group.
+
+You can also call these intrastate wars.
+
+
+
+
+## {.blank-slide}
+
+```{r wars-combined-disaggregated}
+#| fig-align: center
+
+war_interstate <- fread(here("../../../../Data Files/COW Data/Inter-StateWarData_v4.0.csv"))
+war_intrastate <- fread(here("../../../../Data Files/COW Data/Intra-StateWarData_v4.1.csv"))
+war_extrastate <- fread(here("../../../../Data Files/COW Data/Extra-StateWarData_v4.0.csv"))
+war_nonstate <- fread(here("../../../../Data Files/COW Data/Non-StateWarData_v4.0.csv"))
+
+war_interstate <- war_interstate %>% 
+  distinct(WarNum, .keep_all = TRUE) %>% 
+  rowwise() %>% 
+  mutate(year = list(seq(StartYear1, EndYear1))) %>%
+  ungroup() %>% 
+  unnest() %>% 
+  arrange(WarNum, year) %>% 
+  dplyr::select(WarNum, year) %>% 
+  distinct(WarNum, year) %>% 
+  group_by(year) %>% 
+  summarise(numinterwars = n()) -> numinterwars
+
+war_intrastate <- war_intrastate %>% 
+  distinct(WarNum, .keep_all = TRUE) %>% 
+  rowwise() %>% 
+  filter(!is.na(EndYear1)) %>% 
+  mutate(year = list(seq(StartYear1, EndYear1))) %>% 
+  ungroup() %>% 
+  unnest() %>% 
+  arrange(WarNum, year) %>% 
+  dplyr::select(WarNum, year) %>% 
+  distinct(WarNum, year) %>% 
+  group_by(year) %>% 
+  summarize(numintrawars = n()) -> numintrawars 
+
+war_extrastate <- war_extrastate %>% 
+  rowwise() %>% 
+  filter(!is.na(EndYear1)) %>% 
+  filter(EndYear1 >= 1816) %>% 
+  mutate(year = list(seq(StartYear1, EndYear1))) %>% 
+  ungroup() %>% 
+  unnest() %>% 
+  arrange(WarNum, year) %>% 
+  dplyr::select(WarNum, year) %>% 
+  distinct(WarNum, year) %>% 
+  group_by(year) %>% 
+  summarise(numextrawars = n()) -> numextrawars
+
+war_nonstate <- war_nonstate %>% 
+  rowwise() %>% 
+  filter(!is.na(EndYear)) %>% 
+  mutate(year = list(seq(StartYear, EndYear))) %>% 
+  ungroup() %>% 
+  unnest() %>% 
+  arrange(WarNum, year) %>% 
+  dplyr::select(WarNum, year) %>% 
+  distinct(WarNum, year) %>% 
+  group_by(year) %>% 
+  summarize(numnonwars = n()) -> numnonwars
+
+combined <- tibble(year = seq(1816,2007)) %>% 
+  left_join(., numinterwars) %>% 
+  left_join(., numintrawars) %>%
+  left_join(., numextrawars) %>% 
+  left_join(., numnonwars) %>% 
+  mutate_all(funs(replace(., is.na(.), 0))) %>% 
+  mutate(`Inter-State` = numinterwars,
+         `Intra-State` = numintrawars,
+         `Extra-State` = numextrawars,
+         `Non-State` = numnonwars) %>% 
+  gather(Category, Value, `Inter-State`:`Non-State`) %>% 
+  mutate(Category = forcats::fct_relevel(Category, "Inter-State", "Intra-State", "Extra-State", "Non-State"),
+         total = numinterwars+numintrawars+numextrawars+numnonwars) 
+
+combined_annual <- combined %>% 
+  group_by(year) %>% 
+  dplyr::summarise(., total = sum(Value)) %>% 
+  arrange(., year)
+
+
+ggplot(data = combined, aes(x = year, y = Value, fill = Category)) +
+  geom_area(alpha = .8, colour = "black", size = .1, alpha = .8) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_continuous(breaks = seq(1815,2010,15)) +
+  scale_y_continuous(breaks = seq(0,30,5), limits = c(0,30)) +
+  viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
+  labs(caption = "Data obtained from Correlates of War Data: http://www.correlatesofwar.org/data-sets/COW-war",
+       x = "Year", 
+       y = "", 
+       title = "Inter-state wars are very prominent",
+       subtitle = "But what can we learn from the changing frequency of different types of war over time?") 
+
+
+```
+
+
+## {.blank-slide}
+
+```{r wars-combined-disaggregated-percent}
+#| fig-align: center
+
+ggplot(data = combined, aes(x = year, y = Value, fill = Category)) +
+  geom_area(position = "fill", colour = "black", size = .1, alpha = .8) +
+  scale_x_continuous(breaks = seq(1815,2010,15), expand = c(0,0)) +
+  scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+  viridis::scale_fill_viridis(option = "magma", discrete = TRUE) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  labs(caption = "Data obtained from Correlates of War Data: http://www.correlatesofwar.org/data-sets/COW-war",
+       x = "Year", 
+       y = "", 
+       title = "Inter-state wars are very prominent",
+       subtitle = "But what can we learn from the changing frequency of different types of war over time?") 
+  
+```
+
+
+
+
+## Defining Civil War
+
+::::{.columns}
+:::{.column width=50%}
+The United States' Civil War
+
+- 1861-1865
+
+- Issues at stake
+
+  - Territory (Secession)
+  
+  - Government control (Secession)
+  
+  - Policy (Slavery)
+:::
+
+:::{.column width=50%}
+
+```{r, fig.cap="CSA President Jefferson David and United States President Abraham Lincoln."}
+knitr::include_graphics("https://georgiainfo.galileo.usg.edu/gastudiesimages/Jefferson%20Davis-Abraham%20Lincoln.jpg", error = FALSE)
+```
+
+:::
+::::
+
+
+:::{.notes}
+
+Notes
+
+American Civil War
+- This is what we typically think of. 
+- Policy dispute was slavery. Secession was the solution to the inability to control the federal government or to successfully take over the North. 
+- Articles for Mississippi, South Carolina, Georgia, Texas, and Virginia (Virginia's secession ordinance) mention slavery 84 times as a justification for secession.  
+
+
+- Mississippi’s Articles of Secession: 
+
+>Our position is thoroughly identified with the institution of slavery—the greatest material interest of the world. Its labor supplies the product which constitutes by far the largest and most important portions of commerce of the earth. These products are peculiar to the climate verging on the tropical regions, and by an imperious law of nature, none but the black race can bear exposure to the tropical sun. These products have become necessities of the world, and a blow at slavery is a blow at commerce and civilization. That blow has been long aimed at the institution, and was at the point of reaching its consummation. There was no choice left us but submission to the mandates of abolition, or a dissolution of the Union, whose principles had been subverted to work out our ruin.
+
+- Texas Declaration of Secession: 
+
+>We hold as undeniable truths that the governments of the various States, and of the confederacy itself, were established exclusively by the white race, for themselves and their posterity; that the African race had no agency in their establishment; that they were rightfully held and regarded as an inferior and dependent race, and in that condition only could their existence in this country be rendered beneficial or tolerable.
+
+> That in this free government all white men are and of right ought to be entitled to equal civil and political rights; that the servitude of the African race, as existing in these States, is mutually beneficial to both bond and free, and is abundantly authorized and justified by the experience of mankind, and the revealed will of the Almighty Creator, as recognized by all Christian nations; while the destruction of the existing relations between the two races, as advocated by our sectional enemies, would bring inevitable calamities upon both and desolation upon the fifteen slave-holding states.
+
+
+- https://www.battlefields.org/learn/primary-sources/declaration-causes-seceding-states#virginia
+- https://www.historians.org/teaching-and-learning/teaching-resources-for-historians/the-decision-to-secede-and-establish-the-confederacy-a-selection-of-primary-sources
+- https://avalon.law.yale.edu/19th_century/csa_texsec.asp
+- https://avalon.law.yale.edu/19th_century/csa_geosec.asp
+- https://avalon.law.yale.edu/19th_century/csa_missec.asp
+- https://avalon.law.yale.edu/19th_century/csa_scarsec.asp
+
+:::
+
+
+## Defining Civil War
+
+::::{.columns}
+:::{.column width=50%}
+Multiple Iraqi-Kurd Wars
+
+- 1961-1990s
+
+- Issues at stake
+
+  - Policy
+  
+  - Greater regional autonomy
+  
+  - Budget distribution
+  
+  - Oil revenues
+:::
+
+:::{.column}
+
+```{r, fig.cap="A group of female guerrillas in the Qandil mountains, Kurdistan, 2013."}
+
+knitr::include_graphics("https://s4.reutersmedia.net/resources/r/?m=02&d=20190709&t=2&i=1406216790&w=780&fh=&fw=&ll=&pl=&sq=&r=2019-07-09T183148Z_12326_MRPRC1145721B60_RTRMADP_0_IRAQ-IRAN-PESHMERGA-FEMALES", error = FALSE)
+```
+:::
+::::
+
+
+
+:::{.notes}
+
+Iraqi–Kurd Wars: 
+- Kurds live in semi-autonomous region in Northern Iraq. 
+- Oil-rich region. 
+- Conflicts began in the 1960s and have flared up repeatedly since. Kurds want more autonomy and more resources from central government. 
+- Saddam gassed thousands of Kurds in the late 1980s. Arab resettling program designed to move Arabs from southern and central Iraq into Northern Kurdistan to dilute Kurdish power in the region. During the 1990s Saddam established a smuggling operation that moved oil through Kurdistan. 
+
+:::
+
+
+
+
+## Defining Civil War
+
+::::{.columns}
+:::{.column width=50%}
+Colombian Civil War
+
+- 1989-2016 (Maybe?)
+
+- Issues at stake
+
+  - Policy
+  
+  - Corruption
+  
+  - Economic power and opportunity
+  
+  - Political representation and power
+  
+  - Drug trafficking
+
+:::
+
+:::{.column width=50%}
+
+```{r, fig.cap="A group of female FARC fighers in Colombia."}
+
+knitr::include_graphics("https://ichef.bbci.co.uk/news/976/cpsprodpb/473E/production/_87183281_87173538.jpg", error = FALSE)
+```
+
+:::
+::::
+
+
+:::{.notes}
+Colombian Civil War
+
+- FARC has its roots in opposition to US backing of right-wing organizations during the Cold War. FARC initially attempted to protect rural populations from attacks by right-wing militias. 
+- FARC financed its operations through taxing the drug trade/growers in Colombia. 
+
+:::
+
+
+## Defining Civil War
+
+::::{.columns}
+:::{.column width=50%}
+Republic/Empire Civil War
+
+- A long time ago
+
+- Issues at stake
+
+  - Corruption
+  
+  - Control of central government
+  
+  - Religion
+  
+  - Economic power and opportunity
+  
+  - Political representation and power
+  
+  - Drug trafficking
+
+:::
+
+:::{.column width=50%}
+
+
+```{r, fig.cap="A group of female FARC fighers in Colombia."}
+
+knitr::include_graphics("https://lumiere-a.akamaihd.net/v1/images/hb_disneyplus_skywalkersaga_mobile_19267_e964ed2c.jpeg?region=0,0,640,400", error = FALSE)
+```
+
+:::
+::::
+
+:::{.notes}
+Notes
+
+Star Wars: 
+
+- Sith-Jedi component to the war is essentially a religious one. 
+- Conflict is also about control of the central government. 
+
+:::
+
+
+
+# Why Civil War?
+
+
+
+## Why Civil War?
+
+Motivations
+
+- Greed
+- Grievance
+
+Conflict aims and types
+
+- Policy
+- Government control
+- Territory
+
+
+
+## Why Civil War?
+
+Policy
+
+- Rebel groups seek to change status quo in some policy area
+
+- Distribution of economic resources
+
+- Political access, opportunities, or representation
+
+- State repression
+
+
+
+## Why Civil War?
+
+Control of Government
+
+- Rebel groups seek to take control of central government
+
+- Post-colonial states
+
+- Resource-rich states
+
+- Ethnic divides may coincide with these sorts of conflict
+
+
+
+## Why Civil War?
+
+Territory
+
+- Rebel group striving to break their region/territory off from the main state
+
+  - Secession: Form an independent state
+  
+  - Irredentist: Break away to join another territory/state
+  
+- Ethnic or religious divides
+
+- Natural resources
+
+
+
+
+## Why Civil War?
+
+::::{.columns}
+:::{.column width=50%}
+
+Sudan and South Sudan
+
+- South Sudan emerged as an independent state in 2011
+
+- It broke off as an independent state from Sudan
+
+:::
+
+:::{.column width=50%}
+
+```{r, out.width="60%", fig.align="center"}
+
+knitr::include_graphics("https://ichef.bbci.co.uk/news/464/mcs/media/images/58096000/gif/_58096920_sudan_oil464.gif", error = FALSE)
+```
+
+:::
+::::
+
+:::{.notes}
+
+Sudan and South Sudan. 
+
+Example of secessionist conflict. First map shows the two countries’ borders. Second map shows the distribution of oil fields and pipelines. South joined international system in 2011 and contains majority of Sudan’s oil reserves. South mostly Christian while the North predominately Muslim. Conflict ultimately led to secession of the South.
+
+:::
+
+
+
+## Why Civil War?
+
+::::{.columns}
+:::{.column width=50%}
+Northern Ireland
+
+- Ethnic and religious in its roots
+
+- Longstanding Irish/Catholic opposition to Protestant/English control over Ireland
+
+- Irish War for Independence (1919-1921) and Anglo-Irish Treaty (1921) lead to Ireland breaking into two separate governing units (North and South)
+
+- "The Troubles": A period of armed conflict in Northern Ireland lasting from the 1960s through the Good Friday Agreement in 1998.
+:::
+
+:::{.column width=50%}
+
+
+```{r northern-ireland}
+#| out-width: 100%
+
+map.ireland <- geodata::gadm(country = "IRL", level = 0, path = here("lecture-data")) |>  
+  sf::st_as_sf()
+
+map.uk <- geodata::gadm(country = "GBR", level = 0, path = here("lecture-data")) |> 
+  sf::st_as_sf()
+
+map.northernireland <- geodata::gadm(country = "GBR", level = 1, path = here("lecture-data")) |> 
+  sf::st_as_sf() |> 
+  filter(NAME_1 == "Northern Ireland")
+
+ggplot() +
+  geom_sf(data = map.ireland, aes(geometry = geometry)) +
+  geom_sf(data = map.uk, aes(geometry = geometry)) +
+  geom_sf(data = map.northernireland, aes(geometry = geometry), fill = "red") +
+  theme_flynn_map() +
+  theme(plot.margin = margin(b = 0, 0, 0, 0, "cm"))
+
+```
+
+:::
+::::
+
+:::{.notes}
+Notes
+
+- English control over Ireland dates back to the 1600s
+
+:::
+
+
+
+# Organization and Mobilization
+
+
+
+
+## Organization and Mobilization
+
+Why do people fight? 
+
+- Collective action problem
+
+  - Why participate?
+  - War is dangerous, so why not enjoy benefits without suffering risks?
+
+- So what factors facilitate and/or incentivizes rebellion?
+
+  - Individual-level
+  - Group-level
+  - State-level
+  - International-level
+
+
+
+
+
+
+## Organization and Mobilization
+
+Individual-level factors
+
+- Ideology
+
+- Religious beliefs
+
+- Policy salience
+
+- Risk aversion
+
+- Economic interests/opportunism
+
+- Network connections
+
+
+
+
+
+## Organization and Mobilization
+
+Group-level factors
+
+- Social networks
+
+- Ideology
+
+- Private payments
+
+:::{.notes}
+
+Group Factors:
+
+- Social networks: Ethnic, family, and religious ties can help to mobilize individuals. Social networks make it easier to identify individuals with similar grievances, or to identify individuals who are not contributing. Shared ethnic or religious identity may also make it harder to avoid being drawn into conflicts, as these groups are often concentrated in one geographical area and governments may use force indiscriminately against these populations, meaning that you can’t just “sit this one out”. 
+
+- Some may contribute because they are “true believes”. Shared ideology might help to overcome the collective action problem if you have a strong preference for a particular policy or outcome. Often the case with religious groups, or Marxist groups. 
+
+- Groups often pay fighters to support their cause. Payments often come from spoils of war, natural resources (oil, diamonds, etc.), or from human and/or sex trafficking. 
+
+:::
+
+
+
+
+## Organization and Mobilization
+
+State-level factors
+
+- Wealth and development
+  - Grievances
+  - Greed
+  - State capacity
+
+- Regime type
+  - Political opportunities
+  - Mechanisms for resolving grievances
+
+- Geography
+  - Opportunities to fight
+  - Can shape locus of conflict
+  - Resources and points of extraction
+
+
+
+## {.blank-slide}
+
+```{r}
+
+x <- seq(-10, 10, length.out = 100)
+y = dnorm(x, mean = 0, sd = 2)
+
+data <- tibble(x = x, 
+               y = y)
+
+ggplot(data, aes(x = x, y = y)) +
+  geom_area(fill = "darkgreen") +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  theme(axis.text.y = element_blank()) +
+  labs(x = "Polity Score",
+       y = "Pr(Civil War)")
+
+```
+
+
+
+
+## Organization and Mobilization
+
+International/transnational-level factors
+
+- External support?
+
+- Cross-border sanctuaries?
+
+- Opportunities for external intervention?
+
+
+
+
+## Organization and Mobilization
+
+::::{.columns}
+:::{.column width=50%}
+Example: Afghanistan
+
+- Individual and group-level grievances against central government and US
+
+- Organizational and ideological cohesion helps mobilization
+
+- Territory/geography make US coalition efforts to police and monitor difficult
+
+- Poppy trade helps finance insurgency 
+
+- Geography provides safe havens for militants
+:::
+
+:::{.column width=50%}
+
+<p style="margin-top:70px;"/>
+
+```{r, out.width="100%", fig.align='center', fig.pos='middle' , fig.cap="US and Afghan security personnel patrol in a field of poppies in Afghanistan."}
+knitr::include_graphics("https://ichef.bbci.co.uk/news/976/cpsprodpb/E1BD/production/_106598775_soldiers_976alamy.jpg", error = FALSE)
+```
+
+:::
+::::
+
+:::{.notes}
+Afghan Poppy Trade
+
+- In 2016 after over a decade of trying to eradicate poppy production, it shot up to
+
+- Counter-narcotics operations often hurt the poorest and most marginalized groups, and also increase opposition to US-led counterinsurgency operations.
+
+- Overall poppy production is worth over $30 billion to Afghan economy (https://www.brookings.edu/blog/order-from-chaos/2017/11/21/afghanistans-opium-production-is-through-the-roof-why-washington-shouldnt-overreact/)/
+
+- Most heroin in US comes from Central or South America.
+
+:::
+
+
+## {.blank-slide}
+
+```{r afghanistan fatalities}
+
+afghan_fatality_wide <- fread(here::here("../../../../Data Files/US Afghanistan Deaths.csv"))
+
+afghan_fatality_long <- gather(afghan_fatality_wide, month, deaths, -year) %>% 
+  group_by(year) %>% 
+  mutate(month = as.numeric(str_extract(month, "[:digit:]{1,2}")),
+         date = paste(year, month, 1, sep = "-"),
+         date = as.Date(date, format = "%Y-%m-%d"),
+         `Season` = as.factor(ifelse(month >= 11 | month <= 4, "Growing", "Fighting"))) 
+
+
+
+ggplot(data = afghan_fatality_long, aes(x = date)) +
+  geom_bar(stat = "identity", aes(y = deaths, group = `Season`, fill = `Season`)) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(breaks = seq(as.Date("2001-10-1"), as.Date("2016-12-1"), by = "3 years"), labels = date_format("%B %Y")) +
+  scale_y_continuous(breaks = seq(0,125,20)) +
+  viridis::scale_fill_viridis(option = "magma", discrete = TRUE, begin = 0.1, end = 0.8, direction = -1) +
+  labs(title = "US military fatalities in Afghanistan by month, 2001-2014", 
+       subtitle = "Casualties track the poppy growing cycle fairly closely",
+       x = "",
+       y = "Count",
+       caption = "Casualty data obtained from http://icasualties.org/OEF/ByMonth.aspx.") 
+
+```
+
+:::{.notes}
+
+Afghan fighting season
+
+- Green highlighted area depicts planting/harvest season. 
+- Notice the lulls in killings. 
+- Planting season begins ~November and harvest occurs roughly in April. 
+- By May most of the poppies have been sold off at market and fighters can now refill their coffers, buy ammunition, etc.
+
+:::
+
+
+
+## {.blank-slide}
+
+```{r, warning=FALSE, message=FALSE}
+
+
+# Fatality Data
+fatalities <- fread(here::here("../../../../Data Files/icasualties/afghan-fatalities-region.csv")) %>% 
+  arrange(id)
+fatalities$id <- c("Badghis", "Baghlan", "Balkh", "Bamyan", "Farah", 
+                   "Faryab", "Ghazni", "Ghor", "Hilmand", "Hirat", 
+                   "Jawzjan", "Kabul", "Kandahar", "Kapisa", "Khost", 
+                   "Kunar", "Kunduz", "Laghman", "Logar", "Nangarhar", 
+                   "Nimroz", "Nuristan", "Uruzgan", "Paktya", "Paktika", 
+                   "Panjshir", "Parwan", "Samangan", "Takhar", "Wardak", 
+                   "Zabul")
+
+
+# This works. Figuring out how to transition to map is different story. 
+afghan <- geodata::gadm(country = "AFG", level = 1, path = here("lecture-data")) %>% 
+  sf::st_as_sf() %>% 
+  group_by(NAME_1) %>% 
+  mutate(centroid = sf::st_centroid(geometry)) %>% 
+  left_join(fatalities, by = c("NAME_1" = "id")) %>% 
+  mutate(`Fatalities` = ifelse(is.na(fatalities), 0, fatalities))
+
+pakistan <- geodata::gadm(country = "PAK", level = 0, path = here("lecture-data")) %>% 
+  sf::st_as_sf()
+iran <- geodata::gadm(country = "IRN", level = 0, path = here("lecture-data")) %>% 
+  sf::st_as_sf()
+tajikistan <- geodata::gadm(country = "TJK", level = 0, path = here("lecture-data")) %>% 
+  sf::st_as_sf()
+uzbekistan <- geodata::gadm(country = "UZB", level = 0, path = here("lecture-data")) %>% 
+  sf::st_as_sf()
+turkmenistan <- geodata::gadm(country = "TKM", level = 0, path = here("lecture-data")) %>% 
+  sf::st_as_sf()
+
+
+
+
+# Getting the right group aes identifier is REALLY important here.
+# It prevents the weird lines from appearing that connect random points. 
+ggplot() +
+  geom_sf(data = afghan, aes(group = NAME_1, fill = `Fatalities`)) +
+  geom_sf(data = pakistan, fill = "gray90", color = "white", size = 0.2) +
+  geom_sf(data = iran, fill = "gray90", color = "white", size = 0.2) +
+  geom_sf(data = tajikistan, fill = "gray90", color = "white", size = 0.2) +
+  geom_sf(data = uzbekistan, fill = "gray90", color = "white", size = 0.2) +
+  geom_sf(data = turkmenistan, fill = "gray90", color = "white", size = 0.2) +
+  geom_sf_label(data = afghan, aes(label = NAME_1), size = 2) +
+  coord_sf(xlim = c(59, 75.5), ylim = c(28, 39)) +
+  viridis::scale_fill_viridis() +
+  theme_void() +
+  theme(plot.title = element_text(family = "oswald", face = "bold", size = 23),
+        plot.caption = element_text(family = "oswald", face = "italic", size = 8),
+        legend.title = element_text(size = 14),
+        text = element_text(family = "oswald"),
+        legend.text = element_text(size = 11)) +
+  labs(title = "Coalition fatalities by province, 2001-2011",
+       caption = "Data obtained from http://icasualties.org/OEF/ByProvince.aspx") 
+```
+
+
+
+
+## {.blank-slide}
+
+```{r}
+library(tidyterra)
+
+terrain <- geodata::elevation_30s(country = "Afghanistan", path = here("lecture-data")) 
+
+
+ggplot() +
+  geom_spatraster(data = terrain, na.rm = TRUE) +
+  theme_void() +
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold"),
+        text = element_text(size = 11, family = "oswald"),
+        panel.background = element_blank()) +
+  viridis::scale_fill_viridis(option = "magma",
+                              begin = 0.1,
+                              end = 0.9,
+                              na.value = NA) + # Need this to get rid of gross gray color
+  labs(title = "Topography of Afghanistan",
+       fill = "Altitude")
+
+```
+
+
+
+
+
+# Bargaining Problems
+
+
+
+
+## Bargaining Problems
+
+Bargaining in Civil Wars
+
+Basic problems resemble those in interstate wars
+
+Sources of bargaining failure
+
+- Private/incomplete information
+
+- Commitment problems
+
+- Issue indivisibility
+
+Civil wars have features that can exacerbate these issues
+
+
+
+
+## Bargaining Problems
+
+Civil Wars often characterized by power asymmetries
+
+Incentivizes insurgencies over traditional maneuver battle
+
+- Small units
+
+- Often blend in with civilian population
+
+- Lightly armed
+
+- Harassment
+
+- Hit and run attacks
+
+- Terrorism
+
+
+
+
+## Bargaining Problems
+
+::::{.columns}
+:::{.column width=50%}
+The West Side Boys
+
+- Rebel group in Sierra Leone
+
+- Splinter group of the Armed Forces Revolutionary Council (AFRC)
+
+- Goals: Drinking, drugs, banditry, rape, general brutality
+:::
+
+:::{.column width=50%}
+
+```{r, out.width="100%"}
+knitr::include_graphics("https://i.dailymail.co.uk/i/pix/scaled/2010/08/29/article-0-0AF44AA7000005DC-40_308x185.jpg", error = FALSE)
+```
+
+:::
+::::
+
+
+
+## Bargaining Problems
+
+Strategies
+
+- Governments frequently have a hard time fighting insurgencies
+
+- Rebel strength can be hard to assess
+
+- Distinguishing between militants and non-militants can be difficult
+
+- Governments often unwilling to address political/economic grievances
+
+- Government forces often poorly suited for irregular warfare
+
+
+## {.blank-slide}
+
+```{r Kim Phuc Photograph, out.width="80%", fig.cap="South Vietnamese forces follow after terrified children, including 9-year-old Kim Phuc, center, as they run down Route 1 near Trang Bang after an aerial attack on suspected Vietcong hiding places on June 8, 1972. Photo taken by Associated Press photographer Nick Ut. South Vietnamese military dropped napalm on a village, mistaking fleeing civilians for insurgents."}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/en/b/ba/The_Terror_of_War.jpg", error = FALSE)
+```
+
+:::{.notes}
+
+Kim Phuc Photo
+
+- South Vietnamese military dropped Napalm on fleeing civilians they believed to be Viet Cong militants. 
+- Because insurgents typically try to blend in with the population, it can be difficult (intentionally so) to identify militants. 
+- Pronounced "Kim Fook"
+
+:::

@@ -524,7 +524,7 @@ Northern Ireland
 
 <p style="margin-top:-140px; margin-left:-100px;"/>
 
-```{r northern-ireland, fig.height=8, fig.width=5, fig.align='center'}
+```{r northern-ireland, fig.height=6, fig.width=4, fig.align='center'}
 
 map.ireland <- getData("GADM", country = "IRL", level = 0) |>  
   sf::st_as_sf()

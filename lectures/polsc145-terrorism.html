@@ -1,778 +1,1134 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>World Politics</title>
-    <meta charset="utf-8" />
-    <meta name="author" content="Michael E. Flynn" />
-    <meta name="date" content="2024-03-19" />
-    <script src="polsc145-terrorism_files/header-attrs-2.25/header-attrs.js"></script>
-    <link href="polsc145-terrorism_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <script src="polsc145-terrorism_files/fabric-4.3.1/fabric.min.js"></script>
-    <link href="polsc145-terrorism_files/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
-    <script src="polsc145-terrorism_files/xaringanExtra-scribble-0.0.1/scribble.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xa425e911a134b91abf797480048a720","expires":365}</script>
-    <script src="polsc145-terrorism_files/himalaya-1.1.0/himalaya.js"></script>
-    <script src="polsc145-terrorism_files/js-cookie-3.0.0/js.cookie.js"></script>
-    <link href="polsc145-terrorism_files/editable-0.2.6/editable.css" rel="stylesheet" />
-    <script src="polsc145-terrorism_files/editable-0.2.6/editable.js"></script>
-    <link rel="stylesheet" href="lecture_theme.css" type="text/css" />
-  </head>
-  <body>
-    <textarea id="source">
-class: middle, left, inverse, title-slide
+<html lang="en"><head>
+<script src="polsc145-terrorism_files/libs/clipboard/clipboard.min.js"></script>
+<script src="polsc145-terrorism_files/libs/quarto-html/tabby.min.js"></script>
+<script src="polsc145-terrorism_files/libs/quarto-html/popper.min.js"></script>
+<script src="polsc145-terrorism_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="polsc145-terrorism_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="polsc145-terrorism_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="polsc145-terrorism_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.39">
 
-.title[
-# World Politics
-]
-.subtitle[
-## Terrorism
-]
-.author[
-### Michael E. Flynn
-]
-.institute[
-### Kansas State University
-]
-.date[
-### 2024-03-19
-]
+  <meta name="author" content="Michael Flynn">
+  <title>World Politics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="polsc145-terrorism_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="polsc145-terrorism_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="polsc145-terrorism_files/libs/revealjs/dist/theme/quarto-c899abe67232b7cb19792fa90bcef63c.css">
+  <link href="polsc145-terrorism_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="polsc145-terrorism_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="polsc145-terrorism_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="polsc145-terrorism_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="polsc145-terrorism_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="polsc145-terrorism_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="polsc145-terrorism_files/libs/fabric-4.3.1/fabric.min.js"></script>
+  <link href="polsc145-terrorism_files/libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet">
+  <script src="polsc145-terrorism_files/libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+  <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x5cd6d3f005c4d6295fd54805121c122","expires":365}</script>
+  <script src="polsc145-terrorism_files/libs/himalaya-1.1.0/himalaya.js"></script>
+  <script src="polsc145-terrorism_files/libs/js-cookie-3.0.0/js.cookie.js"></script>
+  <link href="polsc145-terrorism_files/libs/editable-0.2.6/editable.css" rel="stylesheet">
+  <script src="polsc145-terrorism_files/libs/editable-0.2.6/editable.js"></script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
 
----
+<section id="title-slide" data-background-image="ksu-seal.png" data-background-position="bottom -38% right -19%" data-background-size="45%" class="quarto-title-block center">
+  <h1 class="title">World Politics</h1>
+  <p class="subtitle">Terrorism and Asymmetric Warfare</p>
 
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Michael Flynn 
+</div>
+        <p class="quarto-title-affiliation">
+            Department of Political Science
+          </p>
+        <p class="quarto-title-affiliation">
+            011C Calvin Hall
+          </p>
+        <p class="quarto-title-affiliation">
+            meflynn@ksu.edu
+          </p>
+        <p class="quarto-title-affiliation">
+            Last Updated 2025-02-28
+          </p>
+    </div>
+</div>
+
+</section>
+<section id="lecture-overview" class="slide level2">
+<h2>Lecture Overview</h2>
+<ol type="1">
+<li><p>Defining terrorism</p></li>
+<li><p>Organization</p></li>
+<li><p>Why terror?</p></li>
+<li><p>Responding to terrorism</p></li>
+</ol>
+</section>
+<section id="key-questions-and-goals" class="slide level2">
+<h2>Key Questions and Goals</h2>
+<ol type="1">
+<li><p>Develop a better understanding of why groups choose terror tactics vs other tactics</p></li>
+<li><p>Develop a better understanding of the factors that lead some groups to use terror tactics</p></li>
+<li><p>Think about the different types of targets and audiences for terror attacks</p></li>
+<li><p>Think about the causal mechanisms by which terror is expected to bring about policy change</p></li>
+</ol>
+</section>
+<section>
+<section id="defining-terrorism" class="title-slide slide level1 center">
+<h1>Defining Terrorism</h1>
+
+</section>
+<section id="section" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="https://ichef.bbci.co.uk/news/1024/branded_pidgin/2FDA/production/_119705221_twintowers.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"></section>
+<section id="defining-terrorism-1" class="slide level2">
+<h2>Defining Terrorism</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Gerry Adams</p>
+<ul>
+<li><p>Former President of Sinn Fein (1983-2018)</p></li>
+<li><p>Former Member of Irish Parliament</p></li>
+<li><p>Alleged to have close ties with the Provisional Irish Republican Army (PIRA)</p></li>
+<li><p>Arrested on at least two occasions in connection with a bombing and a murder</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Gerry_Adams_-_26370225138.jpg/1280px-Gerry_Adams_-_26370225138.jpg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>Notes</p>
+<ul>
+<li>President of Sinn Fein, the political wing of the Provisional Irish Republican Army (PIRA)</li>
+<li>Adams widely believed to be on the military council of the IRA. He was closely associated with identifying and selecting targets for attacks, as well as authorizing attacks.</li>
+<li>Adams has consistently denied involvement in the IRA</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="defining-terrorism-2" class="slide level2">
+<h2>Defining Terrorism</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Timothy McVeigh</p>
+<ul>
+<li><p>Decorated US Army veteran</p></li>
+<li><p>Stationed at Ft. Riley, KS for a period</p></li>
+<li><p>Served in First Gulf War</p></li>
+<li><p>Killed 168 people in the 1995 bombing of the Oklahoma City Federal Building. 19 of those victims were children, 15 of whom were in the building’s daycare center.</p></li>
+<li><p>680+ injured</p></li>
+</ul>
+</div><div class="column" data-wdth="50%">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://cdn.britannica.com/91/116191-050-02A9E208/Timothy-McVeigh-Okla-Perry-Noble-County-Courthouse.jpg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="defining-terrorism-3" class="slide level2">
+<h2>Defining Terrorism</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Brenton Tarrant</p>
+<ul>
+<li><p>Australian national</p></li>
+<li><p>White supremacist</p></li>
+<li><p>Attacker in the Christchurch, New Zealand shootings of March 2019</p></li>
+<li><p>Murdered 51 Muslim mosque-goers during prayer services. Injured another 40.</p></li>
+<li><p>Livestreamed attacks on Facebook</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://gdb.rferl.org/FAB795A5-C308-4EBC-8B01-F8063B5CCCB7_w1200_r1.jpg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>Notes</p>
+<ul>
+<li>Australian national</li>
+<li>Primary attacker in New Zealand shootings of March, 2019, where he killed 50 Muslims during prayer services</li>
+<li>Also filmed the attack on a go-pro camera, broadcasting the killings online. Highlights the role played by social media platforms in helping to spread white supremacist and other radical ideologies.</li>
+<li>Also highlights “lone wolf” terror problem. Individuals acting along are typically radicalized through social networks of some kind (whether digital or not). Tarrant wrote a long manifesto wherein he echoed the sentiments expressed by the broader online white supremacist culture, specifically speaking to the “replacement” of white people by non-white groups. Individuals who act in a “lone wolf” manner typically have ties to extremist groups, even if they’re not official “members”.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="defining-terrorism-4" class="slide level2">
+<h2>Defining Terrorism</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Nelson Mandela</p>
+<ul>
+<li><p>Member of the African National Congress (ANC) and founding member of the ANC’s youth league</p></li>
+<li><p>Co-founded Ukkhonto we Sizwe (Spear of the Nation). Became armed wing of the ANC (though officially separate)</p></li>
+<li><p>Imprisoned for 27 years</p></li>
+<li><p>Won Nobel Peace Price in 1993. Shared with South African President FW de Klerk for ending Apartheid regime.</p></li>
+<li><p>Elected President of South Africa in 1994.</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nelson_Mandela_1994.jpg/1024px-Nelson_Mandela_1994.jpg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>Notes</p>
+<ul>
+<li>Opposed Apartheid-the segregation of blacks in South Africa.</li>
+<li>Initially dedicated to passive resistance to the Apartheid regime. Eventually convinced that violent resistance was in order after the Sharpeville massacre, but tried to avoid hurting people. Formed the “Spear of the Nation” in 1961 to act at the armed wing of the ANC. The group focused on sabotage and bombings of unoccupied spaces, but did not rule out a turn to violence if sabotage tactics failed to work. People did actually die as a result of the group’s attacks.</li>
+<li>Left South Africa in 1962 to receive military training in Morocco and Ethiopia. He also traveled around Africa and England to enlist support for a military struggle.</li>
+<li>Arrested and put on trial for planning acts of sabotage and plotting guerrilla warfare to overthrow the government. Convicted of sabotage on June 11, 1964. Sentenced to life in prison on Robben Island.</li>
+<li>Elected President of African National Congress in 1991. 1993 he and President FW de Klerk jointly won the Nobel Peace Prize.</li>
+<li>Inaugurated as South Africa’s first democratically elected president on May 10, 1994.</li>
+<li>Often remembered for his attitudes towards reconciliation between races.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="defining-terrorism-5" class="slide level2">
+<h2>Defining Terrorism</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>January 6 RNC/DNC Bomber</p>
+<ul>
+<li><p>Planted pipe bombs at Republican National Committee and Democratic National Committee Headquarters</p></li>
+<li><p>Still at large</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://s.abcnews.com/images/US/pipe-bomb-suspect-ht-ps-210309_1615319311778_hpEmbed_2_16x9_992.jpg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="defining-terrorism-6" class="slide level2">
+<h2>Defining Terrorism</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Ashin Wirathu</p>
+<ul>
+<li><p>Leader of the 969 Movement</p></li>
+<li><p>Ultra-nationalist Buddhist/anti-Muslim group in Myanmar</p></li>
+<li><p>Referred to as the “Buddhist Bin Laden”</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://content.time.com/time/images/covers/asia/2013/20130701_600.jpg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>Notes</p>
+<ul>
+<li>Leader of the ultra-nationalist/Buddhist 969 Movement in Myanmar.</li>
+<li>Group is anti-Muslim. Associated with several attacks on Muslim civilians. Wirathu denies being involved in, or ordering, these attacks.</li>
+<li>Yes, he’s a buddhist.</li>
+<li>Opposed to Muslim presence in Myanmar. Seek to outlaw marriage of Buddhists to non-Buddhists. They have burned Muslim’s stores, assaulted Muslims in the streets with rocks and sticks. They also promote discrimination through the boycott of Muslim businesses, and also call for Buddhists to not hire Muslim workers.</li>
+<li>Muslims are associated with the “merchant” class in Myanmar. Some evidence that violence is economically motivated.</li>
+<li>969 has been criticized by other Buddhist monks. Many Buddhist monasteries provide shelter to displaced</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="defining-terrorism-7" class="slide level2">
+<h2>Defining Terrorism</h2>
+<p>How would you define terrorism?</p>
+<p>What criteria would you include? (e.g.&nbsp;targets, violence, type of action, etc.)</p>
+<p>List:</p>
+</section>
+<section id="defining-terrorism-8" class="slide level2">
+<h2>Defining Terrorism</h2>
+<p>Terrorism is a label that is often used loosely, but it has more specific technical and legal definnitions</p>
+<blockquote>
+<p><strong>Terrorism</strong>: The premeditated threat or use of violence against noncombatant targets by individuals or subnational groups to obtain a political or social objective through intimidation of a larger audience (FLS).</p>
+</blockquote>
+</section>
+<section id="defining-terrorism-9" class="slide level2">
+<h2>Defining Terrorism</h2>
+<p>Let’s break that down…</p>
+<div>
+<ol type="1">
+<li class="fragment"><p>Premeditated</p></li>
+<li class="fragment"><p>Threat OR use of violence</p></li>
+<li class="fragment"><p>Perpetrators: Individuals O subnational groups</p></li>
+<li class="fragment"><p>Targets: Non-combatants (immediate) and a larger audience (extended)</p></li>
+<li class="fragment"><p>Goals: Various political, economic, and/or social goals</p></li>
+</ol>
+</div>
+</section>
+<section id="defining-terrorism-10" class="slide level2">
+<h2>Defining Terrorism</h2>
+<p>But what does this leave out?</p>
+<ul>
+<li><p>States and militaries as perpetrators?</p></li>
+<li><p>States and militaries as targets?</p></li>
+<li><p>Property as targets?</p></li>
+</ul>
+</section></section>
+<section>
+<section id="organization" class="title-slide slide level1 center">
+<h1>Organization</h1>
+
+</section>
+<section id="organization-1" class="slide level2">
+<h2>Organization</h2>
+<p>Key Point: Terrorism is a <strong>tactic</strong>, not an identity</p>
+<p>“Terrorist” is a label used to identify those who use terror as a tactic</p>
+<p>Who cares? Why does this matter?</p>
+<div>
+<p>Because…</p>
+<ul>
+<li class="fragment">Not all groups that use terror look alike</li>
+<li class="fragment">Groups often fight using mixed strategies—important to understand who uses terror, why, when, and how</li>
+<li class="fragment">Legalities associated with who/what constitutes a legitimate enemy combatant</li>
+<li class="fragment">Differentiating more routine acts of violence from terrorism</li>
+</ul>
+</div>
+</section>
+<section id="organization-2" class="slide level2">
+<h2>Organization</h2>
+<p>Traditional military/paramilitary</p>
+<ul>
+<li>Tamil Tigers</li>
+<li>Islamic State of Iraq and Syria</li>
+</ul>
+<p>Networked Actors</p>
+<ul>
+<li>al Qaeda and affiliates
+<ul>
+<li>al Qaeda in Iraq (AQI) (later Islamic State)</li>
+<li>al Nusra Front (al Qaeda affiliate in Syria)</li>
+<li>al Qaeda in the Arabian Peninsula</li>
+<li>al Qaeda in the Islamic Magreb</li>
+</ul></li>
+</ul>
+<p>Hybrid Groups</p>
+<ul>
+<li>Hezbollah</li>
+<li>Provisional Irish Republican Army/Sinn Fein</li>
+</ul>
+</section></section>
+<section>
+<section id="tactics" class="title-slide slide level1 center">
+<h1>Tactics</h1>
+
+</section>
+<section id="tactics-1" class="slide level2">
+<h2>Tactics</h2>
+<p>So why do groups use terror?</p>
+<ul>
+<li><p>Power asymmetries</p></li>
+<li><p>Political power, representation, access (or lack thereof)</p></li>
+<li><p>Issue salience</p></li>
+<li><p>Broader support (or lack thereof)</p></li>
+</ul>
+<aside class="notes">
+<p>Notes</p>
+<ul>
+<li>Coercion: Get people to make concessions</li>
+<li>Provocation: Get target to respond and overreact</li>
+<li>Spoiling: Ruin a potential negotiation between target and more moderate groups</li>
+<li>Outbidding: Groups try to demonstrate superiod capabilities and attract followers.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-1" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section>
+<section id="tactics-2" class="slide level2">
+<h2>Tactics</h2>
+<p>Nature of the attacks</p>
+<ul>
+<li><p>Often seemingly random</p></li>
+<li><p>Small-scale (bombings, vehicles, shootings, knives, etc.)</p></li>
+<li><p>Fatalities are typically low</p></li>
+<li><p>Intended to instill fear</p></li>
+</ul>
+</section>
+<section id="section-2" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/deaths-attacks-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section>
+<section id="section-3" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/death-rate-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section>
+<section id="section-4" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/other-causes-of-death-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section>
+<section id="section-5" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/organizations%20ranked%20by%20attacks-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section>
+<section id="section-6" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section>
+<section id="section-7" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/deaths%20per%20attack%20by%20group-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section>
+<section id="tactics-3" class="slide level2">
+<h2>Tactics</h2>
+<p>Suicide attacks</p>
+<ul>
+<li><p>Are suicide attacks “irrational”?</p></li>
+<li><p>Individual-level considerations</p></li>
+<li><p>Group-level considerations</p></li>
+</ul>
+</section>
+<section id="section-8" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section>
+<section id="section-9" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section>
+<section id="section-10" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3200"></section></section>
+<section>
+<section id="goals" class="title-slide slide level1 center">
+<h1>Goals</h1>
+
+</section>
+<section id="goals-1" class="slide level2">
+<h2>Goals</h2>
+<p>Example: al Qaeda</p>
+<ul>
+<li><p>Why does al Qaeda attack people? Western targets in particular?</p></li>
+<li><p>Because they hate freedom”?</p></li>
+<li><p>No</p></li>
+</ul>
+</section>
+<section id="goals-2" class="slide level2">
+<h2>Goals</h2>
+<p>al Qaeda / Osama bin Laden’s grievances</p>
+<ul>
+<li><p>Opposes Christian armies deploy to the hold land</p></li>
+<li><p>Views Saudi regime as corrupt, repressive, and false advocate of Sharia law</p></li>
+<li><p>Alleges that US receives favorable oil prices, leading to low wages, poor service provision for common Saudis, and poor overall quality of life</p></li>
+<li><p>Lots more</p></li>
+</ul>
+</section>
+<section id="goals-3" class="slide level2">
+<h2>Goals</h2>
+<p>More generally, groups’ strategic goals can be combined into four broad categories:</p>
+<ul>
+<li><p>Coercion</p></li>
+<li><p>Provocation</p></li>
+<li><p>Spoiling</p></li>
+<li><p>Outbidding</p></li>
+</ul>
+</section></section>
+<section>
+<section id="countering-terrorism" class="title-slide slide level1 center">
+<h1>Countering Terrorism</h1>
+
+</section>
+<section id="responding-to-terrorism" class="slide level2">
+<h2>Responding to Terrorism</h2>
+<p>How do governments fight terror?</p>
+<ul>
+<li>Deterrence</li>
+<li>Preemption</li>
+<li>Defense</li>
+<li>Decriminalization</li>
+<li>Negotiation and compromise</li>
+</ul>
+</section>
+<section id="section-11" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="https://ichef.bbci.co.uk/news/1024/cpsprodpb/9E15/production/_118496404_iron_dome_v2_640-2x-nc.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Israel’s Iron Dome missile defense system was designed to neutralize rocket attacks from groups like Hamas. Image obtained from the BBC.</p></section>
+<section id="section-12" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="https://static.timesofisrael.com/www/uploads/2023/10/33Z66ET-highres-1024x640.jpg" style="width:70.0%" class="r-stretch quarto-figure-center"><p class="caption">People search for survivors and for bodies of victims through the rubble of buildings destroyed during Israeli airstrikes, in Khan Younis in the southern Gaza Strip, October 26, 2023, amid the ongoing war between Israel and Palestinian terror group Hamas. (Mahmud Hams/AFP). Image and caption taken from Times of Israel.</p><aside class="notes">
+<p>Notes</p>
+<ul>
+<li>Israel’s counterattack against Hamas has affected roughly all 2.5 million inhabitants of Gaza.</li>
+<li>Hundreds of thousands of people are facing malnutrition and babies are dying of starvation.</li>
+<li>UN is warning as of March 7, 2024 that famine is almost inevitable as Israel controls access to aid.</li>
+<li>Biden Administration initiated air drops to get aid to vulnerable people. Air drops are risky because you have no clear way to secure a drop zone or to distribute food among the needy.</li>
+</ul>
+<p>Source: https://www.bbc.com/news/world-middle-east-68471572</p>
+<ul>
+<li>Also consider the messaging environment when states overreact. Hamas attacks led to a few days of coverage and 1,300 casualties. Israel’s counterattack has lasted months and has killed tens of thousands, and press reports are relentless and constant across months.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-13" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/us-israel-support-1.png" width="3200" class="r-stretch"></section>
+<section id="section-14" class="slide level2 blank-slide">
+<h2></h2>
+
+<img data-src="polsc145-terrorism_files/figure-revealjs/netanyahu-polls-1.png" width="3200" class="r-stretch"><aside class="notes">
+<p>Notes</p>
+<p>From Reuters:</p>
+<blockquote>
+<p>JERUSALEM, Jan 2 (Reuters) - Only 15% of Israelis want Prime Minister Benjamin Netanyahu to stay in office after the war on Hamas in Gaza ends, though many more still support his strategy of crushing the militants in the Palestinian enclave, according to a poll published on Tuesday. Netanyahu promised to crush Hamas after its Oct.&nbsp;7 rampage in southern Israel in which 1,200 people were killed and 240 abducted to Gaza. Israeli forces have laid much of Gaza to waste in their nearly three-month retalitory offensive.</p>
+</blockquote>
+<ul>
+<li>https://www.reuters.com/world/middle-east/only-15-israelis-want-netanyahu-keep-job-after-gaza-war-poll-finds-2024-01-02/</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="polsc145-terrorism_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="polsc145-terrorism_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
-# Lecture Overview
+  <script>
 
-1. Defining terrorism
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
 
-2. Organization
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
 
-3. Why terror?
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
 
-4. Responding to terrorism
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
 
+        // Display a presentation progress bar
+        progress: true,
 
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
 
----
-# Key Questions and Goals
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
 
-1. Develop a better understanding of why groups choose terror tactics vs other tactics
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
 
-2. Develop a better understanding of the factors that lead some groups to use terror tactics
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
 
-3. Think about the different types of targets and audiences for terror attacks
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
 
-4. Think about the causal mechanisms by which terror is expected to bring about policy change
+        // Push each slide change to the browser history
+        history: true,
 
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
 
+        // Enable the slide overview mode
+        overview: true,
 
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
 
----
-class: center, middle, inverse
+        // Vertical centering of slides
+        center: false,
 
-# Defining Terrorism
+        // Enables touch navigation on devices with touch input
+        touch: true,
 
+        // Loop the presentation
+        loop: false,
 
+        // Change the presentation direction to be RTL
+        rtl: false,
 
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
 
----
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
 
-&lt;img src="https://ichef.bbci.co.uk/news/1024/branded_pidgin/2FDA/production/_119705221_twintowers.jpg" width="90%" style="display: block; margin: auto;" /&gt;
+        // Turns fragments on and off globally
+        fragments: true,
 
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
 
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
 
----
-# Defining Terrorism
-
-.pull-left[
-Gerry Adams
-
-- Former President of Sinn Fein (1983-2018)
-
-- Former Member of Irish Parliament
-
-- Alleged to have close ties with the Provisional Irish Republican Army (PIRA)
-
-- Arrested on at least two occasions in connection with a bombing and a murder
-]
-
-.pull-right[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Gerry_Adams_-_26370225138.jpg/1280px-Gerry_Adams_-_26370225138.jpg" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
-
-???
-
-# Notes
-
-- President of Sinn Fein, the political wing of the Provisional Irish Republican Army (PIRA) 
-- Adams widely believed to be on the military council of the IRA. He was closely associated with identifying and selecting targets for attacks, as well as authorizing attacks. 
-- Adams has consistently denied involvement in the IRA
-
-
-
----
-# Defining Terrorism
-
-.pull-left[
-Timothy McVeigh
-
-- Decorated US Army veteran
-
-- Stationed at Ft. Riley, KS for a period
-
-- Served in First Gulf War
-
-- Killed 168 people in the 1995 bombing of the Oklahoma City Federal Building. 19 of those victims were children, 15 of whom were in the building's daycare center.
-
-- 680+ injured
-]
-
-.pull-right[
-&lt;img src="https://cdn.britannica.com/91/116191-050-02A9E208/Timothy-McVeigh-Okla-Perry-Noble-County-Courthouse.jpg" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
-
----
-# Defining Terrorism
-
-.pull-left[
-Brenton Tarrant
-
-- Australian national
-
-- White supremacist
-
-- Attacker in the Christchurch, New Zealand shootings of March 2019
-
-- Murdered 51 Muslim mosque-goers during prayer services. Injured another 40.
-
-- Livestreamed attacks on Facebook
-]
-
-.pull-right[
-&lt;img src="https://gdb.rferl.org/FAB795A5-C308-4EBC-8B01-F8063B5CCCB7_w1200_r1.jpg" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
-
-???
-
-# Notes
-
-- Australian national
-- Primary attacker in New Zealand shootings of March, 2019, where he killed 50 Muslims during prayer services
-- Also filmed the attack on a go-pro camera, broadcasting the killings online. Highlights the role played by social media platforms in helping to spread white supremacist and other radical ideologies.
-- Also highlights “lone wolf” terror problem. Individuals acting along are typically radicalized through social networks of some kind (whether digital or not). Tarrant wrote a long manifesto wherein he echoed the sentiments expressed by the broader online white supremacist culture, specifically speaking to the “replacement” of white people by non-white groups. Individuals who act in a “lone wolf” manner typically have ties to extremist groups, even if they’re not official “members”.
-
-
-
----
-# Defining Terrorism
-
-.pull-left[
-Nelson Mandela
-
-- Member of the African National Congress (ANC) and founding member of the ANC's youth league
-
-- Co-founded Ukkhonto we Sizwe (Spear of the Nation). Became armed wing of the ANC (though officially separate)
-
-- Imprisoned for 27 years
-
-- Won Nobel Peace Price in 1993. Shared with South African President FW de Klerk for ending Apartheid regime.
-
-- Elected President of South Africa in 1994.
-]
-
-.pull-right[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nelson_Mandela_1994.jpg/1024px-Nelson_Mandela_1994.jpg" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
-???
-
-# Notes
-
-- Opposed Apartheid-the segregation of blacks in South Africa.
-- Initially dedicated to passive resistance to the Apartheid regime. Eventually convinced that violent resistance was in order after the Sharpeville massacre, but tried to avoid hurting people. Formed the “Spear of the Nation” in 1961 to act at the armed wing of the ANC. The group focused on sabotage and bombings of unoccupied spaces, but did not rule out a turn to violence if sabotage tactics failed to work. People did actually die as a result of the group’s attacks.
-- Left South Africa in 1962 to receive military training in Morocco and Ethiopia. He also traveled around Africa and England to enlist support for a military struggle.
-- Arrested and put on trial for planning acts of sabotage and plotting guerrilla warfare to overthrow the government. Convicted of sabotage on June 11, 1964. Sentenced to life in prison on Robben Island.
-- Elected President of African National Congress in 1991. 
-1993 he and President FW de Klerk jointly won the Nobel Peace Prize.
-- Inaugurated as South Africa’s first democratically elected president on May 10, 1994. 
-- Often remembered for his attitudes towards reconciliation between races.
-
-
-
----
-# Defining Terrorism
-
-.pull-left[
-January 6 RNC/DNC Bomber
-
-- Planted pipe bombs at Republican National Committee and Democratic National Committee Headquarters
-
-- Still at large
-]
-
-.pull-right[
-&lt;img src="https://s.abcnews.com/images/US/pipe-bomb-suspect-ht-ps-210309_1615319311778_hpEmbed_2_16x9_992.jpg" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
-
-
----
-# Defining Terrorism
-
-.pull-left[
-Ashin Wirathu
-
-- Leader of the 969 Movement
-
-- Ultra-nationalist Buddhist/anti-Muslim group in Myanmar
-
-- Referred to as the "Buddhist Bin Laden"
-]
-
-.pull-right[
-&lt;img src="https://content.time.com/time/images/covers/asia/2013/20130701_600.jpg" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
-
-???
-
-# Notes
-
-- Leader of the ultra-nationalist/Buddhist 969 Movement in Myanmar.
-- Group is anti-Muslim. Associated with several attacks on Muslim civilians. Wirathu denies being involved in, or ordering, these attacks. 
-- Yes, he’s a buddhist. 
-- Opposed to Muslim presence in Myanmar. Seek to outlaw marriage of Buddhists to non-Buddhists. They have burned Muslim’s stores, assaulted Muslims in the streets with rocks and sticks. They also promote discrimination through the boycott of Muslim businesses, and also call for Buddhists to not hire Muslim workers.
-- Muslims are associated with the “merchant” class in Myanmar. Some evidence that violence is economically motivated.
-- 969 has been criticized by other Buddhist monks. Many Buddhist monasteries provide shelter to displaced 
-
-
-
-
----
-# Defining Terrorism
-
-How would you define terrorism?
-
-What criteria would you include? (e.g. targets, violence, type of action, etc.)
-
-List:
-
-.can-edit[
-
-
-]
-
----
-# Defining Terrorism
-
-Terrorism is a label that is often used loosely, but it has more specific technical and legal definnitions
-
-&gt; **Terrorism**: The premeditated threat or use of violence against noncombatant targets by individuals or subnational groups to obtain a political or social objective through intimidation of a larger audience (FLS).
-
-
-
----
-# Defining Terrorism
-
-Let's break that down...
-
---
-
-1. Premeditated
-
---
-
-2. Threat OR use of violence
-
---
-
-3. Perpetrators: Individuals O subnational groups
-
---
-
-4. Targets: Non-combatants (immediate) and a larger audience (extended)
-
---
-
-5. Goals: Various political, economic, and/or social goals
-
-
-
-
----
-# Defining Terrorism
-
-But what does this leave out?
-
-- States and militaries as perpetrators?
-
-- States and militaries as targets?
-
-- Property as targets?
-
-
-
----
-class: inverse, center, middle
-
-# Organization
-
-
-
-
-
----
-# Organization
-
-Key Point: Terrorism is a **tactic**, not an identity
-
---
-
-"Terrorist" is a label used to identify those who use terror as a tactic
-
---
-
-Who cares? Why does this matter?
-
---
-
-Because...
-
-- Not all groups that use terror look alike
-- Groups often fight using mixed strategies—important to understand who uses terror, why, when, and how 
-- Legalities associated with who/what constitutes a legitimate enemy combatant
-- Differentiating more routine acts of violence from terrorism
-
-
-
----
-# Organization
-
-Traditional military/paramilitary 
-
-- Tamil Tigers
-- Islamic State of Iraq and Syria
-
---
-
-Networked Actors
-
-- al Qaeda and affiliates
-  - al Qaeda in Iraq (AQI) (later Islamic State)
-  - al Nusra Front (al Qaeda affiliate in Syria)
-  - al Qaeda in the Arabian Peninsula
-  - al Qaeda in the Islamic Magreb
-
---
-
-Hybrid Groups
-
-- Hezbollah
-- Provisional Irish Republican Army/Sinn Fein
-
-
-
-
----
-class: inverse, center, middle
-
-# Tactics
-
-
----
-# Tactics
-
-So why do groups use terror?
-
-- Power asymmetries
-
-- Political power, representation, access (or lack thereof)
-
-- Issue salience
-
-- Broader support (or lack thereof)
-
-
-
-
-???
-
-# Notes
-
-- Coercion: Get people to make concessions
-- Provocation: Get target to respond and overreact
-- Spoiling: Ruin a potential negotiation between target and more moderate groups
-- Outbidding: Groups try to demonstrate superiod capabilities and attract followers.
-
-
-
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
-
-
----
-# Tactics
-
-Nature of the attacks
-
-- Often seemingly random
-
-- Small-scale (bombings, vehicles, shootings, knives, etc.)
-
-- Fatalities are typically low
-
-- Intended to instill fear
-
-
-
-
-
----
-class: center, middle
-
-
-![](polsc145-terrorism_files/figure-html/deaths-attacks-1.png)&lt;!-- --&gt;
-
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/death-rate-1.png)&lt;!-- --&gt;
-
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/other-causes-of-death-1.png)&lt;!-- --&gt;
-
-
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/organizations ranked by attacks-1.png)&lt;!-- --&gt;
-
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
-
-
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/deaths per attack by group-1.png)&lt;!-- --&gt;
-
-
----
-# Tactics
-
-Suicide attacks
-
-- Are suicide attacks "irrational"?
-
-- Individual-level considerations
-
-- Group-level considerations
-
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
-
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
-
-
-
-
----
-class: center, middle, inverse
-
-# Goals
-
-
-
----
-# Goals
-
-Example: al Qaeda
-
-- Why does al Qaeda attack people? Western targets in particular?
-
-- Because they hate freedom"?
-
-- No
-
-
-
----
-# Goals
-
-al Qaeda / Osama bin Laden's grievances
-
-- Opposes Christian armies deploy to the hold land
-
-- Views Saudi regime as corrupt, repressive, and false advocate of Sharia law
-
-- Alleges that US receives favorable oil prices, leading to low wages, poor service provision for common Saudis, and poor overall quality of life
-
-- Lots more
-
-
-
-
----
-# Goals
-
-More generally, groups' strategic goals can be combined into four broad categories:
-
-- Coercion
-
-- Provocation
-
-- Spoiling
-
-- Outbidding
-
-
----
-class: center, middle, inverse
-
-# Countering Terrorism
-
-
-
----
-class: left, top
-
-# Responding to Terrorism
-
-How do governments fight terror?
-
-- Deterrence
-- Preemption
-- Defense
-- Decriminalization
-- Negotiation and compromise
-
-
-
----
-class: center, middle
-
-&lt;div class="figure"&gt;
-&lt;img src="https://ichef.bbci.co.uk/news/1024/cpsprodpb/9E15/production/_118496404_iron_dome_v2_640-2x-nc.png" alt="Israel's Iron Dome missile defense system was designed to neutralize rocket attacks from groups like Hamas. Image obtained from the BBC." width="60%" /&gt;
-&lt;p class="caption"&gt;Israel's Iron Dome missile defense system was designed to neutralize rocket attacks from groups like Hamas. Image obtained from the BBC.&lt;/p&gt;
-&lt;/div&gt;
-
-
----
-class: center, middle
-
-&lt;div class="figure"&gt;
-&lt;img src="https://static.timesofisrael.com/www/uploads/2023/10/33Z66ET-highres-1024x640.jpg" alt="People search for survivors and for bodies of victims through the rubble of buildings destroyed during Israeli airstrikes, in Khan Younis in the southern Gaza Strip, October 26, 2023, amid the ongoing war between Israel and Palestinian terror group Hamas. (Mahmud Hams/AFP). Image and caption taken from Times of Israel." width="70%" /&gt;
-&lt;p class="caption"&gt;People search for survivors and for bodies of victims through the rubble of buildings destroyed during Israeli airstrikes, in Khan Younis in the southern Gaza Strip, October 26, 2023, amid the ongoing war between Israel and Palestinian terror group Hamas. (Mahmud Hams/AFP). Image and caption taken from Times of Israel.&lt;/p&gt;
-&lt;/div&gt;
-
-???
-
-# Notes
-
-- Israel's counterattack against Hamas has affected roughly all 2.5 million inhabitants of Gaza.
-- Hundreds of thousands of people are facing malnutrition and babies are dying of starvation.
-- UN is warning as of March 7, 2024 that famine is almost inevitable as Israel controls access to aid. 
-- Biden Administration initiated air drops to get aid to vulnerable people. Air drops are risky because you have no clear way to secure a drop zone or to distribute food among the needy.
-
-Source: https://www.bbc.com/news/world-middle-east-68471572
-
-- Also consider the messaging environment when states overreact. Hamas attacks led to a few days of coverage and 1,300 casualties. Israel's counterattack has lasted months and has killed tens of thousands, and press reports are relentless and constant across months.
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/us-israel-support-1.png)&lt;!-- --&gt;
-
-
-
-
----
-class: center, middle
-
-![](polsc145-terrorism_files/figure-html/netanyahu-polls-1.png)&lt;!-- --&gt;
-
-???
-
-# Notes
-
-From Reuters:
-
-&gt; JERUSALEM, Jan 2 (Reuters) - Only 15% of Israelis want Prime Minister Benjamin Netanyahu to stay in office after the war on Hamas in Gaza ends, though many more still support his strategy of crushing the militants in the Palestinian enclave, according to a poll published on Tuesday.
-Netanyahu promised to crush Hamas after its Oct. 7 rampage in southern Israel in which 1,200 people were killed and 240 abducted to Gaza. Israeli forces have laid much of Gaza to waste in their nearly three-month retalitory offensive.
-
-- https://www.reuters.com/world/middle-east/only-15-israelis-want-netanyahu-keep-job-after-gaza-war-poll-finds-2024-01-02/
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"ratio": "16:9",
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
-    }
-  }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
       }
-    }
-    i++;
-  }
-};
-slideshow._releaseMath(document);
-</script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

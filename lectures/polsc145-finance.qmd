@@ -1,0 +1,877 @@
+---
+title: "World Politics"
+subtitle: "International Finance"
+author: 
+  - Michael Flynn
+institute:
+  - Department of Political Science
+  - 011C Calvin Hall
+  - meflynn@ksu.edu
+  - "Last Updated `r Sys.Date()`"
+execute: 
+  warning: false
+  message: false
+format:
+  revealjs:
+    theme: [quarto-lecture-theme.scss, default]
+    #css: quarto-lecture-theme.css
+    slide-number: true
+    chalkboard: true
+    height: 900
+    width: 1600
+    margin: 0.1
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    #incremental: true
+    fig-width: 8
+    fig-height: 6
+    fig-align: center
+title-slide-attributes:
+    data-background-image: "ksu-seal.png"
+    data-background-size: 45%
+    data-background-position: bottom -38% right -19%
+---
+
+
+```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
+#remotes::install_github("gadenbuie/xaringanExtra")
+
+library(ggplot2)
+library(data.table)
+library(peacesciencer)
+library(kableExtra)
+library(tidyverse)
+library(janitor)
+library(here)
+library(ghibli)
+library(ggforce)
+library(scales)
+library(rmapshaper)
+library(sf)
+library(sp)
+library(tmap)
+library(raster)
+library(broom)
+library(xaringanExtra)
+library(gghighlight)
+library(tidyquant)
+library(flynnprojects)
+
+knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
+
+sysfonts::font_add_google("Oswald", family = "oswald")
+showtext::showtext_auto()
+showtext::showtext_opts(dpi = 400)
+
+```
+
+
+
+## Lecture Overview
+
+1. What is international finance?
+
+2. Why do people invest abroad?
+
+3. Controversy and conflict in international finance
+
+
+
+## Key Questions and Goals
+
+1. How does the Heckscher–Ohlin Theory help us to understand capital flows?
+
+2. What sorts of political factors affect lending and borrowing decisions?
+
+3. How do international financial flows relate to trade? To monetary policy?
+
+
+
+
+
+# What is international finance?
+
+
+
+## What is international finance?
+
+Factors of production
+
+- Land
+
+- Unskilled labor
+
+- Skilled labor (human capital)
+
+- Capital
+
+
+
+## What is international finance?
+
+Finance
+
+- Investment and the allocation of capital
+
+- About the flow of money across borders
+
+Monetary policy
+
+- Concerns the valuation, supply, and manipulation of currency
+
+
+
+## What is international finance?
+
+Three main types of financial relations:
+
+- Portfolio investment
+
+- Sovereign lending
+
+- Foreign direct investment (FDI)
+
+
+
+## What is international finance?
+
+Portfolio investment
+
+- Buying stock (equity) in a foreign company
+
+- Lending money to a foreign company or government (buying bonds)
+
+- No control over investment (usually)
+
+
+
+
+## What is international finance?
+
+Sovereign lending
+
+- Loans from private financial institutions to foreign governments (buying bonds)
+
+- This is the biggest category of portfolio investment (a subset of portfolio investment)
+
+- Debt
+
+
+
+
+## What is international finance?
+
+Foreign Direct Investment (FDI)
+
+- Investment by a company in one country into a foreign country
+
+- Buying or investing in a subsidiary, opening a factory or branch
+
+- Control over investment
+
+
+
+
+## What is international finance?
+
+Who are the relevant actors?
+
+- States
+
+- Individuals
+
+- Firms
+
+Defining debt relationships:
+
+- Creditors: People who loan money
+
+- Debtors: People who borrow money
+
+
+
+
+
+## {.blank-slide}
+
+```{r fdi over time, echo = FALSE}
+#| fig-align: center
+
+library(WDI)
+
+#WDIsearch("portfolio")
+
+data <- WDI(indicator = c("BX.KLT.DINV.CD.WD", "DT.NFL.BOND.CD", "BX.PEF.TOTL.CD.WD"),
+            country = c("XO"),
+            start=1960,
+            end=2020)  %>% 
+  dplyr::rename("FDI" = 5, "Bonds and Loans" = 6, "Equity" = 7) %>% 
+  pivot_longer(cols = 5:7) %>% 
+  mutate(name = factor(name, levels = c("Equity", "Bonds and Loans", "FDI"))) 
+
+
+ggplot(data, aes(x = year, y = value, fill = name)) +
+  geom_area(stat = "identity", position = "stack") +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  theme(plot.title.position = "plot") +
+  viridis::scale_fill_viridis(option = "magma", discrete = TRUE, begin = 0.1, end = 0.9) +
+  scale_x_continuous(breaks = seq(1960, 2020, 10)) +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  labs(x = "Year", 
+       fill = "Category",
+       y = "Dollars",
+       title = "Foreign Investment in Lower and Middle Income Countries, 1960-2020",
+       caption = "Data obtained from the World Bank's World Development indicators using the WDI package.")
+
+```
+
+
+
+
+
+
+
+
+# Why Invest Overseas?
+
+
+
+
+
+## Why Invest Overseas?
+
+Profit: To make (more) money
+
+Heckscher–Ohlin theory
+
+- Countries will export goods that make intensive use of the factors that are abundant
+
+- Countries will import goods that make intensive use of the factors that are scarce
+
+
+
+
+## Why Invest Overseas?
+
+Holders of capital make money by investing it with the expectation of generating a return
+
+Returns can take the form of:
+
+- Access to cheap labor or foreign markets may also increase returns to investment
+
+- Dividends, interest, appreciation, etc.
+
+
+
+
+## Why Invest Overseas?
+
+Applying the Heckscher-Ohlin framework
+
+Example #1: Abundant capital
+
+- One borrower
+
+- Multiple lenders
+
+
+
+
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+
+library(ggforce)
+library(ggrepel)
+
+circles <- data.frame(
+  x0 = c(1, 4, 7, 10, 5.5),
+  y0 = c(1, 1, 1, 1, 4),
+  r = c(1, 1, 1, 1, 1),
+  label = c("1.2%", "1.0%",  "2.0%", "3.0%", "Borrower")
+)
+
+
+plot.2 <- ggplot(data = circles) +
+  geom_circle(aes(x0 = x0, y0 = y0, r = r, fill = r), alpha = 0.4, show.legend = FALSE) +
+  geom_label(aes(x = x0, y = y0, label = label)) +
+  coord_fixed() +
+  theme_void() +
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold")) 
+
+plot.2
+
+```
+
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+library(ggforce)
+library(ggrepel)
+
+circles <- data.frame(
+  x0 = c(1, 4, 7, 10, 5.5),
+  y0 = c(1, 1, 1, 1, 4),
+  r = c(1, 1, 1, 1, 1),
+  label = c("1.2%", "1.0%",  "2.0%", "3.0%", "Borrower")
+)
+
+
+plot.2 <- ggplot(data = circles) +
+  geom_circle(aes(x0 = x0, y0 = y0, r = r, fill = r), alpha = 0.4, show.legend = FALSE) +
+  geom_label(aes(x = x0, y = y0, label = label)) +
+  geom_segment(aes(x = 5.2, y = 3, xend = 4.5, yend = 2.0), arrow = arrow(length = unit(0.5, "cm"))) +
+  coord_fixed() +
+  theme_void() +
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold")) 
+
+plot.2
+
+```
+
+
+
+
+
+
+## Why Invest Overseas?
+
+Applying the Heckscher-Ohlin framework
+
+Example #1: Scarce capital
+
+- Multiple borrower
+
+- One lenders
+
+
+
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+library(ggforce)
+library(ggrepel)
+
+circles <- data.frame(
+  x0 = c(1, 4, 7, 10, 5.5),
+  y0 = c(1, 1, 1, 1, 4),
+  r = c(1, 1, 1, 1, 1),
+  label = c("0.2%", "1.0%",  "2.0%", "3.0%", "Lender")
+)
+
+
+plot.2 <- ggplot(data = circles) +
+  geom_circle(aes(x0 = x0, y0 = y0, r = r, fill = r), alpha = 0.4, show.legend = FALSE) +
+  geom_label(aes(x = x0, y = y0, label = label)) +
+  coord_fixed() +
+  theme_void() +
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold")) 
+
+plot.2
+
+```
+
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+library(ggforce)
+library(ggrepel)
+
+circles <- data.frame(
+  x0 = c(1, 4, 7, 10, 5.5),
+  y0 = c(1, 1, 1, 1, 4),
+  r = c(1, 1, 1, 1, 1),
+  label = c("0.2%", "1.0%",  "2.0%", "3.0%", "Lender")
+)
+
+
+plot.2 <- ggplot(data = circles) +
+  geom_circle(aes(x0 = x0, y0 = y0, r = r, fill = r), alpha = 0.4, show.legend = FALSE) +
+  geom_label(aes(x = x0, y = y0, label = label)) +
+  geom_segment(aes(x = 6.25, y = 3.35, xend = 9.05, yend = 1.35), arrow = arrow(length = unit(0.5, "cm"))) +
+  coord_fixed() +
+  theme_void() +
+  theme(plot.title = element_text(size = 25, family = "oswald", face = "bold")) 
+
+plot.2
+
+```
+
+
+
+
+
+## Why Invest Overseas?
+
+Demand within target state
+
+Two general types:
+
+- **Private**: Private interests in developing countries need capital to build, expand, and develop industry
+
+- **Public**: Governments need to borrow money to finance public works projects, military capabilities, war, etc.
+
+
+
+
+
+
+# Conflict and Controversy
+
+
+
+
+
+
+## Conflict and Controversy
+
+Less Developed Countries (LDCs)
+
+Borrow money to promote growth
+
+- Infrastructure (roads, electric lines, etc.)
+
+- Promote domestic startups
+
+- Promote innovation
+
+Increasing the size of the economy should increase government revenues.
+
+
+
+## {.blank-slide}
+
+```{r growth example}
+#| fig-align: center
+
+library(ggpattern)
+library(magick)
+
+data <- tibble("Year" = seq(2000, 2006, 1),
+               "Economy" = c(1000, 1050, 1100, 1150, 1200, 1250, 1300)) %>% 
+  mutate("Tax Revenue" = `Economy` * 0.20) %>% 
+  pivot_longer(cols = c("Economy", "Tax Revenue"))
+
+ggplot(data, aes(x = Year, y = value, group = name)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black", size = 0.3) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_y_continuous(breaks = seq(0, 1400, 200), labels = scales::dollar_format()) +
+  scale_x_continuous(breaks = seq(2000, 2006, 1)) +
+  labs(y = "Value",
+       title = "Simulated growth of economy and tax revenues over time")
+
+```
+
+
+:::{.notes}
+
+Notes
+
+- Basic idea is that your tax rate doesn't have to change to increase government revenues.
+
+- But this means you have to grow the economy.
+:::
+
+
+
+## Conflict and Controversy
+
+::::{.columns}
+:::{.column width=50%}
+Private companies in developed economies do the same thing!
+
+- Apple (AAPL)
+
+- $96,800,000,000 in [total debt](https://finance.yahoo.com/quote/AAPL/key-statistics/) as of December 30, 2024
+
+- Debt can be used for a variety of purposes, like research and development, acquiring subsidiaries, or acquiring new production capabilities.
+:::
+
+
+:::{.column width=50%}
+
+```{r, out.width="70%", fig.align="center"}
+knitr::include_graphics("https://images.macrumors.com/t/yV9jQxmEfa_lbrU4Faagzkz22v0=/1600x0/article-new/2020/03/applecomputerincrainbowsign.jpg")
+```
+
+:::
+::::
+
+
+
+
+
+## Conflict and Controversy
+
+Heckscher-Ohlin framework doesn't explain all investment patterns
+
+- Majority of international investment flows from developed countries to other developed countries
+
+- Why?
+
+:::{.incremental}
+
+Well, there are a few reasons...
+
+- Investment, development, and growth strategies don't always work out (even if they're sensible)
+
+- Governments sometimes expropriate investments and property
+
+- Instability and conflict can disrupt production
+
+- Higher interest rates are also due to risk (i.e. creditors charge more because of risks)
+:::
+
+
+
+
+## {.blank-slide}
+
+```{r, sp500 and emerging markets, message = FALSE, warning = FALSE, echo = FALSE, comment=FALSE}
+#| fig-align: center
+
+
+# Emerging markets versus others
+# Note: This converts xts objects to data frame. Also retains date values in data frame.
+start <- as.Date("2004-01-01")
+end <- as.Date("2019-04-01")
+
+sp500 <- tq_get("^GSPC", 
+                "stock.prices", 
+                from = "2000-01-01") %>% 
+  mutate(index = "S&P 500")
+
+emerging <- tq_get("EEM", 
+                   "stock.prices",
+                   from =  "2000-01-01") %>% 
+  mutate(index = "Emerging Markets")
+
+combined <- bind_rows(sp500, emerging) %>% 
+  group_by(index) %>% 
+  mutate(index.close = close/close[date == "2005-01-03"]) %>% 
+  filter(date >= as.Date("2005-01-01"))
+
+#data <- Quandl("CHRIS/CME_S1", type="raw")
+# Emerging markets and sp 500 comparison
+ggplot(combined, aes(x = date, y = index.close*100, color = index)) +
+  geom_line() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(breaks = seq(as.Date("2005-01-01"), as.Date("2025-12-31"), by = "2 years"), date_labels = "%b %Y") +
+  scale_colour_brewer(palette = "Set1") +
+  labs(x = "Date",
+       y = "Index (January 3, 2005 = 100)",
+       colour = "Index",
+       title = "S&P 500 and iShares MSCI Emerging Markets ETF (EEM), 2005-2020",
+       caption = "Data obtained from Yahoo finance via tidyquant package.") 
+
+```
+
+
+:::{.notes}
+
+Notes
+
+- Helps to show broader investment patterns and relative valuation over time, rather than just outflows from US. 
+
+- Also helps to look at a wider range of investment flows. FDI is more intensive investment. These funds are not focusing on such major investments. 
+
+- Price increases/decreases can tell us something about investors’ expectations.
+
+- Emerging markets have the potential to be very profitable, but also expose investors to significant volatility and risk.
+:::
+
+
+
+
+
+## {.blank-slide}
+
+```{r index funds, message = FALSE, warning = FALSE, echo = FALSE, comment = FALSE}
+#| fig-align: center
+
+
+start <- as.Date("2011-01-01")
+end <- as.Date("2023-03-31")
+
+brazil <- tq_get("EWZ", "stock.prices", from = start, to = end) %>% mutate(country = "Brazil")
+argentina <- tq_get("ARGT", "stock.prices", from = start, to = end) %>% mutate(country = "Argentina")
+turkey <- tq_get("TUR", "stock.prices", from = start, to = end) %>% mutate(country = "Turkey")
+southafrica <- tq_get("EZA", "stock.prices", from = start, to = end) %>% mutate(country = "South Africa")
+eu <- tq_get("VEURX", "stock.prices", from = start, to = end) %>% mutate(country = "European Union")
+china <- tq_get("MCHI", "stock.prices", from = start, to = end) %>% mutate(country = "China")
+russia <- tq_get("ERUS", "stock.prices", from = start, to = end) %>% mutate(country = "Russia")
+
+
+combined <- bind_rows(brazil, argentina, turkey, southafrica, eu, china, russia) %>% 
+  group_by(country) %>% 
+  mutate(index = close/close[date=="2011-07-01"])
+
+ggplot(data = combined, aes(x = date, y = index*100, color = country, group = country)) +
+  geom_line(size = 0.55) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  viridis::scale_color_viridis(option = "magma", 
+                               discrete = TRUE,
+                               begin = 0.1, 
+                               end = 0.9) +
+  scale_y_continuous(breaks = seq(25, 400, 25)) +
+  scale_x_date(breaks = seq(as.Date("2011-01-01"), as.Date("2025-04-01"), by = "1 years"), date_labels = "%b %Y") +
+  labs(x = "Date",
+       y = "Index (July 1, 2011 = 100)",
+       title = "Country and region-specific index funds, 2011-2025",
+       colour = "Country/Region",
+       caption = "Data obtained from Yahoo finance via tidyquant package.\nFunds include EWZ, TUR, EZA, EURX, VCHI, and ERUS.")
+
+```
+
+
+
+## {.blank-slide}
+
+```{r russia-etf-screenshot}
+#| fig-align: center
+
+knitr::include_graphics(here::here("../images/russia-etf-screenshot.jpg"), error = FALSE)
+```
+
+
+
+
+
+:::{.notes}
+
+- Russian invasion of Ukraine had far-reaching consequences.
+
+- Many of the initial responses were primarily economic.
+
+:::
+
+
+
+## Conflict and Controversy
+
+::::{.columns}
+:::{.column width=50%}
+Example: Venezuela
+
+- Hugo Chavez nationalized 1,162 companies between 2002 and 2012
+
+- This means that the Venezuelan government took control of private property, many controlled by international firms
+
+- This can make international firms and investors wary of doing business with certain governments 
+:::
+
+:::{.column width=50%}
+
+```{r, out.width="85%", fig.align="center"}
+knitr::include_graphics("https://www.bilaterals.org/IMG/jpg/owens630md.jpg")
+```
+
+:::
+::::
+
+:::{.notes}
+
+Notes
+
+- 1,162 companies nationalized by Venezuelan government between 2002 and 2012. 
+
+- Owens–Illinois plant expropriated in 2010.
+
+- Operated plant in Venezuela for 52 years. 
+
+- Chavez accused the company of environmental damage and exploiting workers.  
+
+- Venezuelan law requires that the legislature declares the expropriation is “in the public interest”, and the subject of the expropriation is allowed to present a defense against expropriation and they are also entitled to receive compensation. But this does not happen.
+
+- Executive decree ignores Chavez’ rationale and instead says the company was unfairly exploiting its dominant market position. 
+
+- Company given no advanced notice of expropriation and staff were kicked out a few days after the announcement. 
+
+- International tribunal awarded Owens–Illinois $455 million, but it’s unclear when, or how much, they will be paid.
+
+- As of 2017 they have still not recovered their investment costs. A GM plant was also expropriated by the Venezuelan government in 2017. 
+
+- See Wall Street Journal article, Economist article, and Toledo Blade article.
+
+:::
+
+
+
+## Conflict and Controversy
+
+Debt and conflict
+
+-  Regardless of the issue, debts don't go away just because the borrower's situation has changed
+
+- Think student loans, but less forgiving
+
+Terms to know:
+
+> **Default**: Occurs when borrowers fail to make payments on their debts
+
+> **Austerity**: Policies aimed at reducing consumption (spending) and assuring creditors. Often includes tax increases/decreases, raising interest rates, reduced government spending, and wage restrictions.
+
+
+
+
+
+## Conflict and Controversy
+
+The puzzle:
+
+- Default and austerity hurt both borrowers and lenders
+
+-  Why can't debtors and creditors restructure the terms of the loan? (e.g. repayment time, number of installments, interest rates, etc.)
+
+After all, both sides have incentives to maintain good relations
+
+- Creditors **need** borrowers to make profits
+
+- Less-developed countries need access to foreign capital markets to finance growth, economic development, etc.
+
+
+
+
+
+## Conflict and Controversy
+
+Bargaining Problems
+
+- Bargaining models can be useful in thinking about creditor-debtor relationships, too
+
+- Debtors have incentives to misrepresent ability to pay to get better terms
+
+- Creditors also have incentives to misrepresent what they can accept to get a better deal.  They can also retaliate by threatening to cut off access to funding.
+
+- Credibility of each can be hard to establish (i.e. private information)
+
+
+
+## {.blank-slide}
+ 
+```{r russian exchange rate}
+#| fig-align: center
+
+library(priceR)
+library(quantmod)
+library(fredr)
+
+fredr::fredr_set_key("afeafe7157073f92c7fd1cc2550f6218")
+
+start <- as.Date("2015-01-01")
+end <- as.Date("2024-03-01")
+
+ruble <- fredr::fredr(series_id = "CCUSMA02RUM618N",
+                      observation_start = start,
+                      observation_end = end)  
+
+
+ggplot(ruble, aes(x = date, y = value)) +
+  geom_line() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(breaks = seq(as.Date("2015-01-01"), as.Date("2024-04-01"), by = "1 years"), date_labels = "%b %Y") +
+  scale_y_continuous(n.breaks = 10) +
+  labs(x = "Date",
+       y = "Dollars per Ruble",
+       title = "US Dollar-Russian Ruble Exchange Rate")
+```
+
+
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+
+library(rvest)
+
+url <- "https://countryeconomy.com/key-rates/russia"
+
+page <- read_html(url)
+
+table <- html_table(page) %>% 
+  as.data.frame() %>% 
+  mutate(rates = as.numeric(gsub("%", "", Key.rates)),
+         Date = as.Date(Date, "%m/%d/%Y"))
+
+ggplot(table, aes(x = Date, y = rates)) +
+  geom_step() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y %b") +
+  labs(x = "Date",
+       y = "Interest Rate",
+       title = "Russian Central Bank Rate, 2010-2025",
+       caption = "Interest rate data obtained from https://countryeconomy.com/key-rates/russia")
+```
+
+
+
+## {.blank-slide}
+
+```{r us-bond-yields}
+#| fig-align: center
+
+
+us.bond.yield <- tq_get(c("DGS10", "FEDFUNDS"),
+                        "economic.data",
+                        from = "1960-01-01") |> 
+  dplyr::mutate(symbol = case_when(
+    symbol == "DGS10" ~ "10-Year Treasury",
+    TRUE ~ "Federal Funds Rate"
+  ))
+
+ggplot(us.bond.yield, aes(x = date, y = price, color = symbol)) +
+  geom_step() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(date_breaks = "5 year", date_labels = "%Y %b") +
+  viridis::scale_color_viridis(discrete = TRUE,
+                               begin = 0.1, end = 0.9) +
+  labs(x = "Date",
+       y = "Interest Rate",
+       color = "Rate",
+       title = "US 10-Year Treasury Yield and Federal Funds Rate",
+       caption = "Interest rate data obtained from FRED series DGS10")
+
+```
+
+## Conflict and Controversy
+
+::::{.columns}
+:::{.column width=50%}
+Human rights issues
+
+- FDI and multinational corporations have long been accused to exploiting various conditions in target states
+
+- Poorer human rights conditions, lax labor protections, child labor, etc.
+
+- Can exacerbate poor human rights conditions or incentivize governments to crack down on labor movements
+
+- But, human rights shaming campaigns can reduce FDI into targeted states
+:::
+
+:::{.column width=50%}
+
+```{r, out.width="85%", fig.align="center"}
+knitr::include_graphics("https://s.wsj.net/public/resources/images/OB-JL309_honhai_G_20100803043342.jpg")
+```
+
+:::
+::::

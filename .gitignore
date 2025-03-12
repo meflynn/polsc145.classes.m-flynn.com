@@ -12,3 +12,6 @@ gadm*
 *.vrt
 *.gri
 *.grd
+*.rds
+*.gri
+lectures/lecture-data/*

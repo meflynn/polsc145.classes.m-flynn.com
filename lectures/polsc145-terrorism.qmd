@@ -600,7 +600,15 @@ terrorism <- fread(here("../../../../Data Files/START Data/globalterrorismdb_052
   mutate(Cause = "Terrorism")
 
   
-combined <- rbind(terrorism, drunk.driving, guns.total, suicides.total) 
+population.data <- WDI::WDI(country = "USA",
+                            indicator = "SP.POP.TOTL",
+                            start = 1970,
+                            end = 2024)
+
+combined <- rbind(terrorism, drunk.driving, guns.total, suicides.total) |> 
+  dplyr::left_join(population.data, by = c("Year" = "year")) |> 
+  dplyr::rename(`Population` = 7) |> 
+  dplyr::mutate(rate = (Deaths / Population) * 100000)
 
 # Deaths from terrorism and other causes
 ggplot(data = combined, aes(x = Year, y = Deaths, group = Cause, colour = Cause)) +
@@ -619,6 +627,28 @@ ggplot(data = combined, aes(x = Year, y = Deaths, group = Cause, colour = Cause)
 ```
 
 
+
+## {.blank-slide}
+
+```{r deaths-by-population-weighted}
+
+# Deaths from terrorism and other causes
+ggplot(data = combined, aes(x = Year, y = rate, group = Cause, colour = Cause)) +
+  geom_line(size = .8) +
+  annotate("text", x = 1984, y = 1, label = "Rajneeshi bioterror \n attack", size = 2.5) +
+  annotate("text", x = 1995, y = 1, label = "Oklahoma City \n bombing", size = 2.5) +
+  annotate("text", x = 2001, y = 1, label = "September 11 \n attacks", size = 2.5) +
+  annotate("text", x = 2013, y = 1, label = "Boston Marathon \n bombing", size = 2.5) +
+  theme_flynn(base_family = "oswald") +
+  scale_x_continuous(breaks = seq(1970, 2025, 5)) +
+  viridis::scale_color_viridis(discrete = TRUE, option = "magma", begin = 0.1, end = 0.9) +
+  labs(title = "Select causes of deaths among US citizens, 1970-2022",
+       subtitle = "Terrorism receives outsized media attention compared to its impact on US mortality",
+       y = "Deaths per 100,000",
+       caption = "Hat tip to Steven Miller for the original figure. \n Terrorism data obtained from Global Terrorism Database: https://www.start.umd.edu/gtd/. Note that this includes fatalities and casualties. \n Drunk driving fatalities obtained from US NHTSA: https://www-fars.nhtsa.dot.gov/Trends/TrendsAlcohol.aspx. \nSuicide and gun homicide data obtained from Fatal Injury Reports, National, Regional and State, 1981–2015: https://webappa.cdc.gov/sasweb/ncipc/mortrate.html.")
+
+
+```
 
 
 ## {.blank-slide}

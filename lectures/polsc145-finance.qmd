@@ -782,7 +782,7 @@ ruble <- fredr::fredr(series_id = "CCUSMA02RUM618N",
                       observation_end = end)  
 
 
-ggplot(ruble, aes(x = date, y = value)) +
+ggplot(ruble, aes(x = date, y = 1/value)) +
   geom_line() +
   theme_flynn(base_family = "oswald", base_size = 11) +
   scale_x_date(breaks = seq(as.Date("2015-01-01"), as.Date("2024-04-01"), by = "1 years"), date_labels = "%b %Y") +
@@ -836,7 +836,7 @@ us.bond.yield <- tq_get(c("DGS10", "FEDFUNDS"),
   dplyr::mutate(symbol = case_when(
     symbol == "DGS10" ~ "10-Year Treasury",
     TRUE ~ "Federal Funds Rate"
-  ))
+  )) 
 
 ggplot(us.bond.yield, aes(x = date, y = price, color = symbol)) +
   geom_step() +
@@ -851,6 +851,16 @@ ggplot(us.bond.yield, aes(x = date, y = price, color = symbol)) +
        caption = "Interest rate data obtained from FRED series DGS10")
 
 ```
+:::{.notes}
+A slight preview of next week:
+
+- Interest rates generally correspond to how much it costs to borrow. 
+- Treasury bond yields follow the federal funds rate, but it's not an exact match!
+- In the last few decades the cost of borrowing for the US has generally been low.
+
+:::
+
+
 
 ## Conflict and Controversy
 

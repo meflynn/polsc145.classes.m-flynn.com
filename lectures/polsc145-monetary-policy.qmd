@@ -159,6 +159,15 @@ knitr::include_graphics("https://www.federalreserve.gov/aboutthefed/aroundtheboa
 :::
 ::::
 
+:::{.notes}
+- Central Bank of the United States. 
+- Federal reserve act of 1913 created the current Federal Reserve System. 
+- Preceded by the First and Second Banks of the United States. 
+- This was a political battle that was fought repeatedly since the founding. Alexander Hamilton was a big proponent of establishing a central bank.
+- Led by the Chair of the Board of Governors. Serves a 4-year term. Board members are appointed to 14-year terms. 
+- Manages US monetary policy. Essentially the fed is like the bank for banks.
+:::
+
 
 
 ## What is Monetary Policy
@@ -221,6 +230,8 @@ Floating regimes: The current system: Closest to the current system. Major econo
 :::
 
 
+
+
 ## What is Monetary Policy?
 
 
@@ -230,7 +241,7 @@ library(kableExtra)
 
 example <- tibble::tribble(~"Fixed Rate Regimes", ~"Floating Regimes",
                            "Stable exchange rates", "Less stable exchange rates",
-                           "Government itnervention required to maintain exchange rates", "No government intervention required to maintain exchange rate",
+                           "Government intervention required to maintain exchange rates", "No government intervention required to maintain exchange rate",
                            "Less government control over domestic monetary policy", "Greater control over domestic monetary policy") %>% 
   kableExtra::kbl(align = "ll", caption = "Stability-Autonomy Tradeoff") %>% 
   kableExtra::kable_styling(full_width = TRUE, font_size = 16) %>% 
@@ -239,6 +250,11 @@ example <- tibble::tribble(~"Fixed Rate Regimes", ~"Floating Regimes",
 example
 ```
 
+
+:::{.notes}
+Fixed exchange rates provide stability in currency convertibility, making trade and investment easier. However, promising to fix exchange rates and keeping them constant means that you cannot manipulate monetary policy as freely to address domestic economic conditions. Specifically, the government cannot alter interest rates to affect the economy.
+
+:::
 
 
 ## What is Monetary Policy?
@@ -704,6 +720,31 @@ ggplot(data, aes(x = date, y = `Rate (%)`)) +
   
   
   
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+
+us.bond.yield <- tq_get("M2SL",
+                        "economic.data",
+                        from = "1960-01-01") 
+
+ggplot(us.bond.yield, aes(x = date, y = price, color = symbol)) +
+  geom_area(color = "black", linewidth = 0.1, fill = "deepskyblue") +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(date_breaks = "5 year", date_labels = "%Y %b") +
+  viridis::scale_color_viridis(discrete = TRUE,
+                               begin = 0.1, end = 0.9) +
+  labs(x = "Date",
+       y = "M2 Money Supply",
+       title = "M2 Money Supply Over Time",
+       subtitle = "Money Supply gradually increases over time",
+       caption = "Data obtained from FRED M2SL Data Series")
+```
+  
+  
+  
 ## Why Monetary Policy Matters
 
 Fixed exchange regimes: Gold standard
@@ -721,6 +762,7 @@ Fixed exchange regimes: Gold standard
 ## {.blank-slide}
 
 ```{r gold-prices-long}
+#| fig-align: center
 
 library(pdftools)
 # Saved PDF in data folder in the course directory just in case this stops working.
@@ -825,7 +867,8 @@ ggplot(data = inflation.data) +
 
 
 
-## {.blank-slide}
+## Why Monetary Policy Matters
+
 
 ::::{.columns}
 :::{.column width=50%}

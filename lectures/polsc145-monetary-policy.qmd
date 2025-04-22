@@ -83,7 +83,7 @@ update_geom_defaults("text", list(size = 3, family = "oswald", fontface = "plain
 
 1. What is the role of central banks in the economy?
 
-2. How do interest rates arrect the economy, and inflation/unemployment, specifically?
+2. How do interest rates affect the economy, and inflation/unemployment, specifically?
 
 3. How do exchange rates affect producers and consumers?
 
@@ -586,6 +586,9 @@ ggplot(chinareserves, aes(x = date, y = price)) +
 
 
 
+
+
+
 ## {.blank-slide}
 
 ```{r Brexit 2}
@@ -609,6 +612,37 @@ ggplot(pound, aes(x = date, y = price)) +
        title = "US Dollar-British Pound Sterling Exchange Rate",
        caption = "Data obtained from FRED data series DEXUSUK using tidyquant R package.")
 ```
+
+:::{.notes}
+Brexit
+- Brexit was not something people expected to happen. 
+- The vote to leave the European Union was an unforeseen shock that caused the value of the British Pound to decline. 
+- This made it more expensive for British people to buy imports from other places. 
+:::
+
+
+
+## Why Monetary Policy Matters
+
+Managing the economy
+
+- Market economies can be volatile
+- Volatility can be caused by market variables, political issues, etc.
+- Excessive volatility can lead to booms and busts
+- Busts can lead to collective action problems
+- Governments can help remove uncertainty for private actors
+
+:::{.notes}
+- When economies go into recessions or depressions private actors become scared
+- Inflation: Prices are going up so people want to buy stuff now before it becomes more expensive
+- Deflation: Nobody spends because if they wait prices will drop and so the economy lacks liquidity
+
+- Governments can help by intervening to slow or expand economic activity 
+- They can also provide assurances for private actors by helping to promote liquidity in tight times
+
+:::
+
+
 
 
 
@@ -635,6 +669,14 @@ Interest rates
 - Federal Funds Rate
 
 - The rate that banks charge each other for short-term loans
+
+Federal Reserve's Open Market Operations (OPO)
+
+- Central bank buys and sells securities, like Treasury Bonds
+
+- This affects liquidity in the rest of the economy, interest rates, etc.
+
+
 
 
 
@@ -718,6 +760,93 @@ ggplot(data, aes(x = date, y = `Rate (%)`)) +
 ```
   
   
+  
+## Why Monetary Policy Matters
+
+Open Market Operations (OMO)
+
+- Central Bank can buy securities, like bonds
+
+- Purchases occur on private markets, not directly from the Treasury
+
+- Buying up bonds increases liquidity, and pushes interest rates down
+
+- Selling bonds reduces liquidity, and pushes interest rates up
+
+- Quantitative Easing (QE) is similar
+
+:::{.notes}
+
+How do bonds work?
+
+- Bond (loan) has face value, say 100.
+- You can pay 50 for that with the promise of getting 100 back at maturity
+- You can also buy/sell that bond for more/less than what you paid.
+- You buy a bond for 50, but sell it for 75
+- Yield (interest rate) goes down because the price went up
+- Rising prices can be because:
+  - Debt is less attractive
+  - New debt has higher interest rate
+
+:::
+
+
+
+## {.blank-slide}
+
+```{r fed-treasury-holdings}
+#| fig-align: center
+
+treasury.holdings <- tq_get(c("TREAST", "CPIAUCSL"),
+                            "economic.data",
+                            from = "2000-01-01",
+                            to = "2025-05-01") |> 
+  group_by(symbol) |> 
+  dplyr::mutate(change = price - lag(price),
+                index = price / price[date == "2003-01-01"],
+                index_change = index - lag(index))
+
+viridis.palette <- viridis::turbo(10, begin = 0, end = 1)
+colors <- c(viridis.palette[[1]], viridis.palette[[9]])
+
+ggplot(treasury.holdings) +
+  geom_hline(yintercept = 0, color = "red") +
+  geom_line(data = treasury.holdings |> filter(symbol == "CPIAUCSL"), aes(x = date, y = index_change * 5, color = "Inflation"),
+            linewidth = 0.4,
+           alpha = 1.0) +
+  geom_line(data = treasury.holdings |> filter(symbol == "TREAST"), aes(x = date, y = index_change, color = "Treasuries"), 
+            linewidth = 0.4,
+            alpha = 0.85) +
+  annotate("segment", 
+           x = as.Date("2005-01-01"), xend = as.Date("2005-01-01"), 
+           y = 0.2, yend = 0.05, 
+           arrow = arrow(type = "closed", length = unit(0.025, "npc"))) +
+  annotate("segment", 
+           x = as.Date("2005-01-01"), xend = as.Date("2005-01-01"), 
+           y = 0.25, yend = 0.40, 
+           arrow = arrow(type = "closed", length = unit(0.025, "npc"))) +
+  annotate("text", label = "Treasuries come in,\ncash goes out.", x = as.Date("2005-02-01"), y = 0.28, hjust = 0) +
+  annotate("text", label = "Treasuries go out,\ncash comes in.", x = as.Date("2005-02-01"), y = 0.17, hjust = 0) +
+  scale_y_continuous(name = "Treasury Assets Index",
+                     sec.axis = sec_axis(~ . / 2.5, 
+                                         name = "Inflation Index")) +
+  viridis::scale_color_viridis(option = "magma",
+                               discrete = TRUE,
+                               begin = 0.0,
+                               end = 0.75) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()) +
+  labs(x = "Date",
+       color = "Indicator",
+       title = "Weekly Change in Total U.S. Treasuries Held by U.S. Federal Reserve",
+       subtitle = "Buying and selling treasuries affects liquidity, interest rates, and inflation",
+       caption = "Data obtained from {tidyquant} R package.\nFRED indicators TREAST and CPIAUCSL")
+
+
+```
+
+
   
   
 ## {.blank-slide}

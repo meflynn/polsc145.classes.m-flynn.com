@@ -1,0 +1,773 @@
+---
+title: "World Politics"
+subtitle: "International Human Rights"
+author: 
+  - Michael Flynn
+institute:
+  - Department of Political Science
+  - 011C Calvin Hall
+  - meflynn@ksu.edu
+  - "Last Updated `r Sys.Date()`"
+execute: 
+  warning: false
+  message: false
+format:
+  revealjs:
+    theme: [quarto-lecture-theme.scss, default]
+    #css: quarto-lecture-theme.css
+    slide-number: true
+    chalkboard: true
+    height: 900
+    width: 1600
+    margin: 0.1
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    #incremental: true
+    fig-width: 8
+    fig-height: 6
+    fig-align: center
+title-slide-attributes:
+    data-background-image: "ksu-seal.png"
+    data-background-size: 45%
+    data-background-position: bottom -38% right -19%
+---
+
+
+  
+```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
+#remotes::install_github("gadenbuie/xaringanExtra")
+
+library(ggplot2)
+library(data.table)
+library(peacesciencer)
+library(kableExtra)
+library(tidyverse)
+library(janitor)
+library(here)
+library(kableExtra)
+library(ggpattern)
+library(ghibli)
+library(ggforce)
+library(patchwork)
+library(scales)
+library(rmapshaper)
+library(sf)
+library(sp)
+library(tmap)
+library(raster)
+library(broom)
+library(xaringanExtra)
+library(gghighlight)
+library(tidyquant)
+library(flynnprojects)
+
+
+knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
+
+sysfonts::font_add_google("Oswald", family = "oswald")
+showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
+
+
+update_geom_defaults("text", list(size = 10, family = "oswald", fontface = "plain", lineheight = 0.2))
+
+```
+
+
+## Lecture Overview
+
+1. What are human rights?
+
+2. What factors affect respect for human rights?
+
+3. Has government respect for human rights improved?
+
+
+
+## Key Questions
+
+1. What are the historical roots of the contemporary human rights regime?
+
+2. How do the types of rights violated change across regime type and income levels?
+
+3. What role do non-governmental organizations (NGOs) play in the global human rights regime?
+
+
+
+## What Are Human Rights?
+
+
+
+## What Are Human Rights?
+
+Think of human rights in two ways:
+
+- First: A broad conceptual definition
+
+>**Human Rights**: The rights possessed by all individuals by virtue of being human, regardless of their status as citizens of particular states or members of a group or organization (FLS).
+
+- Second: More specific legal definitions and provisions that represent efforts to protect and respect particular types of activities (we'll get into those shortly). 
+
+
+
+
+## What Are Human Rights?
+
+::::{.columns}
+:::{.column width=50%}
+United Nations Universal Declaration of Human Rights (UNDHR)
+
+- Provides an overview of basic human rights
+
+- “Soft law” (Not a treaty)
+
+- To right: Eleanor Roosevelt, Chair of the UN Human Rights Commission. Widely viewed as a driving force behind the declaration’s adoption.
+:::
+
+:::{.column width=50%}
+```{r, out.width="95%", fig.align="center"}
+knitr::include_graphics("https://www.nps.gov/elro/learn/historyculture/images/D1-1.jpg?maxwidth=1200&autorotate=false&quality=78&format=webp")
+```
+:::
+::::
+
+:::{.notes}
+
+Image: Eleanor Roosevelt and the United Nations Universal Declaration of Human Rights 
+  - Adopted on December 10, 1948
+  - Provides a basic listing of rights.
+  - “Soft law”. The declaration is viewed by many as a listing of aspirations, and not as a binding legal agreement. 
+  - Eleanor Roosevelt: Chaired the United Nations Human Rights Commission, which was tasked with drafting a declaration of human rights.
+  - Rene Cassin: French law professor. Composed the first draft of the United Nations Declaration. Essentially the Thomas Jefferson of the UNDHR.
+ 
+  - Pen Chung Chang: Diplomat, philosopher, and Chinese representative to the UN Human Rights Commission. Studied Islam and Asian philosophers, such as Confucius and Mencius. Argued that the Commission had to consider other philosophical traditions when considering a "universal declaration of rights". This debate between Western and non-Western rights would carry on through the Cold War. 
+
+  - Charles Malik: Lebanese diplomat and philosopher. 
+
+:::
+
+
+
+
+
+
+## What Are Human Rights?
+ 
+ What do **you** think should be included in a list of human rights?
+ 
+ 
+
+## What Are Human Rights? 
+:::::{.small}
+Univeral Declaration of Human Rights
+
+::::{.columns}
+:::{.column width=50%}
+1. Life, liberty, and security of person	
+2. No slavery or forced servitude
+3. No torture, cruel and unusual punishment, inhuman or degrading treatment	
+4. Recognition as a person before the law
+5. Equal protection before the law	
+6. Right to effective remedy by national tribunals
+7. No arbitrary arrest, detention, or exile	
+8. Fair and public hearings by an independent and impartial tribunal
+9. Presumed innocence until guilt is proven	
+10. Protection from arbitrary interference in an individual’s private, family, or home life, and in personal correspondence
+11. Freedom of movement, both within and between countries	
+12. Freedom from persecution and access to asylum
+13. Right to a nationality and to change nationality	
+14. Freedom of consensual marriage and to raise a family
+15. Right to own property
+:::
+
+:::{.column width=50%}
+16. Freedom of thought, conscience, and religion
+17. Freedom of opinion and expression	
+18. Freedom of peaceful assembly and association
+19. Freedom of political participation and universal suffrage	
+20. Access to essential economic, social, and cultural rights necessary for individual development and dignity
+21. Right to work, without discrimination, for fair pay, and in favorable conditions. 
+22. Right to joint trade unions.	
+23. Right to rest, leisure, and limited working hours
+24. Access to basic standards of living, including healthcare, food, clothing, and housing.	
+25. Right to equally partake in the cultural and scientific life of the community
+26. Right to enjoy a social and international order that facilitates the realization of these rights	
+27. Limitations on these rights only to the extent that they are necessary to secure the ability of others to enjoy their rights
+28. Nothing in the UNDHR will be interpreted as a license to destroy or harm the freedoms outlined herein
+:::
+::::
+:::::
+
+
+
+## What Are Human Rights?
+
+UNDHR followed up by several treaties
+
+- “Hard law”
+
+- Though most states agree on UNDHR, specific treaties are more contentious due to binding nature
+
+- Levels/stages of committment
+
+  - Signature
+  - Ratification
+  - Reservations
+
+:::{.notes}
+- Treaties are important in democracies in particular because they open the door to legal/statutory challenges to state policies that may conflict with human rights treaty obligations.
+
+- Signature: Where the signature is subject to ratification, acceptance or approval, the signature does not establish the consent to be bound. However, it is a means of authentication and expresses the willingness of the signatory state to continue the treaty-making process. The signature qualifies the signatory state to proceed to ratification, acceptance or approval. It also creates an obligation to refrain, in good faith, from acts that would defeat the object and the purpose of the treaty. (UN Treaty Collection Glossary)
+
+- Ratification: The country agrees to be actually bound by the contents of the treaty. This means that it carries the force of law, and in the US, can be cited in domestic cases. (UN Treaty Collection Glossary)
+
+- Reservations: A reservation is a declaration made by a state by which it purports to exclude or alter the legal effect of certain provisions of the treaty in their application to that state. A reservation enables a state to accept a multilateral treaty as a whole by giving it the possibility not to apply certain provisions with which it does not want to comply. Reservations can be made when the treaty is signed, ratified, accepted, approved or acceded to. Reservations must not be incompatible with the object and the purpose of the treaty. Furthermore, a treaty might prohibit reservations or only allow for certain reservations to be made. (UN Treaty Collection Glossary)
+:::
+
+
+
+
+## What Are Human Rights?
+
+Are all rights equal?
+
+- A matter for debate
+
+- Non-derogable Rights
+
+- Rights that cannot be suspended for any reason, including public emergency
+
+
+
+
+## What Are Human Rights?
+
+Non-derogable Rights
+
+- Right to life
+
+- Limited application of death penalty
+
+- No torture, cruel and unusual, inhumane, or degrading, treatment or punishment
+
+- No slavery or involuntary servitude
+
+- No imprisonment for failure to uphold a contractual obligation
+
+- People cannot be convicted of crimes for acts that were not crimes when the act was committed
+
+- Equal and universal recognition as a person before the law
+
+- Freedom of thought, conscience, and religion
+
+
+
+
+## What Are Human Rights?
+
+```{r}
+table <- tribble(~" ", ~"International Covenenant on Civil and Political Rights", ~"International Covenant on Economic, Social, and Cultural Rights",
+                 "Non-Derogable Rights", "8", "0") %>% 
+  kbl(align = "lcc") %>% 
+  row_spec(0, color = "white", background = "#512888", bold = TRUE)
+
+table
+```
+
+
+
+## {.blank-slide}
+
+```{r human rights table}
+
+agreements <- tibble(`Category` = c("International Bill of Human Rights", "Prevention of discrimination on the basis of race, religion, or belief; and protection of minorities", "Women's Rights", "Slavery", "Torture and Ill-treatment", "Children's rights", "Freedom of association", "Employment and forced labor", "Education", "Refugees and asylum", "Nationality and statelessness", "War crimes and genocide", "Law of armed conflict", "Terrorism and human rights", "Total"),
+                     `Total Agreements` = c(4, 1, 5, 4, 4, 3, 2, 7, 1, 2, 2, 3, 6, 5, 49),
+                     `Total Ratified` = c(1, 1, 0, 1, 1, 2, 0, 1, 0, 0, 0, 1, 4, 5, 17))
+
+
+tinytable::tt(agreements,
+              caption = "US Human Rights Treaty Commitments by Topic Area",
+              notes = c("Data obtained from University of Minnesota Human Rights Library http://hrlibrary.umn.edu/research/ratification-USA.html"),
+              width = 0.80) |> 
+  tinytable::style_tt(i = 0,
+                      bold = TRUE,
+                      color = "white",
+                      background = "#512888") |> 
+  tinytable::style_tt(j = 1:3,
+                      align = "lcc",
+                      fontsize = 0.7) |> 
+  tinytable::style_tt(i = 16,
+                      fontsize = 0.4)
+
+
+```
+
+
+## What Are Human Rights?
+
+Physical Integrity Rights
+
+:::{.medium}
+
+> **Torture**: Purposeful inflicting of extreme pain, whether mental or physical, by government officials or by private individuals at the instigation of government officials
+
+> **Political Imprisonment**: The incarceration of people by government officials because of: their speech; non-violent opposition to government policies or leaders; religious beliefs; non-violent religious practices including proselytizing; or their membership in a group, including an ethnic or racial group
+
+>**Extrajudicial Killings**: Killings by government officials without due process of law. They include murders by private groups if instigated by the government. These killings may result from the deliberate, illegal, and excessive use of lethal force by the police, security forces, or other agents of the state whether against criminal suspects, detainees, prisoners, or others.
+
+> **Disappearance**: Cases in which people have disappeared, political motivation appears likely, and the victims have not been found. Knowledge of the whereabouts of the disappeared is, by definition, not public knowledge. However, while there is typically no way of knowing where victims are, it is typically known by whom they were taken and under what circumstances. 
+
+:::
+
+
+
+
+
+## {.blank-slide}
+
+```{r ciri-nk}
+#| fig-align: center
+
+hr.score <- data.table::fread(here::here("../../../../Data Files/latent-human-rights-scores/humanrightsprotectionscores.csv")) %>% 
+  filter(COW == 731)
+
+torture <- ggplot(hr.score, aes(x = YEAR, y = TORT)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Torture")
+
+prison <- ggplot(hr.score, aes(x = YEAR, y = POLPRIS)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Political Imprisonment")
+
+kill <- ggplot(hr.score, aes(x = YEAR, y = KILL)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Extrajudicial Killings")
+
+disap <- ggplot(hr.score, aes(x = YEAR, y = DISAP)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Disappearances")
+
+
+
+plots <- (torture | prison) / (kill | disap)
+
+plots + plot_annotation(title = "Physical Integrity Rights Measures for North Korea , 1980-2012",
+                        theme = theme_flynn(base_size = 11, base_family = "oswald"))
+
+```
+
+
+
+## {.blank-slide}
+
+```{r latent scores nk}
+#| fig-align: center
+
+hr.score <- data.table::fread(here::here("../../../../Data Files/latent-human-rights-scores/humanrightsprotectionscores.csv")) %>% 
+  filter(COW == 731)
+
+ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = theta_mean - 2*theta_sd, ymax = theta_mean + 2*theta_sd), alpha= 0.5, fill = "dodgerblue1") +
+  scale_x_continuous(breaks = seq(1950, 2020, 10)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Latent Human Rights Score for North Korea, 1946-2017",
+       caption = "Latent human rights score data: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/TADPGE")
+
+```
+
+
+
+
+## What Are Human Rights
+
+::::{.columns}
+:::{.column width=50%}
+North Korean Human Rights Issues
+
+- Torture
+- Imprisonment
+- Censorship
+- Freedom of religion
+- Disappearance
+- Forced labor / slavery
+- Rape of prisoners
+- Political killings and public executions
+- And many, many more
+
+To right: Yeonmi Park. North Korean defector and human rights activist.
+:::
+
+:::{.column width=50%}
+```{r, out.width="95%", fig.align="center"}
+knitr::include_graphics("https://pi.tedcdn.com/r/s3.amazonaws.com/talkstar-photos/uploads/be024faf-0973-47a1-b049-fd83d85e4dc9/YeonmiPark_2019-embed.jpg?cb=20160511&quality=63&u=&w=512")
+```
+:::
+::::
+
+
+:::{.notes}
+
+- More than 200,000 men, women, and children are imprisoned in labor camps in North Korea. 
+- North Korean famine. 1994–1998. Approximately 2.5–3.5 million deaths.
+- Kim Jong Un issued a “shoot on sight” order for border guards who observe people fleeing across the border. 
+- North Koreans who have defected to South Korea often become involved in human rights activism and the collection of information on North Korean human rights abuses. 
+- North Korean Army major provided video footage of public executions. He was executed in 2008.
+
+- Amy Hyatt anecdote. State Department official who traveled to North Korea during the early 2000s. Witnessed people sweeping snow from roads with pine bows. Was looking for slippers in her hotel room, couldn’t find them, and then there was a knock on the door and someone had left slippers outside of her hotel room. 
+
+- Yeonmi Park: Witnessed the public execution of her friend’s mother when she was 8-years old. The women had watched South Korean films and lent DVDs to friends. Her mother was raped by people smugglers during their journey into China. Father died during the journey and they had to bribe a crematorium to destroy his body so they wouldn’t be detected by Chinese authorities, who would deport them back to North Korea. They were surrounded by border guards during an attempt to get into Mongolia, and threatened to cut their own throats if the guards deported them back to China. They were taken into custody and handed over to South Korean officials. She frequently appears on television and international speaking events to talk about repression in North Korea. South Korean police monitor defectors and the detective assigned to her case told her that she’d be added to a kill list in North Korea for speaking out. See Telegraph Store on Yeonmi Park. 
+
+- Note that the journey out of North Korea is a difficult one. People typically flee through China and have to make it to Mongolia or some other Southeast Asian country in order to escape.
+
+:::
+
+
+## {.blank-slide}
+
+```{r ciri-china}
+#| fig-align: center
+
+hr.score <- data.table::fread(here::here("../../../../Data Files/latent-human-rights-scores/humanrightsprotectionscores.csv")) %>% 
+  filter(COW == 710)
+
+torture <- ggplot(hr.score, aes(x = YEAR, y = TORT)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Torture")
+
+prison <- ggplot(hr.score, aes(x = YEAR, y = POLPRIS)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Political Imprisonment")
+
+kill <- ggplot(hr.score, aes(x = YEAR, y = KILL)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Extrajudicial Killings")
+
+disap <- ggplot(hr.score, aes(x = YEAR, y = DISAP)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Disappearances")
+
+
+
+plots <- (torture | prison) / (kill | disap)
+
+plots + plot_annotation(title = "Physical Integrity Rights Measures for China , 1980-2012",
+                        theme = theme_flynn(base_size = 11, base_family = "oswald"))
+
+```
+
+
+
+## {.blank-slide}
+
+```{r latent scores china}
+#| fig-align: center
+
+hr.score <- data.table::fread(here::here("../../../../Data Files/latent-human-rights-scores/humanrightsprotectionscores.csv")) %>% 
+  filter(COW == 710)
+
+ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = theta_mean - 2*theta_sd, ymax = theta_mean + 2*theta_sd), alpha= 0.5, fill = "dodgerblue1") +
+  scale_x_continuous(breaks = seq(1950, 2020, 10)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Latent Human Rights Score for China, 1946-2017",
+       caption = "Latent human rights score data: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/TADPGE")
+
+```
+
+
+
+
+
+## What Are Human Rights?
+
+::::{.columns}
+:::{.column width=50%}
+Chinese Human Rights Issues:
+
+ - Extrajudicial killings
+ - Disappearances
+ - Imprisonment of democratic activists
+ - Police brutality
+ - Restrictions on free speech and religion
+
+To right: Ai Weiwei. Chinese dissident, pro-democracy and human rights activist. 
+:::
+
+:::{.column width=50%}
+```{r ai-wei-wei, fig.align="center", out.width="90%"}
+knitr::include_graphics("https://i.guim.co.uk/img/media/ea7020d862e3cf0afa91e6adad755c00052e6b18/0_0_6256_3754/master/6256.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=58f72a572654375fdc0341a188333b71")
+```
+:::
+::::
+
+
+:::{.notes}
+
+- Between 1998 and 2010 China committed more than 40,000 people to high-security psychiatric facilities. Many for politically-motivated reasons. Patients forcibly medicated and subjected to electro-shock therapy against their will. 
+
+- Example 1: 2010. According to a June 29 NGO report, Liao Meizhi was detained in February by individuals allegedly engaged by the Qianjiang Bureau of Health and the Laoxin Town Public Health Clinic while she was in petitioning with family members. She subsequently was committed to a psychiatric hospital. Liao had previously been detained in psychiatric institutions for petitioning. It was not known whether an independent doctor assessed her mental health. 
+
+- Example 2: 2010. On June 5, a Beijing Chaoyang District Court ruled that China Petroleum and Chemical Corporation (Sinopec) had not violated the rights of former employee Chen Miaocheng, who died after 13 years of detention in a psychiatric institution. Chen, was involuntarily hospitalized in 1995 for ”paranoid schizophrenia” but cleared for release in December 1996 by doctors at Beijing’s Huilongguan Hospital. However, the hospital refused to discharge Chen unless his employer, Sinopec, agreed to his release. Sinopec refused, and Chen died in the hospital 12 years after being cleared for discharge. It remains unclear why Chen’s employer needed to clear his release, or why this was withheld. Chen’s widow filed a lawsuit against Sinopec, arguing that by having Chen involuntarily committed to a psychiatric institution, Sinopec had violated Chen’s rights to life, liberty, and health. The court ruled that Sinopec had not violated the law when it committed Chen to the hospital and was not liable for his death since Chen died from pneumonia.
+
+- Example 3: Ai Wei Wei
+
+  - Family sent to labor camp when Weiwei was 1 year old.
+  - Studied in the US for years before returning to China.
+  - Has blogged about corruption in the Chinese government. 
+  - 2008 Sichuan earthquake. In 2009 Ai Weiwei was imprisoned for blogging about shoddy construction of student housing and trying to publicize information about students who died in the quake. 
+  - Studio demolition. 2010 he was placed under house arrest. In early 2011 his studio was demolished by local government officials. Government officials encouraged him to build the building as a part of a new “cultural center”. Officials subsequently claimed that he did not follow appropriate guidelines.
+
+:::
+
+
+
+
+## {.blank-slide}
+
+```{r ciri-us}
+#| fig-align: center
+
+hr.score <- data.table::fread(here::here("../../../../Data Files/latent-human-rights-scores/humanrightsprotectionscores.csv")) %>% 
+  filter(COW == 2)
+
+torture <- ggplot(hr.score, aes(x = YEAR, y = TORT)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Torture")
+
+prison <- ggplot(hr.score, aes(x = YEAR, y = POLPRIS)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Political Imprisonment")
+
+kill <- ggplot(hr.score, aes(x = YEAR, y = KILL)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Extrajudicial Killings")
+
+disap <- ggplot(hr.score, aes(x = YEAR, y = DISAP)) +
+  geom_step() +
+  geom_point(color = "dodgerblue1", size = 2) +
+  scale_x_continuous(breaks = seq(1980, 2015, 5), limits = c(1980, 2015)) +
+  scale_y_continuous(breaks = seq(0, 2, 1), limits = c(0, 2)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Disappearances")
+
+
+
+plots <- (torture | prison) / (kill | disap)
+
+plots + plot_annotation(title = "Physical Integrity Rights Measures for United States , 1980-2012",
+                        theme = theme_flynn(base_size = 11, base_family = "oswald"))
+
+```
+
+
+
+## {.blank-slide}
+
+```{r latent scores us}
+#| fig-align: center
+
+hr.score <- data.table::fread(here::here("../../../../Data Files/latent-human-rights-scores/humanrightsprotectionscores.csv")) %>% 
+  filter(COW == 2)
+
+ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = theta_mean - 2*theta_sd, ymax = theta_mean + 2*theta_sd), alpha= 0.5, fill = "dodgerblue1") +
+  scale_x_continuous(breaks = seq(1950, 2020, 10)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Latent Human Rights Score for United States, 1946-2017",
+       caption = "Latent human rights score data: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/TADPGE")
+
+```
+
+
+
+
+## What Are Human Rights?
+
+::::{.columns}
+:::{.column width=50%}
+US Human Rights Issues:
+
+ - Rendition programs
+ - Torture
+ - Death penalty
+ - Police brutality
+ - Extrajudicial killings
+ - Civilian killings from drone strikes
+ - Unlawful detention
+ - Immigration detention
+
+To right: Anwar al-Awlaki: Radical Islamist and US citizen killed in drone strike authorized by President Obama. 
+:::
+
+:::{.column width=50%}
+
+```{r awlaki, fig.align="center", out.width="60%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Anwar_al-Awlaki_sitting_on_couch%2C_lightened.jpg/1200px-Anwar_al-Awlaki_sitting_on_couch%2C_lightened.jpg")
+```
+:::
+::::
+
+:::{.notes}
+
+- Example 1: (2010) Death penalty. Amnesty International notes that many executions are botched, taking multiple hours for lethal injection to actually kill the condemned. They also note that”[n]ine people were released from death rows during the year on grounds of innocence, bringing to more than 130 the number of such cases since 1976.”
+
+- Example 2: Tasers. (Several years) Dozens of deaths each year resulting from tasers that are used inappropriately. 
+
+- Example 3: (2012) Anwar al-Awlaki. US citizen, born in New Mexico. Attended college at Colorado State, San Diego State, and George Washington Universities. Awlaki, and later one of his sons, were killed in US drone strikes in Yemen.
+
+:::
+
+
+
+
+# What Factors Shape Human Rights?
+
+
+
+
+
+## What Factors Shape Human Rights?
+
+Lots of things...
+
+- Institutions (Regime type, treaties, monitoring and oversight, etc.)
+
+- Conflict (War, terrorism, etc.)
+
+- Economic Factors (Trade, investment, etc.)
+
+- Political Factors (HROs and shaming, mobilization, etc.)
+
+
+:::{.notes}
+
+- Violations and protection are a function of:
+  - Structural factors, like institutions, economy, etc.
+  - Behavior
+
+- Talk more about monitoring and oversight.
+- Principal-agent problems
+- Also talk about strategic actors and detection-avoidance. If you're in a system that values punishing abusers then you're likely to adopt strategies/tactics that make abuse harder to detect. 
+- Example: Police turning off body cameras.
+
+:::
+
+
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center 
+
+
+hr.score <- data.table::fread(here::here("../../../../Data Files/latent-human-rights-scores/humanrightsprotectionscores.csv")) %>% 
+  group_by(YEAR) %>% 
+  mutate(average = mean(theta_mean, na.rm = TRUE))
+
+all <- ggplot(hr.score, aes(x = YEAR, y = theta_mean)) +
+  geom_jitter(alpha = 0.3) +
+  geom_smooth() +
+  scale_x_continuous(breaks = seq(1950, 2020, 10)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "Year",
+       y = "Score",
+       title = "Latent Human Rights Score for All Countries, 1946-2017",
+       caption = "Latent human rights score data: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/TADPGE")
+
+inset <- ggplot(hr.score, aes(x = YEAR, y = average)) +
+  geom_smooth() +
+  scale_x_continuous(breaks = seq(1950, 2020, 10)) +
+  theme_flynn(base_size = 6, base_family = "oswald") +
+  theme(plot.margin = margin(l = 0.1, r = 0.3, t = 0.3, b = 0.1, unit = "cm"),
+        plot.background = element_rect(linewidth = 1, color = "black", fill = "lightblue1"),
+        panel.background = element_rect(fill = "lightblue1")) +
+  labs(x = "Year",
+       y = "Mean")
+
+all + inset_element(inset, 
+                    left = 0.7, 
+                    bottom = 0.7, 
+                    right = 0.99, 
+                    top = 0.99,
+                    align_to = "full")
+```
+
+

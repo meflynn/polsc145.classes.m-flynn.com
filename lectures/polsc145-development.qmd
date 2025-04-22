@@ -1,0 +1,987 @@
+---
+title: "World Politics"
+subtitle: "International Development"
+author: 
+  - Michael Flynn
+institute:
+  - Department of Political Science
+  - 011C Calvin Hall
+  - meflynn@ksu.edu
+  - "Last Updated `r Sys.Date()`"
+execute: 
+  warning: false
+  message: false
+format:
+  revealjs:
+    theme: [quarto-lecture-theme.scss, default]
+    #css: quarto-lecture-theme.css
+    slide-number: true
+    chalkboard: true
+    height: 900
+    width: 1600
+    margin: 0.1
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    #incremental: true
+    fig-width: 8
+    fig-height: 6
+    fig-align: center
+title-slide-attributes:
+    data-background-image: "ksu-seal.png"
+    data-background-size: 45%
+    data-background-position: bottom -38% right -19%
+---
+
+
+ 
+```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
+#remotes::install_github("gadenbuie/xaringanExtra")
+
+library(ggplot2)
+library(data.table)
+library(peacesciencer)
+library(kableExtra)
+library(tidyverse)
+library(janitor)
+library(here)
+library(ggpattern)
+library(ghibli)
+library(ggforce)
+library(scales)
+library(rmapshaper)
+library(sf)
+library(sp)
+library(tmap)
+library(raster)
+library(broom)
+library(xaringanExtra)
+library(gghighlight)
+library(tidyquant)
+library(flynnprojects)
+
+xaringanExtra::use_scribble()
+xaringanExtra::use_editable(expires = 365)
+
+knitr::opts_chunk$set(comment = '', dpi = 400, fig.width = 8, fig.height = 5, warning = FALSE, echo = FALSE, message = FALSE)
+
+sysfonts::font_add_google("Oswald", family = "oswald")
+showtext::showtext_auto()
+showtext::showtext_opts(dpi = 300)
+
+
+update_geom_defaults("text", list(size = 3, family = "oswald", fontface = "plain", lineheight = 0.2))
+
+
+```
+
+
+## Lecture Overview
+
+1. What is development and why do we care?
+
+2. How do states develop?
+
+3. Controversy in development
+
+
+## Key Questions
+
+1. What are some of the key indicators of countries’ economic development? 
+
+2. What are some of the strengths and weaknesses of different developmental indicators?
+
+3. How do previous topics like conflict, trade, finance, and monetary policy affect development?
+
+
+
+
+## {.blank-slide}
+
+```{r}
+library(ggrepel)
+# Create an object that is a custom palette containing 13 colors. 
+# Choose colors that are visually distinct and colorblind friendly.
+# Do not put similar colors next to one another.
+
+my_palette <- c("#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9", "#92A8D1", "#955251", "#B565A7", "#009B77", "#DD4124", "#D65076", "#45B8AC", "#EFC050", "#9B2335")
+
+
+
+development <- peacesciencer::create_stateyears(system = "cow") |> 
+  peacesciencer::add_sdp_gdp() |> 
+  mutate(quartile = ntile(wbgdppc2011est,  5),
+         ccode = ifelse(statenme == "Germany", 255, ccode)) |> 
+  filter(year >= 1960) |> 
+  group_by(ccode) |> 
+  mutate(index = (wbgdp2011est / xts::first(wbgdp2011est)) * 100) |> 
+  filter(statenme %in% c("United States of America", "Mexico", "China", "India", "Germany", "United Kingdom", "Japan", "Brazil", "Russia", "South Africa", "Nigeria", "Saudi Arabia", "Thailand"))
+
+
+ggplot(development, aes(x = year, y = index)) +
+  geom_line(aes(color = statenme),
+            size = 1.0,
+            show.legend = FALSE) +
+  ggrepel::geom_text_repel(data = development |> filter(year == 2015), 
+                           aes(color = statenme,
+                               label = statenme), 
+                           nudge_x = 0, 
+                           nudge_y = 0, 
+                           direction = "y",
+                           size = 3.0,
+                           show.legend = FALSE,
+                           xlim = c(2015.8, NA),
+                           segment.size = 0.4,
+                           segment.curature = -0.1,
+                           segmend.linetype = "dotted",
+                           segment.alpha = 0.3,
+                           box.padding = 0.4) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(breaks = seq(1960, 2015, 5),
+                     limits = c(1960, 2030),
+                     expand = c(0.01, 3)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()) +
+  scale_color_manual(values = my_palette) +
+  labs(y = "Index (1960 = 100)",
+       x = "Year",
+       title = "Economic growth over time, 1960-2015",
+       subtitle = "How do we explain the growth patterns?",
+       caption  = "World Bank GDP data obtained from {peacesciencer package.}")
+
+
+```
+
+
+
+
+# What is Development and Why Do We Care?
+
+
+
+## What is Development?
+
+::::{.columns}
+:::{.column width=50%}
+Development is complicated
+
+Two broad categories
+
+- Economic
+
+- Human
+:::
+
+:::{.column width=50%}
+
+```{r, fig.align="center", out.width="100%"}
+knitr::include_graphics("https://i0.wp.com/oecd-development-matters.org/wp-content/uploads/2019/03/poverty-dit-facts.jpg?resize=423%2C278&ssl=1")
+```
+:::
+::::
+
+
+
+## What is Development?
+
+**Economic development**: Think about features of a country's economy
+
+- Level of economic productivity
+
+- Growth of the economy and productivity
+
+- *What* a country produces
+
+- Investment in infrastructure
+
+- Acquisition of capital (both human and otherwise)
+
+- Poverty
+
+
+
+
+
+
+## What is Development?
+
+**Human development**: Economic data don't always capture the full picture of what life is like in a country
+
+- Overall quality of life
+
+- Lifespan 
+
+- Infant mortality rates
+
+- Education
+
+- Access to healthcare and health outcomes
+
+- Crime rates
+
+
+
+
+
+## What is Development?
+
+There are lots of indicators we could look at, but here are some key indicators that are commonly used to evaluate a country's development:
+
+- Gross Domestic Product (GDP)
+
+- GDP Per Capita (GDP / Population)
+
+- Economic Growth
+
+- Poverty
+
+- Infant Mortality Rates
+
+
+## {.blank-slide}
+
+```{r development map, out.width="110%"}
+#| fig-align: center
+
+development <- peacesciencer::create_stateyears(system = "cow") |> 
+  peacesciencer::add_sdp_gdp() |> 
+  filter(year == 2015) |> 
+  mutate(quartile = ntile(wbgdppc2011est,  5),
+         ccode = ifelse(statenme == "Germany", 255, ccode)) |> 
+  filter(!is.na(quartile))
+
+mapdata <- rnaturalearth::ne_countries(scale = 110, returnclass = "sf") |> 
+  mutate(ccode = countrycode::countrycode(admin, "country.name", "cown")) |> 
+  left_join(development)
+
+ggplot(mapdata |> filter(admin != "Antarctica")) +
+  geom_sf(aes(fill = as.factor(quartile)), color = "black", size = 0.1) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  theme(panel.background = element_blank(),
+        panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_blank(),
+        axis.text.x.bottom = element_blank(),
+        axis.ticks.x = element_blank()) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  viridis::scale_fill_viridis(discrete = TRUE) +
+  labs(fill = "Income Quartile",
+       title = "Countries grouped by income, 2015 GDP per capita values")
+
+```
+
+
+
+## What is Development?
+
+Economic Growth
+
+- This is an important indicator
+
+- It tells us how much GDP has grown (typically from one year to the next)
+
+- But it has limitations, and context is necessary
+
+:::{.incremental}
+
+Let's look at how we calculate growth rates:
+
+$$\text{Growth Rate}_{t} = {{GDP_t - GDP_{t-1}} \over GDP_{t-1}}$$
+:::
+
+
+
+## What is Development?
+
+What does this mean in practice?
+
+- Growth isn't always the best indicator of success
+
+- Larger, more developed, and more diverse economies may have lower overall growth rates
+
+- Let's look at why
+
+
+  - $1,000 GDPPC increasing by $1,000 is a 100% increase in GDPPC
+  
+  - $10,000 GDPPC increasing by $1,000 is a 10% increase in GDPPC
+  
+  
+  
+  
+  
+## What is Development?
+
+Poverty
+
+- GDP and GDP Per Capita tell us about aggregate wealth
+
+- They don't provide us with information on income distributions
+
+- Distrubtion of wealth is usually skewed
+
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+#| tbl-cap: "Countries with the highest poverty rates, 2022"
+
+#WDI::WDIsearch("poverty headcount ratio")
+
+poverty <- WDI::WDI("SI.POV.DDAY", country = "all") |> 
+  dplyr::select("country", "SI.POV.DDAY", "year") |> 
+  dplyr::rename("Country" = "country", "Poverty Rate" = "SI.POV.DDAY", "Year" = "year") |> 
+  filter(!is.na(`Poverty Rate`)) |> 
+  mutate(ccode = countrycode::countrycode(Country, "country.name", "cown")) |>
+  filter(!is.na(ccode)) 
+
+pov.table.1 <- poverty |> 
+  filter(Year == 2019) |> 
+  arrange(-`Poverty Rate`) |> 
+  dplyr::select(Country, `Poverty Rate`) |> 
+  slice(1:10) 
+  
+  
+tinytable::tt(pov.table.1, 
+              caption = "Top 10 poorest countries, 2019",
+              notes = "Measured at $2.15 per day in 2017 purchasing power adjusted prices.",
+              width = .7) |> 
+  tinytable::style_tt(j = 1:2, align = "lr") |> 
+  tinytable::style_tt(i = 0, j = 1:2, background = "#512888", color = "white", size = 8)
+  
+  
+```
+
+
+
+## {.blank-slide}
+
+```{r lorenz-curve-1}
+#| fig-align: center
+
+data <- data.frame(x = seq(0, 100),
+                   y = seq(0,100)) |> 
+  mutate(z = 0.5*x + 0.5*y)
+
+
+ggplot(data, aes(x = x, y = y)) +
+  geom_line(linetype = "dashed") +
+  coord_equal() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(position = "right", expand = c(0,0)) +
+  theme_void() +
+  theme(plot.title = element_text(family = "oswald", size = 22, face = "bold"),
+        plot.subtitle = element_text(family = "oswald", size = 16, face = "bold"),
+        plot.title.position = "plot",
+        axis.line.x.bottom = element_line(size = 1),
+        axis.line.y.right = element_line(size = 1, color = "black"),
+        axis.title.x.bottom = element_text(family = "oswald", face = "bold", size = 18, margin = margin(t = 0.2, unit = "cm")),
+        axis.title.y.right = element_text(family = "oswald", face = "bold", size = 18, margin = margin(l = 0.2, unit = "cm"))) +
+  labs(x = "% of Population",
+       y = "% of Wealth",
+       title = "Lorenz Curve and the Gini Coefficient",
+       subtitle = "The dashed line represents the line of total equality")
+
+```
+
+
+:::{.notes}
+
+GINI coefficient is calculated as $$  GINI = {A\over{A+B}} $$
+
+:::
+
+
+## {.blank-slide}
+
+```{r lorenz-curve-2}
+#| fig-align: center
+
+
+data <- data.frame(x = seq(0, 100),
+                   y = seq(0,100)) 
+
+
+ggplot(data, aes(x = x, y = y)) +
+  geom_line(linetype = "dashed") +
+  geom_function(fun = function(x) 0.0001*x^3, color = "blue", size = 2) +
+  annotate("text", label = "A", x = 60, y = 40, size = rel(5.2)) +
+  annotate("text", label = "B", x = 75, y = 20, size = rel(5.2)) +
+  coord_equal() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(position = "right", expand = c(0,0)) +
+  theme_void() +
+  theme(plot.title = element_text(family = "oswald", size = 22, face = "bold"),
+        plot.subtitle = element_text(family = "oswald", size = 16, face = "bold"),
+        plot.title.position = "plot",
+        axis.line.x.bottom = element_line(size = 1),
+        axis.line.y.right = element_line(size = 1, color = "black"),
+        axis.title.x.bottom = element_text(family = "oswald", face = "bold", size = 18, margin = margin(t = 0.2, unit = "cm")),
+        axis.title.y.right = element_text(family = "oswald", face = "bold", size = 18, margin = margin(l = 0.2, unit = "cm"))) +
+  labs(x = "% of Population",
+       y = "% of Wealth",
+       title = "Lorenz Curve and the Gini Coefficient",
+       subtitle = "The dashed line represents the line of total equality")
+
+```
+
+
+
+
+# How Do States Develop?
+
+
+
+
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+library(ggrepel)
+# Create an object that is a custom palette containing 13 colors. 
+# Choose colors that are visually distinct and colorblind friendly.
+# Do not put similar colors next to one another.
+
+my_palette <- c("#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9", "#92A8D1", "#955251", "#B565A7", "#009B77", "#DD4124", "#D65076", "#45B8AC", "#EFC050", "#9B2335")
+
+
+
+development <- peacesciencer::create_stateyears(system = "cow") |> 
+  peacesciencer::add_sdp_gdp() |> 
+  mutate(quartile = ntile(wbgdppc2011est,  5),
+         ccode = ifelse(statenme == "Germany", 255, ccode)) |> 
+  filter(year >= 1960) |> 
+  group_by(ccode) |> 
+  mutate(index = (wbgdp2011est / xts::first(wbgdp2011est)) * 100) |> 
+  filter(statenme %in% c("United States of America", "Mexico", "China", "India", "Germany", "United Kingdom", "Japan", "Brazil", "Russia", "South Africa", "Nigeria", "Saudi Arabia", "Thailand"))
+
+
+ggplot(development, aes(x = year, y = index)) +
+  geom_line(aes(color = statenme),
+            size = 1.0,
+            show.legend = FALSE) +
+  ggrepel::geom_text_repel(data = development |> filter(year == 2015), 
+                           aes(color = statenme,
+                               label = statenme), 
+                           nudge_x = 0, 
+                           nudge_y = 0, 
+                           direction = "y",
+                           size = 3.0,
+                           show.legend = FALSE,
+                           xlim = c(2015.8, NA),
+                           segment.size = 0.4,
+                           segment.curature = -0.1,
+                           segmend.linetype = "dotted",
+                           segment.alpha = 0.3,
+                           box.padding = 0.4) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(breaks = seq(1960, 2015, 5),
+                     limits = c(1960, 2030),
+                     expand = c(0.01, 3)) +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  scale_color_manual(values = my_palette) +
+  labs(y = "Index (1960 = 100)",
+       x = "Year",
+       title = "Economic growth over time, 1960-2015", 
+       subtitle = "How do we explain the growth patterns?",
+       caption  = "World Bank GDP data obtained from {peacesciencer package.}")
+
+
+```
+
+
+:::{.notes}
+
+Thinking back on what we just covered, how is it that so many of these countries have grown more than the United States since 1960?
+
+Less developed countries have a lower starting point, and so any amount added will represent a larger share of their GDP as compared to larger economies. 
+
+:::
+
+
+
+
+## {.blank-slide}
+
+
+
+![](../images/development-continuum.jpg){width=80% fig-align="center"}
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+#| 
+sector.emp <- tq_get(c("MANEMP", "USPBS", "PAYEMS", "LNS12034560"),
+                            "economic.data",
+                            from = "1950-01-01") |> 
+  mutate(symbol = case_when(
+    symbol == "MANEMP" ~ "Manufacturing",
+    symbol == "USPBS" ~ "Services",
+    symbol == "LNS12034560" ~ "Agriculture",
+    TRUE ~ "Total Non-Farm Employment"
+  )) |> 
+  dplyr::mutate(symbol = factor(symbol, 
+                                levels = c("Total Non-Farm Employment", "Services", "Manufacturing", "Agriculture")))
+
+ggplot() +
+  geom_area(data = sector.emp |> filter(symbol == "Total Non-Farm Employment"), aes(x = date, y = price, fill = symbol),
+            linewidth = .1, position = "identity") +
+  geom_area(data = sector.emp |> filter(symbol != "Total Non-Farm Employment"),
+            aes(x = date, y = price, fill = symbol),
+            linewidth = .1, position = "stack") +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()) +
+  viridis::scale_fill_viridis(option = "magma",
+                               begin = 0.1,
+                               end = 0.8,
+                               discrete = TRUE) +
+  labs(x = "Year",
+       y = "Count (in thousands)",
+       fill = "Sector",
+       title = "Employment in Select Sectors, 1940-2024",
+       subtitle = "Service sector employment has risen sharply over time",
+       caption = "Data obtained from FRED MANEMP and USPBS series and {tidyquant} package.")
+
+```
+
+:::{.notes}
+The US is an example of how countries tend to move away from primary products as they become wealthier.
+
+Money lets them invest in more capital intensive activities while they shift to importing less profitable products.
+:::
+
+
+
+## How Do States Develop?
+
+Major Factors:
+
+- Geographic and environmental factors
+
+- Domestic factors
+
+- International factors
+
+- Strategies
+
+
+
+
+
+## How Do States Develop?
+
+::::{.columns}
+
+:::{.column width=50%}
+Geographic and environmental factors
+
+- Geography can influence things like resource endowments (natural resources, animals, etc.)
+
+- Geography can also provide opportunities
+
+- Other factors like disease can represent environmental barriers
+
+- Example: Panama Canal
+
+To right: Major Walter Reed (1851-1902), United States Army
+:::
+
+:::{.column width=50%}
+
+```{r walter-reed-picture}
+knitr::include_graphics("https://d3i6fh83elv35t.cloudfront.net/static/2017/09/walter-reed.jpg")
+```
+:::
+
+::::
+
+
+
+
+
+
+## {.blank-slide}
+
+```{r malaria}
+#| fig-align: center
+
+malaria <- WDI::WDI("SH.MLR.INCD.P3", country = "all") |> 
+  dplyr::select("country", "SH.MLR.INCD.P3", "year") |> 
+  dplyr::rename("Country" = "country", "Malaria" = "SH.MLR.INCD.P3", "Year" = "year") |> 
+  filter(!is.na("Malaria")) |> 
+  mutate(ccode = countrycode::countrycode(Country, "country.name", "cown")) |>
+  filter(!is.na(ccode)) 
+
+
+gdppc <- WDI::WDI("NY.GDP.PCAP.KD", country = "all") |> 
+  dplyr::select("country", "NY.GDP.PCAP.KD", "year") |> 
+  dplyr::rename("Country" = "country", "GDP Per Capita" = "NY.GDP.PCAP.KD", "Year" = "year") |> 
+  filter(!is.na("GDP Per Capita")) |> 
+  mutate(ccode = countrycode::countrycode(Country, "country.name", "cown")) |>
+  filter(!is.na(ccode)) 
+
+pop <- WDI::WDI("SP.POP.TOTL", 
+                country = "all") |> 
+  dplyr::mutate(population = SP.POP.TOTL) |> 
+  tidyr::fill(population, .direction = "up")
+
+data.com <- malaria |> 
+  left_join(gdppc) |> 
+  left_join(pop, by = c("Country" = "country", "Year" = "year")) |> 
+  dplyr::mutate(region = countrycode::countrycode(Country, origin = "country.name", destination = "region"))
+
+
+ggplot(data = data.com |> filter(Year == 2022), aes(x = Malaria, y = `GDP Per Capita`, fill = region, size = population)) +
+  geom_point(alpha = 0.8, shape = 21) +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_y_continuous(limits = c(0,50000), breaks = seq(0, 50000, 10000)) +
+  scale_size(guide = "none") +
+  viridis::scale_color_viridis(discrete = TRUE,
+                               option = "turbo") +
+  labs(x = "Malaria (Incidence per 1,000)",
+       y = "GDP Per Capita",
+       title = "Malaria Incidence and Economic Development",
+       fill = "Geographic Region",
+       subtitle = "Environmental factors like disease can make development more difficult",
+       caption = "Data obtained from the World Bank's World Development Indicators series SH.MLR.INCD.P3, NY.GDP.PCAP.KD, and SP.POP.TOTL.\nValues shown for the year 2022. Population values carried forward from most recent observed value.\nGDP values over 50,000 omitted to facilitate visualization.")
+  
+
+```
+
+
+
+
+
+## How Do States Develop?
+
+Resource curse
+
+- States with access to large stockpiles of natural resources often have low levels of development
+
+- Oil, diamonds, gold, silver, etc.
+
+- Access to lucrative natural resources often associated with corruption
+
+
+
+
+## How Do States Develop?
+
+Domestic factors
+
+- Infrastructure
+
+- Conflict 
+
+- Institutions
+
+
+
+
+## {.blank-slide}
+
+```{r vdem-data}
+#| fig-align: center
+
+
+data <- peacesciencer::create_stateyears(system = "cow") |> 
+  add_democracy() |> 
+  add_sdp_gdp() |> 
+  dplyr::filter(sdpest > 0 & wbgdp2011est > 17)
+
+
+ggplot(data, aes(x = wbgdp2011est, y = v2x_polyarchy)) +
+  geom_point(alpha = 0.5) + 
+  geom_smooth(method = "lm") +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  labs(x = "GDP Estimate (2011)",
+       y = "Polyarchy Score",
+       title = "The relationship between income and regime type, 1816-2015",
+       subtitle = "More democratic states tend to be wealthier, and vice versa.",
+       caption = "Data obtained from the {peacesciencer} package.")
+
+
+```
+
+:::{.notes}
+
+Things that we've talked about before. 
+
+Democracies tend to be more stable, and tend to have more transparency in policymaking.
+
+The rule of law and respect for human rights is also a big thing. 
+
+:::
+
+
+
+
+
+## How Do States Develop?
+
+Two strategies
+
+- Import Substituting Industrialization (ISI)
+
+- Export Oriented Industrialization (EOI)
+
+
+
+
+
+
+
+## How Do States Develop?
+
+::::{.columns}
+:::{.column width=50%}
+Import Substituting Industrialization (ISI)
+
+- Emphasizes development of domestic industry and the enhancement of economic self-sufficiency
+
+- Uses protectionist measure to raise costs of imported goods (high tariffs, quotas, etc.)
+
+- Popular in Latin America
+
+- Has some serious shortcomings
+
+To right: The Mastreta MXT, a sportscar manufactured by the Mexican automaker, Mastreta.
+:::
+
+:::{.column width=50%}
+
+```{r}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/7/7f/Mastretta_of_Mexico%2C_The_MXT_-_Flickr_-_Moto%40Club4AG.jpg", error = FALSE)
+
+```
+:::
+
+::::
+
+:::{.notes}
+Positives
+- Can help to develop domestic industries.
+- Can reduce dependency on foreign imports
+
+Downsides
+- Can be an inefficient allocation of resources
+- Increases prices of goods 
+:::
+
+
+
+## How Do States Develop?
+
+::::{.columns}
+:::{.column width=50%}
+Export oriented industrialization (EOI) 
+
+- Emphasizes the use of abundant (cheap) labor and low production costs
+
+- Builds on comparative advantage framework
+
+- Attractive for foreign investors looking to lower costs of production
+
+- Popular among several Asian countries (South Korea, Singapore, China)
+
+To right: A large container ship loading with shipping containers at port.
+:::
+
+:::{.column width=50%}
+```{r}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/MAERSK_MC_KINNEY_M%C3%96LLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg/1200px-MAERSK_MC_KINNEY_M%C3%96LLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg", error = FALSE)
+```
+:::
+::::
+
+
+:::{.notes}
+
+Advantages
+1. Can promote economic growth
+2. Can help to develop a country's industrial base
+3. Can better integrate a country into the global economy
+
+Downsides:
+1. 
+
+:::
+
+
+## {.blank-slide}
+
+```{r Chinese Yuan exchange rate}
+#| fig-align: center
+
+library(priceR)
+yuan <- tq_get("DEXCHUS", "economic.data",
+                from = "1960-01-01",
+                to = "2022-01-01")
+
+ggplot(yuan, aes(x = date, y = price)) +
+  geom_line() +
+  theme_flynn(base_family = "oswald", base_size = 11) +
+  scale_x_date(breaks = seq(as.Date("1970-01-01"), as.Date("2022-04-01"), by = "10 years"), date_labels = "%b %Y") +
+  scale_y_continuous(n.breaks = 10) +
+  labs(x = "Date",
+       y = "Yuan per Dollar",
+       title = "US Dollar-Chinese Renminbi Exchange Rate",
+       caption = "Data obtained from FRED data series DEXCHUS using tidyquant R package.")
+```
+
+
+
+
+
+## How Do States Develop?
+
+International factors
+
+- Number and proximity of regional trading partners
+
+- Position in the international economy
+
+- Access to international finance
+
+- Monetary policy
+
+- Are international economic institutions biased?
+
+
+
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+oda <- fread(here::here("../../../../Data Files/OECD Data/ODA/DP_LIVE_08042022193210442.csv")) |> 
+  dplyr::filter(`MEASURE` == "MLN_USD" & `TIME` == 2020 & SUBJECT == "ODAFLOWS" & LOCATION != "DAC") |> 
+  arrange(-Value) |> 
+  slice(1:35)
+
+
+ggplot(oda, aes(x = reorder(LOCATION, Value), y = Value)) +
+  geom_bar(stat = "identity", color = "black", fill = "dodgerblue1") +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  theme(axis.text.x.bottom = element_text(angle = 45)) +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  labs(y = "Millions of USD",
+       x = "",
+       title = "Top 35 ODA donors by aid flows, 2020",
+       caption = "Data obtained from the Organization for Economic Cooperation and Development (OECD).")
+
+```
+
+
+## {.blank-slide}
+
+```{r}
+#| fig-align: center
+
+oda <- fread(here::here("../../../../Data Files/OECD Data/ODA/DP_LIVE_08042022193210442.csv")) |> 
+  dplyr::filter(`MEASURE` == "PC_GNI" & `TIME` == 2020) |> 
+  arrange(-Value) |> 
+  slice(1:35)
+
+
+ggplot(oda, aes(x = reorder(LOCATION, Value), y = Value)) +
+  geom_bar(stat = "identity", color = "black", fill = "dodgerblue1") +
+  theme_flynn(base_size = 11, base_family = "oswald") +
+  theme(axis.text.x.bottom = element_text(angle = 45)) +
+  labs(y = "% of GNP",
+       x = "",
+       title = "Top 35 ODA donors by percent of GNP, 2020",
+       caption = "Data obtained from the Organization for Economic Cooperation and Development (OECD).")
+
+```
+
+
+## How Do States Develop?
+
+Where does development aid go?
+
+- Disease treatment and prevention
+
+- Healthcare
+
+- Clean water
+
+- Education
+
+- Agricultural research
+
+- Food aid
+
+- Support for women and children
+
+
+:::{.notes}
+
+Donors often partner with local groups to provide resources and expertise. 
+
+Funding goes to both domestic actors and business, but also local businesses and actors. 
+
+Disease treatment, healthcare, etc., examples: 
+
+- Malaria isn't readily treatable. Aid often goes to mosquito repellants, bed nets, improved irrigation (to stop mosquitos from breeding, etc.).
+
+- Presidents Emergency Program for Aids Relief (PEPFAR). Established in 2003 it provided educational resources and treatments for millions of people with HIV and AIDS. Estimated to have saved over 25 million people. Invested over $100 billion across 20 years—that's about \$5 billion per year. For reference, US spends 800+ billion on DOD every year. 
+
+- Tuberculosis treatment: TB is incredibly infectious and VERY difficult to treat. Antibiotic courses last for 6-9 months. Incomplet treatments can make it more difficult or impossible to sucessfully treat and can lead to far more deadly strains of TB evolving. [University of Minnesota's Center for Infectious Disease Research and Prevention](https://www.cidrap.umn.edu/tuberculosis/usaid-funding-freeze-disrupts-global-tuberculosis-control-efforts) indicates over 55 million lives have been saved since 2000 through USAID TB treatment programs. 
+
+- Also provide expertise for treating outbreaks of Ebola, which is super deadly.
+
+- Provide treatment for malnourished people. Limited access to foods deprives people of needed nutrients.
+
+- May provide treatment for women who have been victims of sexual assault or gender-based violence. Often supports groups who provide shelter and protection against further attacks. 
+
+Agricultural research and support
+
+- Research at US and other universities looks at how crops can be made more resilient to climate change, pests, blight, etc. 
+
+- Might also look to improve irrigation technologies for more efficient water use.
+
+
+- Food and Water:
+
+- Food production in US is also used to feed people abroad. Helps to support farm prices and addresses world hunger
+
+- Aid groups will build wells and provide water filtration systems to provide clean drinking water. This eliminates disease and parasites. 
+
+:::
+
+
+## {.blank-slide}
+
+![Photo of a child with Guinea Worm Disease. Medical worker Abaare Hussein extracts a Guinea worm from a child's leg in Savelugu Village in northern Ghana in 2007. Photo and caption information courtesy of Wes Pope/Chicago Tribune MCT and NPR. ](https://media.npr.org/assets/img/2016/06/06/gettyimages-112958495-50_custom-7537f97e51e463f2cee85e880a02ea730c5a421e.jpg){out.width=80%}
+
+:::{.notes}
+
+Guinea Worm Disease:
+
+- Millions of people lack clean and safe drinking water
+
+- Guinea Worm larvae live on tiny crustaceans called "water fleas"
+
+- People consume water containing these tiny crustaceans.
+
+- Symptoms don't usually develop until one year after the larvae are ingested. The worm grows inside of the person during that time, reaching lengths of up to 3 feet! Then it burrows its way out of the human or animal, usually throught he legs of feet. 
+
+- This proecess causes intense pain, fever, swelling, and large blisters. 
+
+- Secondary infections are also possible if the wounds where the worm exists become infected. 
+
+- See [CDC webpage](https://www.cdc.gov/guinea-worm/about/index.html) for more info on Guinea Worm Disease.
+
+:::
